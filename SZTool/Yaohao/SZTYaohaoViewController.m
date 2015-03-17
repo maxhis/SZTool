@@ -15,7 +15,6 @@
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat const kTextFieldWidthNormal  = 200;
 static CGFloat const kTextFieldWidthShort   = 100;
-static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
 @interface SZTYaohaoViewController ()

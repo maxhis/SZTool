@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SZTGongjijinResultModel.h"
+#import "SZTResultModel.h"
 
 @interface SZTGongjijinService : NSObject
 
@@ -25,6 +25,6 @@
  *    @param IDNumber      身份证号
  *    @param verifyCode    验证码
  */
-- (void)queryBalanceWithAccount:(NSString *)accountNumber IDNumber:(NSString *)IDNumber verifyCode:(NSString *)verifyCode completion:(void (^)(SZTGongjijinResultModel *model, NSError *error))completionBlock;
+- (void)queryBalanceWithAccount:(NSString *)accountNumber IDNumber:(NSString *)IDNumber verifyCode:(NSString *)verifyCode completion:(void (^)(SZTResultModel *model, NSError *error))completionBlock;
 
 @end

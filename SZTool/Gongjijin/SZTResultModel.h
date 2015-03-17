@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SZTGongjijinResultModel : NSObject
+@interface SZTResultModel : NSObject
 
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, assign) BOOL success;

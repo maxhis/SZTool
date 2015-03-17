@@ -10,6 +10,7 @@
 #import "SZTHomeModel.h"
 #import "SZTGongjijinController.h"
 #import "SZTYaohaoViewController.h"
+#import "SZTShebaoViewController.h"
 
 @interface SZTHomeListController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -82,6 +83,7 @@
             break;
             
         case 1:
+            destVC = [[SZTShebaoViewController alloc] init];
             break;
             
         case 2:

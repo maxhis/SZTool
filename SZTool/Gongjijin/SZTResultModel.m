@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
 //
 
-#import "SZTGongjijinResultModel.h"
+#import "SZTResultModel.h"
 
-@implementation SZTGongjijinResultModel
+@implementation SZTResultModel
 
 @end

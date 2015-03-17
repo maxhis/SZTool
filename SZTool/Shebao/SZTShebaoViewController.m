@@ -1,14 +1,13 @@
 //
-//  SZTGongjijinViewController.m
+//  SZTShebaoViewController.m
 //  SZTool
 //
-//  Created by iStar on 15/3/16.
+//  Created by iStar on 15/3/17.
 //  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
 //
 
-#import "SZTGongjijinController.h"
-#import "SZTGongjijinService.h"
-#import "SZTResultModel.h"
+#import "SZTShebaoViewController.h"
+#import "SZTShebaoService.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat const kTextFieldWidthNormal  = 200;
@@ -16,17 +15,17 @@ static CGFloat const kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTGongjijinController ()
-
+@interface SZTShebaoViewController ()
 @property (strong, nonatomic) UITextField *idView;
 @property (strong, nonatomic) UITextField *accountView;
 @property (strong, nonatomic) UITextField *codeView;
 @property (strong, nonatomic) UIImageView *codeImageView;
 @property (strong, nonatomic) UIButton *queryBtn;
+@property (strong, nonatomic) UIWebView *resultView; // 查询成功后直接用webview展示结果
 
 @end
 
-@implementation SZTGongjijinController
+@implementation SZTShebaoViewController
 
 - (void)viewDidLoad
 {
@@ -41,18 +40,18 @@ static CGFloat const kTopEdge               = 10;
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStylePlain target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
-    // 公积金账号
+    // 电脑号
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
     _accountView.keyboardType = UIKeyboardTypeNumberPad;
-    _accountView.placeholder = @"11位数字，仅支持深圳地区";
+    _accountView.placeholder = @"电脑号";
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_accountView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _accountView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     accountLabel.textAlignment = NSTextAlignmentRight;
     accountLabel.dt_right = _accountView.dt_left - 5;
-    accountLabel.text = @"公积金账号";
+    accountLabel.text = @"电脑号";
     [self.view addSubview:accountLabel];
     
     // 身份证号
@@ -87,6 +86,9 @@ static CGFloat const kTopEdge               = 10;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
     
+    _resultView = [[UIWebView alloc] initWithFrame:CGRectMake(0, _codeView.dt_bottom + kTopEdge, DTScreenWidth, DTScreenHeight - _codeView.dt_bottom)];
+    [self.view addSubview:_resultView];
+    
     // 点击空白区域关闭键盘
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
 }
@@ -99,7 +101,7 @@ static CGFloat const kTopEdge               = 10;
 - (void)loadVerifyCode
 {
     WEAK_SELF;
-    [[SZTGongjijinService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
+    [[SZTShebaoService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
         if (!error)
         {
@@ -113,9 +115,9 @@ static CGFloat const kTopEdge               = 10;
     [self.view endEditing:YES];
     
     NSString *account = _accountView.text;
-    if (!account || account.length != 11)
+    if (!account || account.length != 9)
     {
-        [self.view dt_postError:@"请输入正确的公积金账号"];
+        [self.view dt_postError:@"请输入正确的电脑号"];
         return;
     }
     
@@ -132,25 +134,28 @@ static CGFloat const kTopEdge               = 10;
         [self.view dt_postError:@"请输入正确的验证码"];
         return;
     }
-    [self.view dt_postLoading:nil];
     WEAK_SELF;
-    [[SZTGongjijinService sharedService] queryBalanceWithAccount:account
+    [self.view dt_postLoading:nil];
+    [[SZTShebaoService sharedService] queryBalanceWithAccount:account
                                                         IDNumber:idNumber
                                                       verifyCode:code
                                                       completion:^(SZTResultModel *model, NSError *error) {
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
+                                                              [self.resultView removeFromSuperview];
                                                               [self.view dt_postError:error.description];
                                                           }
                                                           else
                                                           {
                                                               if (model.success)
                                                               {
-                                                                  [self.view dt_postSuccess:model.message];
+                                                                  [self.view addSubview:self.resultView];
+                                                                  [self.resultView loadHTMLString:model.message baseURL:nil];
                                                               }
                                                               else
                                                               {
+                                                                  [self.resultView removeFromSuperview];
                                                                   [self.view dt_postError:model.message];
                                                                   [self loadVerifyCode];
                                                                   self.codeView.text = nil;

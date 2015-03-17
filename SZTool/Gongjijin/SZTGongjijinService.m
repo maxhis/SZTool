@@ -40,7 +40,7 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
     [requestOperation start];
 }
 
-- (void)queryBalanceWithAccount:(NSString *)accountNumber IDNumber:(NSString *)IDNumber verifyCode:(NSString *)verifyCode completion:(void (^)(SZTGongjijinResultModel *model, NSError *error))completionBlock
+- (void)queryBalanceWithAccount:(NSString *)accountNumber IDNumber:(NSString *)IDNumber verifyCode:(NSString *)verifyCode completion:(void (^)(SZTResultModel *model, NSError *error))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -53,7 +53,7 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
               NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-              SZTGongjijinResultModel *result = [self handleResponse:responseStr];
+              SZTResultModel *result = [self handleResponse:responseStr];
               
               completionBlock(result, nil);
               NSLog(@"responseObject %@", responseStr);
@@ -70,7 +70,7 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
  *
  *    @param response e.g. {success:true,cardstat:'2',newaccnum:'20610581693',msg:'6720.00',peraccstate:'0',oppsucc:false,sbbalance:'0.00'}
  */
-- (SZTGongjijinResultModel *)handleResponse:(NSString *)response
+- (SZTResultModel *)handleResponse:(NSString *)response
 {
     BOOL success = ([response rangeOfString:@"success:true"].location != NSNotFound);
     NSArray *splits = [response componentsSeparatedByString:@"'"];
@@ -84,7 +84,7 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
         msg = splits[1];
     }
     
-    SZTGongjijinResultModel *result = SZTGongjijinResultModel.new;
+    SZTResultModel *result = [[SZTResultModel alloc] init];
     result.success = success;
     result.message = msg;
     return result;

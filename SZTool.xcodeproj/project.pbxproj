@@ -24,6 +24,7 @@
 		1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6961AB71CAB00DAF6FC /* UIView+HUD.m */; };
 		1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B69C1AB7DC7100DAF6FC /* NSString+DT.m */; };
 		1701B6A01AB812FC00DAF6FC /* SZTGongjijinResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B69F1AB812FC00DAF6FC /* SZTGongjijinResultModel.m */; };
+		1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */; };
 		E9ABEB827A39DB30E9894102 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		1701B69C1AB7DC7100DAF6FC /* NSString+DT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+DT.m"; path = "Category/NSString+DT.m"; sourceTree = "<group>"; };
 		1701B69E1AB812FC00DAF6FC /* SZTGongjijinResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTGongjijinResultModel.h; path = Gongjijin/SZTGongjijinResultModel.h; sourceTree = "<group>"; };
 		1701B69F1AB812FC00DAF6FC /* SZTGongjijinResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTGongjijinResultModel.m; path = Gongjijin/SZTGongjijinResultModel.m; sourceTree = "<group>"; };
+		1701B6A11AB833D400DAF6FC /* SZTYaohaoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTYaohaoService.h; path = Yaohao/SZTYaohaoService.h; sourceTree = "<group>"; };
+		1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTYaohaoService.m; path = Yaohao/SZTYaohaoService.m; sourceTree = "<group>"; };
 		F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,6 +219,8 @@
 			children = (
 				1701B68F1AB6E9B100DAF6FC /* SZTYaohaoViewController.h */,
 				1701B6901AB6E9B100DAF6FC /* SZTYaohaoViewController.m */,
+				1701B6A11AB833D400DAF6FC /* SZTYaohaoService.h */,
+				1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */,
 			);
 			name = Yaohao;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
 				1701B6691AB68B8E00DAF6FC /* SZTHomeListController.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
+				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B64A1AB684DA00DAF6FC /* ViewController.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,

@@ -32,10 +32,11 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        completionBlock(responseObject, nil);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completionBlock(nil, error);
-    }];
+                                                completionBlock(responseObject, nil);
+                                            }
+                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                                completionBlock(nil, error);
+                                            }];
     [requestOperation start];
 }
 
@@ -47,17 +48,20 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
                              @"certinum":IDNumber,
                              @"qryflag":@"1",
                              @"verifycode":verifyCode};
-    [manager POST:kQueryUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:kQueryUrl
+       parameters:params
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        SZTGongjijinResultModel *result = [self handleResponse:responseStr];
-        
-        completionBlock(result, nil);
-        NSLog(@"responseObject %@", responseStr);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        completionBlock(nil, error);
-        NSLog(@"Error: %@", error);
-    }];
+              NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+              SZTGongjijinResultModel *result = [self handleResponse:responseStr];
+              
+              completionBlock(result, nil);
+              NSLog(@"responseObject %@", responseStr);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              completionBlock(nil, error);
+              NSLog(@"Error: %@", error);
+          }];
 }
 
 /**

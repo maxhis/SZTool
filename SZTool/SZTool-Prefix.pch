@@ -1,0 +1,24 @@
+//
+//  SZTool-Prefix.pch
+//  SZTool
+//
+//  Created by iStar on 15/3/16.
+//  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
+//
+
+#ifndef SZTool_SZTool_Prefix_pch
+#define SZTool_SZTool_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+#import "SZTMacros.h"
+
+#import "UIView+Frame.h"
+#import "UIView+HUD.h"
+#import "SZTViewController.h"
+
+#endif

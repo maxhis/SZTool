@@ -10,6 +10,7 @@
 #import "SZTHomeListController.h"
 #import "UIView+HUD.h"
 #import "MBProgressHUD.h"
+#import "MAThemeKit.h"
 
 @interface AppDelegate ()
 
@@ -20,6 +21,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [MAThemeKit setupThemeWithPrimaryColor:[MAThemeKit colorWithHexString:@"007cd8"] secondaryColor:[UIColor whiteColor] fontName:@"HelveticaNeue-Light" lightStatusBar:YES];
+    
     // 配置HUD的Icons
     [UIView dt_setLazyConfigBlock:^{
         [UIView dt_setHUDIcon:[UIImage imageNamed:@"common_hud_success"] forType:DTHUDIconSuccess];
@@ -27,8 +30,6 @@
     }];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Status bar风格
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     SZTHomeListController *homeController = [[SZTHomeListController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];

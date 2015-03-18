@@ -15,6 +15,7 @@
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat const kTextFieldWidthNormal  = 200;
 static CGFloat const kTextFieldWidthShort   = 100;
+static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
 @interface SZTYaohaoViewController ()
@@ -22,6 +23,8 @@ static CGFloat const kTopEdge               = 10;
 @property (nonatomic, strong) UITextField *applyCodeView;
 
 @property (nonatomic, strong) UITextField *issueNumberView;
+
+@property (nonatomic, strong) UISegmentedControl *typeView;
 
 @property (nonatomic, strong) NSArray *selections;
 
@@ -42,8 +45,14 @@ static CGFloat const kTopEdge               = 10;
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStylePlain target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
+    // 个人或单位
+    _typeView = [[UISegmentedControl alloc] initWithItems:@[@"个人" , @"单位" ]];
+    _typeView.frame = CGRectMake(kDividerWidth, kTopEdge, DTScreenWidth - kDividerWidth * 2, kTextFieldHeight);
+    _typeView.selectedSegmentIndex = 0;
+    [self.view addSubview:_typeView];
+    
     // 申请编码
-    _applyCodeView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _applyCodeView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _applyCodeView.borderStyle = UITextBorderStyleRoundedRect;
     _applyCodeView.keyboardType = UIKeyboardTypeNumberPad;
     _applyCodeView.placeholder = @"13位数字";
@@ -129,10 +138,16 @@ static CGFloat const kTopEdge               = 10;
         issueNumber = _selections[_selectedIndex];
     }
     
+    ApplyType type = ApplyTypePerson;
+    if (_typeView.selectedSegmentIndex == 1)
+    {
+        type = ApplyTypeUnit;
+    }
+    
     WEAK_SELF;
     [[SZTYaohaoService sharedService] queryStatusWithApplycode:applyNumber
                                                     issueNmber:issueNumber
-                                                          type:ApplyTypePerson
+                                                          type:type
                                                     completion:^(BOOL hit, NSError *error) {
                                                         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                         if (error) {

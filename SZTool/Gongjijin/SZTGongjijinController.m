@@ -45,7 +45,7 @@ static CGFloat const kTopEdge               = 10;
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
     _accountView.keyboardType = UIKeyboardTypeNumberPad;
-    _accountView.placeholder = @"11位数字，仅支持深圳地区";
+    _accountView.placeholder = @"11位数字，限深圳地区";
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_accountView];
     

@@ -19,6 +19,7 @@
 
 #import "UIView+Frame.h"
 #import "UIView+HUD.h"
+#import "UIColor+HexString.h"
 #import "SZTViewController.h"
 
 #endif

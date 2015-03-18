@@ -37,6 +37,9 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStylePlain target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
@@ -108,6 +111,11 @@ static CGFloat const kTopEdge               = 10;
             self.codeImageView.image = verifyCodeImage;
         }
     }];
+}
+
+- (void)cancel
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)doQuery

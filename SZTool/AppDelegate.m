@@ -7,10 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "SZTHomeListController.h"
+#import "SZTHomeController.h"
 #import "UIView+HUD.h"
 #import "MBProgressHUD.h"
-#import "MAThemeKit.h"
+#import "RZTransitionsManager.h"
+#import "RZTransitionsAnimationControllers.h"
 
 @interface AppDelegate ()
 
@@ -21,23 +22,35 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [MAThemeKit setupThemeWithPrimaryColor:[MAThemeKit colorWithHexString:@"007cd8"] secondaryColor:[UIColor whiteColor] fontName:@"HelveticaNeue-Light" lightStatusBar:YES];
-    
     // 配置HUD的Icons
-    [UIView dt_setLazyConfigBlock:^{
-        [UIView dt_setHUDIcon:[UIImage imageNamed:@"common_hud_success"] forType:DTHUDIconSuccess];
-        [UIView dt_setHUDIcon:[UIImage imageNamed:@"common_hud_error"] forType:DTHUDIconError];
-    }];
+    [self setupHUD];
+    
+    [self setupRZTransitionsManager];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    SZTHomeListController *homeController = [[SZTHomeListController alloc] init];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:homeController];
-    self.window.rootViewController = navigationController;
+    SZTHomeController *homeController = [[SZTHomeController alloc] init];
+    self.window.rootViewController = homeController;
     
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void)setupHUD
+{
+    [UIView dt_setLazyConfigBlock:^{
+        [UIView dt_setHUDIcon:[UIImage imageNamed:@"common_hud_success"] forType:DTHUDIconSuccess];
+        [UIView dt_setHUDIcon:[UIImage imageNamed:@"common_hud_error"] forType:DTHUDIconError];
+    }];
+}
+
+- (void)setupRZTransitionsManager
+{
+    id<RZAnimationControllerProtocol> presentDismissAnimationController = [[RZZoomAlphaAnimationController alloc] init];
+    id<RZAnimationControllerProtocol> pushPopAnimationController = [[RZZoomBlurAnimationController alloc] init];
+    [[RZTransitionsManager shared] setDefaultPresentDismissAnimationController:presentDismissAnimationController];
+    [[RZTransitionsManager shared] setDefaultPushPopAnimationController:pushPopAnimationController];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

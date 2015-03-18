@@ -14,8 +14,6 @@
 		1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1701B64E1AB684DA00DAF6FC /* Images.xcassets */; };
 		1701B6521AB684DA00DAF6FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1701B6501AB684DA00DAF6FC /* LaunchScreen.xib */; };
 		1701B65E1AB684DB00DAF6FC /* SZToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B65D1AB684DB00DAF6FC /* SZToolTests.m */; };
-		1701B6691AB68B8E00DAF6FC /* SZTHomeListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6681AB68B8E00DAF6FC /* SZTHomeListController.m */; };
-		1701B66D1AB69B7700DAF6FC /* SZTHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B66C1AB69B7700DAF6FC /* SZTHomeModel.m */; };
 		1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B67F1AB6CAAD00DAF6FC /* UIView+Frame.m */; };
 		1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6861AB6D99000DAF6FC /* SZTViewController.m */; };
 		1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6891AB6DD3900DAF6FC /* SZTGongjijinService.m */; };
@@ -27,6 +25,8 @@
 		1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */; };
 		1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */; };
 		1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */; };
+		1701B6C21AB9ABE400DAF6FC /* SZTHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */; };
+		1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */; };
 		E9ABEB827A39DB30E9894102 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -56,10 +56,6 @@
 		1701B6571AB684DB00DAF6FC /* SZToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SZToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1701B65C1AB684DB00DAF6FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1701B65D1AB684DB00DAF6FC /* SZToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZToolTests.m; sourceTree = "<group>"; };
-		1701B6671AB68B8E00DAF6FC /* SZTHomeListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeListController.h; path = Home/SZTHomeListController.h; sourceTree = "<group>"; };
-		1701B6681AB68B8E00DAF6FC /* SZTHomeListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeListController.m; path = Home/SZTHomeListController.m; sourceTree = "<group>"; };
-		1701B66B1AB69B7700DAF6FC /* SZTHomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeModel.h; path = Home/SZTHomeModel.h; sourceTree = "<group>"; };
-		1701B66C1AB69B7700DAF6FC /* SZTHomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeModel.m; path = Home/SZTHomeModel.m; sourceTree = "<group>"; };
 		1701B67B1AB6B7C600DAF6FC /* SZTool-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SZTool-Prefix.pch"; sourceTree = "<group>"; };
 		1701B67C1AB6BE0F00DAF6FC /* SZTMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZTMacros.h; sourceTree = "<group>"; };
 		1701B67E1AB6CAAD00DAF6FC /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Frame.h"; path = "Category/UIView+Frame.h"; sourceTree = "<group>"; };
@@ -84,6 +80,10 @@
 		1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoViewController.m; path = Shebao/SZTShebaoViewController.m; sourceTree = "<group>"; };
 		1701B6A81AB85BB500DAF6FC /* SZTShebaoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTShebaoService.h; path = Shebao/SZTShebaoService.h; sourceTree = "<group>"; };
 		1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoService.m; path = Shebao/SZTShebaoService.m; sourceTree = "<group>"; };
+		1701B6C01AB9ABE400DAF6FC /* SZTHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeController.h; path = Home/SZTHomeController.h; sourceTree = "<group>"; };
+		1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeController.m; path = Home/SZTHomeController.m; sourceTree = "<group>"; };
+		1701B6C31AB9B18900DAF6FC /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,10 +178,8 @@
 		1701B66A1AB68B9900DAF6FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1701B6671AB68B8E00DAF6FC /* SZTHomeListController.h */,
-				1701B6681AB68B8E00DAF6FC /* SZTHomeListController.m */,
-				1701B66B1AB69B7700DAF6FC /* SZTHomeModel.h */,
-				1701B66C1AB69B7700DAF6FC /* SZTHomeModel.m */,
+				1701B6C01AB9ABE400DAF6FC /* SZTHomeController.h */,
+				1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -202,6 +200,8 @@
 		1701B67D1AB6CA3900DAF6FC /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				1701B6C31AB9B18900DAF6FC /* UIColor+HexString.h */,
+				1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */,
 				1701B69B1AB7DC7100DAF6FC /* NSString+DT.h */,
 				1701B69C1AB7DC7100DAF6FC /* NSString+DT.m */,
 				1701B6951AB71CAB00DAF6FC /* UIView+HUD.h */,
@@ -399,14 +399,14 @@
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
-				1701B6691AB68B8E00DAF6FC /* SZTHomeListController.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
 				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B64A1AB684DA00DAF6FC /* ViewController.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
-				1701B66D1AB69B7700DAF6FC /* SZTHomeModel.m in Sources */,
+				1701B6C21AB9ABE400DAF6FC /* SZTHomeController.m in Sources */,
+				1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,

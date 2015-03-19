@@ -47,7 +47,7 @@ static CGFloat const kTopEdge               = 10;
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
     _accountView.keyboardType = UIKeyboardTypeNumberPad;
-    _accountView.placeholder = @"电脑号";
+    _accountView.placeholder = @"9位数字";
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_accountView];
     
@@ -94,6 +94,22 @@ static CGFloat const kTopEdge               = 10;
     
     // 点击空白区域关闭键盘
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+    
+    [self loadDefaultData];
+}
+
+- (void)loadDefaultData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _accountView.text = [defaults stringForKey:kUserDefaultKeyShebaoAccount];
+    _idView.text = [defaults stringForKey:kUserDefaultKeyShebaoID];
+}
+
+- (void)saveUserData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_accountView.text forKey: kUserDefaultKeyShebaoAccount];
+    [defaults setObject:_idView.text forKey: kUserDefaultKeyShebaoID];
 }
 
 - (void)hideKeyboard
@@ -158,6 +174,7 @@ static CGFloat const kTopEdge               = 10;
                                                           {
                                                               if (model.success)
                                                               {
+                                                                  [self saveUserData];
                                                                   [self.view addSubview:self.resultView];
                                                                   [self.resultView loadHTMLString:model.message baseURL:nil];
                                                               }
@@ -166,9 +183,9 @@ static CGFloat const kTopEdge               = 10;
                                                                   [self.resultView removeFromSuperview];
                                                                   [self.view dt_postError:model.message];
                                                                   [self loadVerifyCode];
-                                                                  self.codeView.text = nil;
                                                               }
                                                           }
+                                                          self.codeView.text = nil;
                                                       }];
 }
 

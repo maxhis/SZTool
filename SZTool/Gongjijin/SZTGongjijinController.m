@@ -92,6 +92,22 @@ static CGFloat const kTopEdge               = 10;
     
     // 点击空白区域关闭键盘
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+    
+    [self loadDefaultData];
+}
+
+- (void)loadDefaultData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _accountView.text = [defaults stringForKey:kUserDefaultKeyGongjijinAccount];
+    _idView.text = [defaults stringForKey:kUserDefaultKeyGongjijinID];
+}
+
+- (void)saveUserData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_accountView.text forKey:kUserDefaultKeyGongjijinAccount];
+    [defaults setObject:_idView.text forKey:kUserDefaultKeyGongjijinID];
 }
 
 - (void)hideKeyboard
@@ -155,15 +171,16 @@ static CGFloat const kTopEdge               = 10;
                                                           {
                                                               if (model.success)
                                                               {
+                                                                  [self saveUserData];
                                                                   [self.view dt_postSuccess:model.message];
                                                               }
                                                               else
                                                               {
                                                                   [self.view dt_postError:model.message];
                                                                   [self loadVerifyCode];
-                                                                  self.codeView.text = nil;
                                                               }
                                                           }
+                                                          self.codeView.text = nil;
                                                       }];
 }
 

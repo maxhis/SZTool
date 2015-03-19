@@ -87,6 +87,22 @@ static CGFloat const kTopEdge               = 10;
     
     // 点击空白区域关闭键盘
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+    
+    [self loadDefaultData];
+}
+
+- (void)loadDefaultData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _applyCodeView.text = [defaults stringForKey:kUserDefaultKeyYaohaoApplyNumber];
+    _typeView.selectedSegmentIndex = [defaults integerForKey:kUserDefaultKeyYaohaoApplyType];
+}
+
+- (void)saveUserData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_applyCodeView.text forKey:kUserDefaultKeyYaohaoApplyNumber];
+    [defaults setInteger:_typeView.selectedSegmentIndex forKey:kUserDefaultKeyYaohaoApplyType];
 }
 
 - (void)showIssuePicker
@@ -163,6 +179,7 @@ static CGFloat const kTopEdge               = 10;
                                                             return;
                                                         }
                                                         
+                                                        [self saveUserData];
                                                         if (hit)
                                                         {
                                                             [self.view dt_postSuccess:@"恭喜你中签！"];

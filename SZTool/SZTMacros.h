@@ -9,6 +9,13 @@
 #ifndef SZTool_SZTMacros_h
 #define SZTool_SZTMacros_h
 
+#define kUserDefaultKeyGongjijinAccount     @"GongjijinAccount"
+#define kUserDefaultKeyGongjijinID          @"GongjijinID"
+#define kUserDefaultKeyShebaoAccount        @"ShebaoAccount"
+#define kUserDefaultKeyShebaoID             @"ShebaoID"
+#define kUserDefaultKeyYaohaoApplyNumber    @"YaohaoApplyNumber"
+#define kUserDefaultKeyYaohaoApplyType      @"YaohaoApplyType"
+
 // 系统全局宏定义
 #define DTScreenWidth [UIScreen mainScreen].bounds.size.width
 #define DTScreenHeight [UIScreen mainScreen].bounds.size.height

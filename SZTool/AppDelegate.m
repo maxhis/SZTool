@@ -28,10 +28,8 @@
     [self setupRZTransitionsManager];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     SZTHomeController *homeController = [[SZTHomeController alloc] init];
     self.window.rootViewController = homeController;
-    
     [self.window makeKeyAndVisible];
     
     return YES;

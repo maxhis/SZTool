@@ -15,13 +15,19 @@
 
 @interface SZTHomeController () <AwesomeMenuDelegate>
 
+// menus
 @property (nonatomic, strong) AwesomeMenu *mainMenu;
-
 @property (nonatomic, strong) AwesomeMenuItem *startItem;
 @property (nonatomic, strong) AwesomeMenuItem *gongjijinItem;
 @property (nonatomic, strong) AwesomeMenuItem *shebaoItem;
 @property (nonatomic, strong) AwesomeMenuItem *yaohaoItem;
 @property (nonatomic, strong) AwesomeMenuItem *settingsItem;
+
+// labels
+@property (nonatomic, strong) UILabel *gongjijinLabel;
+@property (nonatomic, strong) UILabel *shebaoLabel;
+@property (nonatomic, strong) UILabel *yaohaoLabel;
+@property (nonatomic, strong) UILabel *settingsLabel;
 
 @end
 
@@ -41,6 +47,7 @@
     [self.view addSubview:bgView];
     
     [self initMenu];
+    [self initLabels];
 }
 
 - (void)initMenu
@@ -76,15 +83,63 @@
                                          menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem, _settingsItem]];
     _mainMenu.delegate = self;
     _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight - 30);
-    _mainMenu.menuWholeAngle = M_PI;
-    _mainMenu.rotateAngle = -M_PI_2;
+    _mainMenu.menuWholeAngle = M_PI_4 * 3;
+    _mainMenu.rotateAngle = -M_PI_4 / 2 * 3;
     [self.view addSubview:_mainMenu];
+}
+
+- (void)initLabels
+{
+    _gongjijinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _gongjijinLabel.textAlignment = NSTextAlignmentCenter;
+    _gongjijinLabel.text = @"公积金";
+    
+    _shebaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _shebaoLabel.textAlignment = NSTextAlignmentCenter;
+    _shebaoLabel.text = @"社保";
+    
+    _yaohaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _yaohaoLabel.textAlignment = NSTextAlignmentCenter;
+    _yaohaoLabel.text = @"🚗摇号";
+    
+    _settingsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    _settingsLabel.textAlignment = NSTextAlignmentCenter;
+    _settingsLabel.text = @"设置";
+}
+
+- (void)showLabels
+{
+    _gongjijinLabel.dt_centerX = _gongjijinItem.dt_centerX;
+    _gongjijinLabel.dt_top = _gongjijinItem.dt_bottom;
+    [self.view addSubview:_gongjijinLabel];
+    
+    _shebaoLabel.dt_centerX = _shebaoItem.dt_centerX;
+    _shebaoLabel.dt_top = _shebaoItem.dt_bottom;
+    [self.view addSubview:_shebaoLabel];
+    
+    _yaohaoLabel.dt_centerX = _yaohaoItem.dt_centerX;
+    _yaohaoLabel.dt_top = _yaohaoItem.dt_bottom;
+    [self.view addSubview:_yaohaoLabel];
+    
+    _settingsLabel.dt_centerX = _settingsItem.dt_centerX;
+    _settingsLabel.dt_top = _settingsItem.dt_bottom;
+    [self.view addSubview:_settingsLabel];
+}
+
+- (void)hideLabels
+{
+    [_gongjijinLabel removeFromSuperview];
+    [_shebaoLabel removeFromSuperview];
+    [_yaohaoLabel removeFromSuperview];
+    [_settingsLabel removeFromSuperview];
 }
 
 #pragma mark - AwesomeMenuDelegate
 
 - (void)awesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx;
 {
+    [self hideLabels];
+    
     AwesomeMenuItem *item = menu.menuItems[idx];
     UIViewController *destVC;
     if ([item isEqual:_gongjijinItem])
@@ -108,6 +163,16 @@
     [self setTransitioningDelegate:[RZTransitionsManager shared]];
     [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
     [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (void)awesomeMenuDidFinishAnimationOpen:(AwesomeMenu *)menu
+{
+    [self showLabels];
+}
+
+- (void)awesomeMenuWillAnimateClose:(AwesomeMenu *)menu
+{
+    [self hideLabels];
 }
 
 @end

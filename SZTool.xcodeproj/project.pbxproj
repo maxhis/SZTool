@@ -27,7 +27,13 @@
 		1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */; };
 		17C25C4D1ABA70E5007942A5 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */; };
 		17C25C4E1ABA70E5007942A5 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */; };
-		E9ABEB827A39DB30E9894102 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
+		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
+		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
+		17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5E1ABB0083007942A5 /* HTMLParser.m */; };
+		17C25C621ABB0083007942A5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5F1ABB0083007942A5 /* README.md */; };
+		17C25C661ABBBB49007942A5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C25C651ABBBB49007942A5 /* libxml2.dylib */; };
+		17C25C691ABBC78A007942A5 /* SZTResultListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C681ABBC78A007942A5 /* SZTResultListController.m */; };
+		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +91,17 @@
 		17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
 		17C25C4B1ABA70E5007942A5 /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
 		17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenuItem.m; sourceTree = "<group>"; };
+		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
+		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
+		17C25C5B1ABB0083007942A5 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = HTMLParser/HTMLNode.h; sourceTree = "<group>"; };
+		17C25C5C1ABB0083007942A5 /* HTMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLNode.m; path = HTMLParser/HTMLNode.m; sourceTree = "<group>"; };
+		17C25C5D1ABB0083007942A5 /* HTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLParser.h; path = HTMLParser/HTMLParser.h; sourceTree = "<group>"; };
+		17C25C5E1ABB0083007942A5 /* HTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLParser.m; path = HTMLParser/HTMLParser.m; sourceTree = "<group>"; };
+		17C25C5F1ABB0083007942A5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = HTMLParser/README.md; sourceTree = "<group>"; };
+		17C25C631ABBBB09007942A5 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		17C25C651ABBBB49007942A5 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		17C25C671ABBC78A007942A5 /* SZTResultListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultListController.h; path = Base/SZTResultListController.h; sourceTree = "<group>"; };
+		17C25C681ABBC78A007942A5 /* SZTResultListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultListController.m; path = Base/SZTResultListController.m; sourceTree = "<group>"; };
 		F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +110,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9ABEB827A39DB30E9894102 /* libPods.a in Frameworks */,
+				17C25C661ABBBB49007942A5 /* libxml2.dylib in Frameworks */,
+				E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +148,7 @@
 		1701B6401AB684DA00DAF6FC /* SZTool */ = {
 			isa = PBXGroup;
 			children = (
+				17C25C521ABAFFC8007942A5 /* HTMLParser */,
 				17C25C481ABA70E5007942A5 /* AwesomeMenu */,
 				1701B6841AB6D96700DAF6FC /* Base */,
 				1701B67D1AB6CA3900DAF6FC /* Category */,
@@ -216,6 +235,8 @@
 			children = (
 				1701B6851AB6D99000DAF6FC /* SZTViewController.h */,
 				1701B6861AB6D99000DAF6FC /* SZTViewController.m */,
+				17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */,
+				17C25C501ABACFFD007942A5 /* SZTResultItem.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -238,6 +259,8 @@
 				1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */,
 				1701B6A51AB85A3D00DAF6FC /* SZTShebaoViewController.h */,
 				1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */,
+				17C25C671ABBC78A007942A5 /* SZTResultListController.h */,
+				17C25C681ABBC78A007942A5 /* SZTResultListController.m */,
 			);
 			name = Shebao;
 			sourceTree = "<group>";
@@ -253,9 +276,23 @@
 			path = AwesomeMenu;
 			sourceTree = "<group>";
 		};
+		17C25C521ABAFFC8007942A5 /* HTMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				17C25C5B1ABB0083007942A5 /* HTMLNode.h */,
+				17C25C5C1ABB0083007942A5 /* HTMLNode.m */,
+				17C25C5D1ABB0083007942A5 /* HTMLParser.h */,
+				17C25C5E1ABB0083007942A5 /* HTMLParser.m */,
+				17C25C5F1ABB0083007942A5 /* README.md */,
+			);
+			name = HTMLParser;
+			sourceTree = "<group>";
+		};
 		3957B37334DAFA851AFF0619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				17C25C651ABBBB49007942A5 /* libxml2.dylib */,
+				17C25C631ABBBB09007942A5 /* libxml2.2.dylib */,
 				0A3A3AF0D84C66D4C38586C7 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -408,7 +445,10 @@
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
+				17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */,
+				17C25C691ABBC78A007942A5 /* SZTResultListController.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
+				17C25C621ABB0083007942A5 /* README.md in Sources */,
 				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
@@ -422,6 +462,8 @@
 				1701B6A01AB812FC00DAF6FC /* SZTResultModel.m in Sources */,
 				1701B6441AB684DA00DAF6FC /* main.m in Sources */,
 				17C25C4D1ABA70E5007942A5 /* AwesomeMenu.m in Sources */,
+				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
+				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,6 +581,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
+					"\"${PODS_ROOT}/Headers/Public/IQKeyboardManager\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/RZTransitions\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = SZTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -555,6 +606,15 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ActionSheetPicker-3.0\"",
+					"\"${PODS_ROOT}/Headers/Public/IQKeyboardManager\"",
+					"\"${PODS_ROOT}/Headers/Public/MBProgressHUD\"",
+					"\"${PODS_ROOT}/Headers/Public/RZTransitions\"",
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = SZTool/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

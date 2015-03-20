@@ -8,6 +8,7 @@
 
 #import "SZTShebaoViewController.h"
 #import "SZTShebaoService.h"
+#import "SZTResultListController.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat const kTextFieldWidthNormal  = 200;
@@ -21,7 +22,6 @@ static CGFloat const kTopEdge               = 10;
 @property (strong, nonatomic) UITextField *codeView;
 @property (strong, nonatomic) UIImageView *codeImageView;
 @property (strong, nonatomic) UIButton *queryBtn;
-@property (strong, nonatomic) UIWebView *resultView; // 查询成功后直接用webview展示结果
 
 @end
 
@@ -37,6 +37,8 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
+    self.title = @"社保查询";
+    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
@@ -88,9 +90,6 @@ static CGFloat const kTopEdge               = 10;
     _codeImageView.userInteractionEnabled = YES;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
-    
-    _resultView = [[UIWebView alloc] initWithFrame:CGRectMake(0, _codeView.dt_bottom + kTopEdge, DTScreenWidth, DTScreenHeight - _codeView.dt_bottom)];
-    [self.view addSubview:_resultView];
     
     // 点击空白区域关闭键盘
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
@@ -167,20 +166,21 @@ static CGFloat const kTopEdge               = 10;
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
-                                                              [self.resultView removeFromSuperview];
                                                               [self.view dt_postError:error.description];
                                                           }
                                                           else
                                                           {
                                                               if (model.success)
                                                               {
+                                                                  [self.view dt_cleanUp:YES];
                                                                   [self saveUserData];
-                                                                  [self.view addSubview:self.resultView];
-                                                                  [self.resultView loadHTMLString:model.message baseURL:nil];
+                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] init];
+                                                                  resultVC.dataSource = model.message;
+                                                                  resultVC.title = @"参保情况";
+                                                                  [self.navigationController pushViewController:resultVC animated:YES];
                                                               }
                                                               else
                                                               {
-                                                                  [self.resultView removeFromSuperview];
                                                                   [self.view dt_postError:model.message];
                                                                   [self loadVerifyCode];
                                                               }

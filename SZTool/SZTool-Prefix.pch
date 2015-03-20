@@ -20,6 +20,8 @@
 #import "UIView+Frame.h"
 #import "UIView+HUD.h"
 #import "UIColor+HexString.h"
+#import "NSString+DT.h"
+
 #import "SZTViewController.h"
 
 #endif

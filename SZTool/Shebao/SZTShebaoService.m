@@ -9,6 +9,8 @@
 #import "SZTShebaoService.h"
 #import "AFHTTPRequestOperation.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "SZTResultItem.h"
+#import "HTMLParser.h"
 
 static NSString *const kVerifyCodeUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/CImages";
 
@@ -53,6 +55,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
     [manager POST:kQueryUrl
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              
               NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
               NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:encoding];
               SZTResultModel *result = [self handleResponse:responseStr];
@@ -73,7 +76,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
     // 查询成功，直接展示返回的HTML
     if ([response rangeOfString:@"alert"].location == NSNotFound)
     {
-        result.message = response;
+        result.message = [self parseHtml:response];
         result.success = YES;
     }
     else // 查询出错，截取alert的内容
@@ -82,6 +85,36 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
         result.success = NO;
     }
     return result;
+}
+
+- (NSArray *)parseHtml:(NSString *)html
+{
+    NSError *error;
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:&error];
+    HTMLNode *body = [parser body];
+    
+    NSArray *tdTags = [body findChildTags:@"td"];
+    HTMLNode *tdNode;
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:6];
+    for (int i = 0; i < tdTags.count; i++)
+    {
+        tdNode = tdTags[i];
+        if (tdNode.children.count == 1 && tdNode.firstChild.nodetype == HTMLTextNode)
+        {
+            NSString *content = tdNode.contents;
+            if (!content || [[content dt_trim] isEqualToString:@""])
+            {
+                continue;
+            }
+            SZTResultItem *item = [[SZTResultItem alloc] init];
+            HTMLNode *nextNode = tdTags[++i];
+            item.name = content;
+            item.value = [nextNode.contents dt_trim];
+            [items addObject:item];
+        }
+    }
+    
+    return items;
 }
 
 - (NSString *)handleAlertString:(NSString *)rawText

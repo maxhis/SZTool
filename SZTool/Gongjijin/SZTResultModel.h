@@ -10,7 +10,7 @@
 
 @interface SZTResultModel : NSObject
 
-@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) id message;
 @property (nonatomic, assign) BOOL success;
 
 @end

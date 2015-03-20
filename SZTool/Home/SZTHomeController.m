@@ -12,6 +12,7 @@
 #import "SZTShebaoViewController.h"
 #import "RZTransitionsManager.h"
 #import "AwesomeMenu.h"
+#import "RZTransitionsNavigationController.h"
 
 @interface SZTHomeController () <AwesomeMenuDelegate>
 
@@ -159,7 +160,7 @@
         destVC = [[SZTGongjijinController alloc] init];
     }
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:destVC];
+    RZTransitionsNavigationController *navigationController = [[RZTransitionsNavigationController alloc] initWithRootViewController:destVC];
     [self setTransitioningDelegate:[RZTransitionsManager shared]];
     [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
     [self presentViewController:navigationController animated:YES completion:nil];

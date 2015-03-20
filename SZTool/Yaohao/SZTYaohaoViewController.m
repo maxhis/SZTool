@@ -42,6 +42,8 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
+    self.title = @"汽车摇号中签查询";
+    
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     self.navigationItem.leftBarButtonItem = cancelButton;
     
@@ -51,7 +53,6 @@ static CGFloat const kTopEdge               = 10;
     // 个人或单位
     _typeView = [[UISegmentedControl alloc] initWithItems:@[@"个人" , @"单位" ]];
     _typeView.frame = CGRectMake(kDividerWidth, kTopEdge, DTScreenWidth - kDividerWidth * 2, kTextFieldHeight);
-    _typeView.selectedSegmentIndex = 0;
     [self.view addSubview:_typeView];
     
     // 申请编码

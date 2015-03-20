@@ -8,11 +8,10 @@
 
 #import "SZTYaohaoService.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "HTMLParser.h"
 
 static NSString *const kQueryUrlPerson = @"http://apply.sztb.gov.cn/apply/app/status/norm/person";
 static NSString *const kQueryUrlUnit   = @"http://apply.sztb.gov.cn/apply/app/status/norm/unit";
-
-static NSString *const kKeyWords = @"中签指标中无此数据";
 
 @implementation SZTYaohaoService
 
@@ -60,14 +59,23 @@ static NSString *const kKeyWords = @"中签指标中无此数据";
 }
 
 /**
- *    查询是否中签，这种方式比较low，待优化
+ *    查询是否中签
  */
 - (BOOL)handleResult:(NSString *)response
 {
-    NSRange range = [response rangeOfString:kKeyWords];
-    if (range.location == NSNotFound) {
-        return YES;
+    NSError *error;
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:response error:&error];
+    HTMLNode *body = [parser body];
+    
+    NSArray *trTags = [body findChildTags:@"tr"];
+    for (HTMLNode *node in trTags)
+    {
+        if ([[node getAttributeNamed:@"class"] isEqualToString:@"content_data"])
+        {
+            return (node.children.count == 5); // 这个地方很诡异，这个库不太好用
+        }
     }
+    
     return NO;
 }
 

@@ -81,7 +81,7 @@
 
     _mainMenu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds
                                          startItem:_startItem
-                                         menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem, _settingsItem]];
+                                         menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem/*, _settingsItem*/]];
     _mainMenu.delegate = self;
     _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight - 30);
     _mainMenu.menuWholeAngle = M_PI_4 * 3;
@@ -101,7 +101,7 @@
     
     _yaohaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     _yaohaoLabel.textAlignment = NSTextAlignmentCenter;
-    _yaohaoLabel.text = @"🚗摇号";
+    _yaohaoLabel.text = @"汽车摇号";
     
     _settingsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
     _settingsLabel.textAlignment = NSTextAlignmentCenter;
@@ -124,7 +124,7 @@
     
     _settingsLabel.dt_centerX = _settingsItem.dt_centerX;
     _settingsLabel.dt_top = _settingsItem.dt_bottom;
-    [self.view addSubview:_settingsLabel];
+//    [self.view addSubview:_settingsLabel];
 }
 
 - (void)hideLabels

@@ -214,7 +214,7 @@ static CGFloat const kTopEdge               = 10;
                                                         }
                                                         else
                                                         {
-                                                            [self.view dt_postError:@"这次没中，还有下次哦~" delay:3];
+                                                            [self.view dt_postError:@"中签指标中无此数据!" delay:3];
                                                         }
                                                     }];
 }

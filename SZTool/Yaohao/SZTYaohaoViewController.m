@@ -18,7 +18,7 @@ static CGFloat const kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTYaohaoViewController ()
+@interface SZTYaohaoViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField *applyCodeView;
 
@@ -61,6 +61,8 @@ static CGFloat const kTopEdge               = 10;
     _applyCodeView.keyboardType = UIKeyboardTypeNumberPad;
     _applyCodeView.placeholder = @"13位数字";
     _applyCodeView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_applyCodeView setReturnKeyType:UIReturnKeyGo];
+    _applyCodeView.delegate = self;
     [self.view addSubview:_applyCodeView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _applyCodeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -217,6 +219,13 @@ static CGFloat const kTopEdge               = 10;
                                                             [self.view dt_postError:@"中签指标中无此数据!" delay:3];
                                                         }
                                                     }];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self doQuery];
+    return YES;
 }
 
 @end

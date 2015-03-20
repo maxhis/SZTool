@@ -17,7 +17,7 @@ static CGFloat const kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTGongjijinController ()
+@interface SZTGongjijinController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) UITextField *idView;
 @property (strong, nonatomic) UITextField *accountView;
@@ -84,6 +84,8 @@ static CGFloat const kTopEdge               = 10;
     _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _idView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_codeView setReturnKeyType:UIReturnKeyGo];
+    _codeView.delegate = self;
     [self.view addSubview:_codeView];
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -193,6 +195,13 @@ static CGFloat const kTopEdge               = 10;
                                                           }
                                                           self.codeView.text = nil;
                                                       }];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self doQuery];
+    return YES;
 }
 
 @end

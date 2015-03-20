@@ -34,6 +34,11 @@ static CGFloat const kTopEdge               = 10;
     [super viewDidLoad];
     
     [self loadUIComponent];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self loadVerifyCode];
 }
 

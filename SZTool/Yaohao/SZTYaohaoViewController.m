@@ -210,7 +210,7 @@ static CGFloat const kTopEdge               = 10;
                                                         [self saveUserData];
                                                         if (hit)
                                                         {
-                                                            [self.view dt_postSuccess:@"恭喜你中签！" ];
+                                                            [self.view dt_postSuccess:@"恭喜你已中签！"  delay:3];
                                                         }
                                                         else
                                                         {

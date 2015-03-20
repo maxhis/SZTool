@@ -32,6 +32,11 @@ static CGFloat const kTopEdge               = 10;
     [super viewDidLoad];
     
     [self loadUIComponent];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     [self loadVerifyCode];
 }
 
@@ -166,7 +171,7 @@ static CGFloat const kTopEdge               = 10;
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
-                                                              [self.view dt_postError:error.description];
+                                                              [self.view dt_postError:error.description delay:3];
                                                           }
                                                           else
                                                           {
@@ -181,7 +186,7 @@ static CGFloat const kTopEdge               = 10;
                                                               }
                                                               else
                                                               {
-                                                                  [self.view dt_postError:model.message];
+                                                                  [self.view dt_postError:model.message delay:3];
                                                                   [self loadVerifyCode];
                                                               }
                                                           }

@@ -9,6 +9,7 @@
 #import "SZTGongjijinController.h"
 #import "SZTGongjijinService.h"
 #import "SZTResultModel.h"
+#import "SZTResultListController.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat const kTextFieldWidthNormal  = 200;
@@ -167,18 +168,21 @@ static CGFloat const kTopEdge               = 10;
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
-                                                              [self.view dt_postError:error.description];
+                                                              [self.view dt_postError:error.description delay:3];
                                                           }
                                                           else
                                                           {
+                                                              [self.view dt_cleanUp:YES];
                                                               if (model.success)
                                                               {
                                                                   [self saveUserData];
-                                                                  [self.view dt_postSuccess:model.message];
+                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] init];
+                                                                  resultVC.dataSource = model.message;
+                                                                  [self.navigationController pushViewController:resultVC animated:YES];
                                                               }
                                                               else
                                                               {
-                                                                  [self.view dt_postError:model.message];
+                                                                  [self.view dt_postError:model.message delay:3];
                                                                   [self loadVerifyCode];
                                                               }
                                                           }

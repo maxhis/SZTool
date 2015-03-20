@@ -24,6 +24,8 @@
 
 - (void)loadUIComponents
 {
+    self.title = @"查询结果";
+    
     _resultList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, DTScreenWidth, DTScreenHeight) style:UITableViewStylePlain];
     _resultList.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     _resultList.tableFooterView = [[UIView alloc]init];

@@ -127,9 +127,36 @@ static CGFloat const kTopEdge               = 10;
 {
     if (!_selections)
     {
-        _selections = @[ @"最近六期", @"201502" ];
+        static NSDateFormatter *formatter = nil;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyyMM";
+        });
+        
+        NSString *thisMonth = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+        _selections = [self generateIssueNumberFromYearMonth:thisMonth];
+        
     }
     return _selections;
+}
+
+- (NSArray *)generateIssueNumberFromYearMonth:(NSString *)yearMonth
+{
+    NSMutableArray *issues = [[NSMutableArray alloc] initWithCapacity:5];
+    int topMonth = [yearMonth intValue];
+    while (topMonth > 201502)
+    {
+        int tail = topMonth % 100;
+        if (tail == 1) {
+            topMonth = (topMonth / 100 - 1) * 100 + 13;
+        }
+        
+        [issues addObject:[NSString stringWithFormat:@"%d", --topMonth]];
+    }
+    
+    [issues insertObject:@"最近六期" atIndex:0];
+    return issues;
 }
 
 - (void)hideKeyboard
@@ -176,18 +203,18 @@ static CGFloat const kTopEdge               = 10;
                                                     completion:^(BOOL hit, NSError *error) {
                                                         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                         if (error) {
-                                                            [self.view dt_postError:error.description];
+                                                            [self.view dt_postError:error.description delay:3];
                                                             return;
                                                         }
                                                         
                                                         [self saveUserData];
                                                         if (hit)
                                                         {
-                                                            [self.view dt_postSuccess:@"恭喜你中签！"];
+                                                            [self.view dt_postSuccess:@"恭喜你中签！" ];
                                                         }
                                                         else
                                                         {
-                                                            [self.view dt_postError:@"这次没中，还有下次哦~"];
+                                                            [self.view dt_postError:@"这次没中，还有下次哦~" delay:3];
                                                         }
                                                     }];
 }

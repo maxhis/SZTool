@@ -32,6 +32,9 @@
     self.window.rootViewController = homeController;
     [self.window makeKeyAndVisible];
     
+    [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 

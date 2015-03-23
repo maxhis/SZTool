@@ -61,7 +61,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
               SZTResultModel *result = [self handleResponse:responseStr];
               
               completionBlock(result, nil);
-              NSLog(@"responseObject %@", responseStr);
+//              NSLog(@"responseObject %@", responseStr);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {
               completionBlock(nil, error);

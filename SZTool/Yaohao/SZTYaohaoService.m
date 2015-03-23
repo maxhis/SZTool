@@ -50,7 +50,7 @@ static NSString *const kQueryUrlUnit   = @"http://apply.sztb.gov.cn/apply/app/st
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {
               NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-              NSLog(@"result:%@", responseStr);
+//              NSLog(@"result:%@", responseStr);
               completionBlock([self handleResult:responseStr], nil);
           }
           failure:^(AFHTTPRequestOperation *operation, NSError *error) {

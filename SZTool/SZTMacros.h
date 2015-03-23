@@ -9,12 +9,21 @@
 #ifndef SZTool_SZTMacros_h
 #define SZTool_SZTMacros_h
 
+// AVOS
+#define kAVOSAppId                          @"qhvjl1rn8hr86rhsi9c0fa2akox7pvvib9ijicxdajzdx41p"
+#define kAVOSAppKey                         @"3jftm0l9bpgpsf9pewyp9arfs8t2vvcbn9601uyixtde91ki"
+
+// 缓存用户输入的key
 #define kUserDefaultKeyGongjijinAccount     @"GongjijinAccount"
 #define kUserDefaultKeyGongjijinID          @"GongjijinID"
 #define kUserDefaultKeyShebaoAccount        @"ShebaoAccount"
 #define kUserDefaultKeyShebaoID             @"ShebaoID"
 #define kUserDefaultKeyYaohaoApplyNumber    @"YaohaoApplyNumber"
 #define kUserDefaultKeyYaohaoApplyType      @"YaohaoApplyType"
+
+// 用户行为统计的key
+#define kRefreshVerifyCodeGongjijin         @"RefreshVerifyCodeGongjijin"
+#define kRefreshVerifyCodeShebao            @"RefreshVerifyCodeShebao"
 
 // 系统全局宏定义
 #define DTScreenWidth [UIScreen mainScreen].bounds.size.width

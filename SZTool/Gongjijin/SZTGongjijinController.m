@@ -39,7 +39,7 @@ static CGFloat const kTopEdge               = 10;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadVerifyCode];
+    [self loadVerifyCode:nil];
 }
 
 - (void)loadUIComponent
@@ -95,7 +95,7 @@ static CGFloat const kTopEdge               = 10;
     [self.view addSubview:codeLabel];
     
     _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_codeView.dt_right + kDividerWidth, _codeView.dt_top, kTextFieldWidthShort - kDividerWidth, kTextFieldHeight)];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadVerifyCode)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadVerifyCode:)];
     _codeImageView.userInteractionEnabled = YES;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
@@ -125,8 +125,12 @@ static CGFloat const kTopEdge               = 10;
     [self.view endEditing:YES];
 }
 
-- (void)loadVerifyCode
+- (void)loadVerifyCode:(id) sender
 {
+    if (sender) {
+        [AVAnalytics event:kRefreshVerifyCodeGongjijin]; // 通知服务器一个验证码点击事件。
+    }
+    
     WEAK_SELF;
     [[SZTGongjijinService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
@@ -190,7 +194,7 @@ static CGFloat const kTopEdge               = 10;
                                                               else
                                                               {
                                                                   [self.view dt_postError:model.message delay:3];
-                                                                  [self loadVerifyCode];
+                                                                  [self loadVerifyCode:nil];
                                                               }
                                                           }
                                                           self.codeView.text = nil;

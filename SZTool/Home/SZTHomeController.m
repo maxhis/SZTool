@@ -168,7 +168,10 @@
 
 - (void)awesomeMenuDidFinishAnimationOpen:(AwesomeMenu *)menu
 {
-    [self showLabels];
+    if (menu.isExpanded)
+    {
+        [self showLabels];
+    }
 }
 
 - (void)awesomeMenuWillAnimateClose:(AwesomeMenu *)menu

@@ -43,9 +43,9 @@
 {
     self.title = @"深圳通";
     
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    bgView.image = [UIImage imageNamed:@"background.jpg"];
-    [self.view addSubview:bgView];
+//    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+//    bgView.image = [UIImage imageNamed:@"background.jpg"];
+//    [self.view addSubview:bgView];
     
     [self initMenu];
     [self initLabels];
@@ -83,7 +83,7 @@
                                          startItem:_startItem
                                          menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem/*, _settingsItem*/]];
     _mainMenu.delegate = self;
-    _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight - 30);
+    _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight * 7 / 8);
     _mainMenu.menuWholeAngle = M_PI_4 * 3;
     _mainMenu.rotateAngle = -M_PI_4 / 2 * 3;
     [self.view addSubview:_mainMenu];

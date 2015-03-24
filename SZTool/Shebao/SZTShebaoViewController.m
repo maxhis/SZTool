@@ -11,8 +11,8 @@
 #import "SZTResultListController.h"
 
 static CGFloat const kTextFieldHeight       = 35;
-static CGFloat const kTextFieldWidthNormal  = 200;
-static CGFloat const kTextFieldWidthShort   = 100;
+static CGFloat kTextFieldWidthNormal  = 200;
+static CGFloat kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
@@ -50,17 +50,22 @@ static CGFloat const kTopEdge               = 10;
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStylePlain target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
+    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    
     // 电脑号
-    _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
     _accountView.keyboardType = UIKeyboardTypeNumberPad;
     _accountView.placeholder = @"9位数字";
+    _accountView.dt_right = DTScreenWidth - kDividerWidth;
+    _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_accountView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _accountView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     accountLabel.textAlignment = NSTextAlignmentRight;
-    accountLabel.dt_right = _accountView.dt_left - 5;
+    accountLabel.dt_right = _accountView.dt_left - kDividerWidth;
     accountLabel.text = @"电脑号";
     [self.view addSubview:accountLabel];
     
@@ -74,7 +79,7 @@ static CGFloat const kTopEdge               = 10;
     
     UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _idView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     idLabel.textAlignment = NSTextAlignmentRight;
-    idLabel.dt_right = _idView.dt_left - 5;
+    idLabel.dt_right = _idView.dt_left - kDividerWidth;
     idLabel.text = @"身份证号";
     [self.view addSubview:idLabel];
     
@@ -88,7 +93,7 @@ static CGFloat const kTopEdge               = 10;
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     codeLabel.textAlignment = NSTextAlignmentRight;
-    codeLabel.dt_right = _codeView.dt_left - 5;
+    codeLabel.dt_right = _codeView.dt_left - kDividerWidth;
     codeLabel.text = @"验证码";
     [self.view addSubview:codeLabel];
     

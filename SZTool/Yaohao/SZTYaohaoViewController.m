@@ -13,8 +13,8 @@
 #import "SZTYaohaoService.h"
 
 static CGFloat const kTextFieldHeight       = 35;
-static CGFloat const kTextFieldWidthNormal  = 200;
-static CGFloat const kTextFieldWidthShort   = 100;
+static CGFloat kTextFieldWidthNormal  = 200;
+static CGFloat kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
@@ -52,22 +52,27 @@ static CGFloat const kTopEdge               = 10;
     
     // 个人或单位
     _typeView = [[UISegmentedControl alloc] initWithItems:@[@"个人" , @"单位" ]];
-    _typeView.frame = CGRectMake(kDividerWidth, kTopEdge, DTScreenWidth - kDividerWidth * 2, kTextFieldHeight);
+    _typeView.frame = CGRectMake(kDividerWidth, DTScreenHeight/16, DTScreenWidth - kDividerWidth * 2, kTextFieldHeight);
     [self.view addSubview:_typeView];
     
+    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    
     // 申请编码
-    _applyCodeView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 2 - 50, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _applyCodeView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _applyCodeView.borderStyle = UITextBorderStyleRoundedRect;
     _applyCodeView.keyboardType = UIKeyboardTypeNumberPad;
     _applyCodeView.placeholder = @"13位数字";
     _applyCodeView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _applyCodeView.dt_right = DTScreenWidth - kDividerWidth;
+    _applyCodeView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [_applyCodeView setReturnKeyType:UIReturnKeyGo];
     _applyCodeView.delegate = self;
     [self.view addSubview:_applyCodeView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _applyCodeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     accountLabel.textAlignment = NSTextAlignmentRight;
-    accountLabel.dt_right = _applyCodeView.dt_left - 5;
+    accountLabel.dt_right = _applyCodeView.dt_left - kDividerWidth;
     accountLabel.text = @"申请编码";
     [self.view addSubview:accountLabel];
     
@@ -84,7 +89,7 @@ static CGFloat const kTopEdge               = 10;
     
     UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _issueNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     idLabel.textAlignment = NSTextAlignmentRight;
-    idLabel.dt_right = _issueNumberView.dt_left - 5;
+    idLabel.dt_right = _issueNumberView.dt_left - kDividerWidth;
     idLabel.text = @"期号";
     [self.view addSubview:idLabel];
     

@@ -26,14 +26,12 @@
     [self setupHUD];
     
     [self setupRZTransitionsManager];
+    [self setupAVOS:launchOptions];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     SZTHomeController *homeController = [[SZTHomeController alloc] init];
     self.window.rootViewController = homeController;
     [self.window makeKeyAndVisible];
-    
-    [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
-    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     return YES;
 }
@@ -52,6 +50,16 @@
     id<RZAnimationControllerProtocol> pushPopAnimationController = [[RZZoomBlurAnimationController alloc] init];
     [[RZTransitionsManager shared] setDefaultPresentDismissAnimationController:presentDismissAnimationController];
     [[RZTransitionsManager shared] setDefaultPushPopAnimationController:pushPopAnimationController];
+}
+
+- (void)setupAVOS:(NSDictionary *)launchOptions
+{
+    [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+#ifdef PrereleaseEnviroment
+    [AVAnalytics setAnalyticsEnabled:NO];
+#endif
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

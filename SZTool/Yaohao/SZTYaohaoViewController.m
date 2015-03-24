@@ -210,18 +210,19 @@ static CGFloat const kTopEdge               = 10;
                                                     completion:^(BOOL hit, NSError *error) {
                                                         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                         if (error) {
-                                                            [self.view dt_postError:error.description delay:3];
+                                                            [self.view dt_postError:error.description];
                                                             return;
                                                         }
                                                         
                                                         [self saveUserData];
                                                         if (hit)
                                                         {
-                                                            [self.view dt_postSuccess:@"恭喜你已中签！"  delay:3];
+                                                            NSString *message = @"您可登录系统自行打印指标证明文件、或者到服务窗口领取指标证明文件。";
+                                                            [UIAlertView showWithTitle:@"恭喜中签" message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
                                                         }
                                                         else
                                                         {
-                                                            [self.view dt_postError:@"中签指标中无此数据!" delay:3];
+                                                            [UIAlertView showWithTitle:nil message:@"中签指标中无此数据!" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
                                                         }
                                                     }];
 }

@@ -43,9 +43,9 @@
 {
     self.title = @"深圳通";
     
-//    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-//    bgView.image = [UIImage imageNamed:@"background.jpg"];
-//    [self.view addSubview:bgView];
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    bgView.image = [UIImage imageNamed:@"home_bg"];
+    [self.view addSubview:bgView];
     
     [self initMenu];
     [self initLabels];

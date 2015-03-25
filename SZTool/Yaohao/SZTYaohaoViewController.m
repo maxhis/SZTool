@@ -7,8 +7,6 @@
 //
 
 #import "SZTYaohaoViewController.h"
-#import "ActionSheetCustomPicker.h"
-#import "ActionSheetCustomPickerDelegate.h"
 #import "ActionSheetStringPicker.h"
 #import "SZTYaohaoService.h"
 

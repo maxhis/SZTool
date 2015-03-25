@@ -74,7 +74,6 @@ static CGFloat const kTopEdge               = 10;
     // 身份证号
     _idView = [[UITextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _accountView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _idView.borderStyle = UITextBorderStyleRoundedRect;
-    _idView.keyboardType = UIKeyboardTypeNumberPad;
     _idView.placeholder = @"15或18位有效身份证号";
     _idView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:_idView];

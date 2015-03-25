@@ -13,6 +13,7 @@
 #import "RZTransitionsManager.h"
 #import "AwesomeMenu.h"
 #import "RZTransitionsNavigationController.h"
+#import "SZTAboutViewController.h"
 
 @interface SZTHomeController () <AwesomeMenuDelegate>
 
@@ -81,7 +82,7 @@
 
     _mainMenu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds
                                          startItem:_startItem
-                                         menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem/*, _settingsItem*/]];
+                                         menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem, _settingsItem]];
     _mainMenu.delegate = self;
     _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight * 7 / 8);
     _mainMenu.menuWholeAngle = M_PI_4 * 3;
@@ -124,7 +125,7 @@
     
     _settingsLabel.dt_centerX = _settingsItem.dt_centerX;
     _settingsLabel.dt_top = _settingsItem.dt_bottom;
-//    [self.view addSubview:_settingsLabel];
+    [self.view addSubview:_settingsLabel];
 }
 
 - (void)hideLabels
@@ -157,7 +158,7 @@
     }
     else if ([item isEqual:_settingsItem])
     {
-        destVC = [[SZTGongjijinController alloc] init];
+        destVC = [[SZTAboutViewController alloc] init];
     }
     
     RZTransitionsNavigationController *navigationController = [[RZTransitionsNavigationController alloc] initWithRootViewController:destVC];

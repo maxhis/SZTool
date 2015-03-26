@@ -36,7 +36,7 @@
     
     _contactView = [[UITextField alloc] initWithFrame:CGRectMake(_feedbackView.dt_left, _feedbackView.dt_bottom + 10, _feedbackView.dt_width, 44)];
     _contactView.borderStyle = UITextBorderStyleRoundedRect;
-    _contactView.placeholder = @"您可以留下邮箱或QQ以便我们进一步联系你~";
+    _contactView.placeholder = @"留下邮箱或QQ以便我们进一步沟通";
     _contactView.keyboardType = UIKeyboardTypeEmailAddress;
     [self.view addSubview:_contactView];
 }
@@ -54,7 +54,7 @@
     AVUserFeedbackAgent *feedbackAgent = [AVUserFeedbackAgent sharedInstance];
     [feedbackAgent postFeedbackThread:content block:^(id object, NSError *error) {
         if (error == nil) {
-            [self.view dt_postSuccess:@"多谢反馈"];
+            [self.view dt_postSuccess:@"您的反馈我们已收到！"];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

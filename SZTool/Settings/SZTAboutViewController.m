@@ -8,6 +8,7 @@
 
 #import "SZTAboutViewController.h"
 #import "SZTFeedbackViewController.h"
+#import "SZTPrivacyViewController.h"
 
 @interface SZTAboutViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -66,7 +67,7 @@
 {
     if (_items == nil)
     {
-        _items = @[@"去评分", @"向好友推荐本应用", @"意见反馈", @"隐私政策"];
+        _items = @[@"给个好评", @"推荐「深圳通」给好友", @"意见反馈", @"隐私声明"];
     }
     return _items;
 }
@@ -124,7 +125,8 @@
             
         case 3:
         {
-            
+            SZTPrivacyViewController *privacyVC = [[SZTPrivacyViewController alloc] init];
+            [self.navigationController pushViewController:privacyVC animated:YES];
         }
             break;
             

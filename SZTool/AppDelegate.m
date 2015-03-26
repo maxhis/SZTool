@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "RZTransitionsManager.h"
 #import "RZTransitionsAnimationControllers.h"
+#import "MAThemeKit.h"
 
 @interface AppDelegate ()
 
@@ -22,9 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // 配置HUD的Icons
-    [self setupHUD];
-    
+    [self setupTheme];
     [self setupRZTransitionsManager];
     [self setupAVOS:launchOptions];
     
@@ -33,7 +32,18 @@
     self.window.rootViewController = homeController;
     [self.window makeKeyAndVisible];
     
+    // 配置HUD的Icons
+    [self setupHUD];
+    
     return YES;
+}
+
+- (void)setupTheme
+{
+    [MAThemeKit setupThemeWithPrimaryColor:[MAThemeKit colorWithHexString:@"007cd8"]
+                            secondaryColor:[UIColor whiteColor]
+                                  fontName:@"HelveticaNeue-Light"
+                            lightStatusBar:YES];
 }
 
 - (void)setupHUD

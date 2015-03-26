@@ -28,6 +28,9 @@
 {
     self.title = @"关于";
     
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+    
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tableView.tableHeaderView = [self headerView];
@@ -68,6 +71,11 @@
     return _items;
 }
 
+- (void)cancel
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,11 +103,16 @@
     
     switch (indexPath.row) {
         case 0:
-            
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
+        }
             break;
             
         case 1:
-            
+        {
+            NSString *text = @"神器来了！一站式查询深圳公积金、社保、汽车摇号，亲测好用！";
+            [self shareText:text andImage:[UIImage imageNamed:@"common_app_icon"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
+        }
             break;
             
         case 2:
@@ -110,12 +123,32 @@
             break;
             
         case 3:
+        {
             
+        }
             break;
             
         default:
             break;
     }
+}
+
+- (void)shareText:(NSString *)text andImage:(UIImage *)image andUrl:(NSURL *)url
+{
+    NSMutableArray *sharingItems = [NSMutableArray new];
+    
+    if (text) {
+        [sharingItems addObject:text];
+    }
+    if (image) {
+        [sharingItems addObject:image];
+    }
+    if (url) {
+        [sharingItems addObject:url];
+    }
+    
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:sharingItems applicationActivities:nil];
+    [self presentViewController:activityController animated:YES completion:nil];
 }
 
 @end

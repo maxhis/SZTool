@@ -9,6 +9,8 @@
 #ifndef SZTool_SZTMacros_h
 #define SZTool_SZTMacros_h
 
+#define kAppStoreUrl                        @"https://itunes.apple.com/cn/app/id980164721?mt=8"
+
 // AVOS
 #define kAVOSAppId                          @"qhvjl1rn8hr86rhsi9c0fa2akox7pvvib9ijicxdajzdx41p"
 #define kAVOSAppKey                         @"3jftm0l9bpgpsf9pewyp9arfs8t2vvcbn9601uyixtde91ki"

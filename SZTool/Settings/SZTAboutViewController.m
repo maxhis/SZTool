@@ -7,7 +7,6 @@
 //
 
 #import "SZTAboutViewController.h"
-#import "SZTFeedbackViewController.h"
 #import "SZTPrivacyViewController.h"
 
 @interface SZTAboutViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -118,8 +117,8 @@
             
         case 2:
         {
-            SZTFeedbackViewController *feedbackVC = [[SZTFeedbackViewController alloc] init];
-            [self.navigationController pushViewController:feedbackVC animated:YES];
+            AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
+            [agent showConversations:self title:@"用户反馈" contact:nil];
         }
             break;
             

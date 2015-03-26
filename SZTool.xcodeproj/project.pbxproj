@@ -26,10 +26,10 @@
 		1701B6C21AB9ABE400DAF6FC /* SZTHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */; };
 		1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */; };
 		1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */; };
-		1710D63C1AC2F4CB0083A297 /* SZTFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D63B1AC2F4CB0083A297 /* SZTFeedbackViewController.m */; };
 		1710D63F1AC2F7830083A297 /* DTPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D63E1AC2F7830083A297 /* DTPlaceHolderTextView.m */; };
 		1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */; };
-		1710D6711AC3E4BE0083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6701AC3E4BE0083A297 /* privacy.html */; };
+		1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6731AC432550083A297 /* AVOSCloud.bundle */; };
+		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
 		17C25C4D1ABA70E5007942A5 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */; };
 		17C25C4E1ABA70E5007942A5 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
@@ -95,13 +95,12 @@
 		1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		1710D6371AC2DD4A0083A297 /* SZTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAboutViewController.h; path = Settings/SZTAboutViewController.h; sourceTree = "<group>"; };
 		1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAboutViewController.m; path = Settings/SZTAboutViewController.m; sourceTree = "<group>"; };
-		1710D63A1AC2F4CB0083A297 /* SZTFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTFeedbackViewController.h; path = Settings/SZTFeedbackViewController.h; sourceTree = "<group>"; };
-		1710D63B1AC2F4CB0083A297 /* SZTFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTFeedbackViewController.m; path = Settings/SZTFeedbackViewController.m; sourceTree = "<group>"; };
 		1710D63D1AC2F7830083A297 /* DTPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DTPlaceHolderTextView.h; path = Base/DTPlaceHolderTextView.h; sourceTree = "<group>"; };
 		1710D63E1AC2F7830083A297 /* DTPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DTPlaceHolderTextView.m; path = Base/DTPlaceHolderTextView.m; sourceTree = "<group>"; };
 		1710D66D1AC3DC700083A297 /* SZTPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTPrivacyViewController.h; path = Settings/SZTPrivacyViewController.h; sourceTree = "<group>"; };
 		1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTPrivacyViewController.m; path = Settings/SZTPrivacyViewController.m; sourceTree = "<group>"; };
-		1710D6701AC3E4BE0083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
+		1710D6731AC432550083A297 /* AVOSCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AVOSCloud.bundle; path = Resources/AVOSCloud.bundle; sourceTree = "<group>"; };
+		1710D6751AC432C20083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy.html; path = Resources/privacy.html; sourceTree = "<group>"; };
 		17C25C491ABA70E5007942A5 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
 		17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
 		17C25C4B1ABA70E5007942A5 /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
@@ -174,8 +173,7 @@
 				1701B6A41AB8598600DAF6FC /* Shebao */,
 				1701B68E1AB6E96400DAF6FC /* Yaohao */,
 				1710D6361AC2DCA00083A297 /* Settings */,
-				1701B6451AB684DA00DAF6FC /* AppDelegate.h */,
-				1701B6461AB684DA00DAF6FC /* AppDelegate.m */,
+				1710D6721AC432350083A297 /* Resources */,
 				1701B64E1AB684DA00DAF6FC /* Images.xcassets */,
 				1701B6501AB684DA00DAF6FC /* LaunchScreen.xib */,
 				1701B6411AB684DA00DAF6FC /* Supporting Files */,
@@ -188,7 +186,6 @@
 		1701B6411AB684DA00DAF6FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1710D6701AC3E4BE0083A297 /* privacy.html */,
 				1701B6421AB684DA00DAF6FC /* Info.plist */,
 				1701B6431AB684DA00DAF6FC /* main.m */,
 			);
@@ -254,6 +251,8 @@
 		1701B6841AB6D96700DAF6FC /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				1701B6451AB684DA00DAF6FC /* AppDelegate.h */,
+				1701B6461AB684DA00DAF6FC /* AppDelegate.m */,
 				1710D63D1AC2F7830083A297 /* DTPlaceHolderTextView.h */,
 				1710D63E1AC2F7830083A297 /* DTPlaceHolderTextView.m */,
 				1701B6851AB6D99000DAF6FC /* SZTViewController.h */,
@@ -293,12 +292,19 @@
 			children = (
 				1710D6371AC2DD4A0083A297 /* SZTAboutViewController.h */,
 				1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */,
-				1710D63A1AC2F4CB0083A297 /* SZTFeedbackViewController.h */,
-				1710D63B1AC2F4CB0083A297 /* SZTFeedbackViewController.m */,
 				1710D66D1AC3DC700083A297 /* SZTPrivacyViewController.h */,
 				1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		1710D6721AC432350083A297 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1710D6751AC432C20083A297 /* privacy.html */,
+				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		17C25C481ABA70E5007942A5 /* AwesomeMenu */ = {
@@ -426,8 +432,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */,
+				1710D6761AC432C20083A297 /* privacy.html in Resources */,
 				1701B6521AB684DA00DAF6FC /* LaunchScreen.xib in Resources */,
-				1710D6711AC3E4BE0083A297 /* privacy.html in Resources */,
 				1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +503,6 @@
 				1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
-				1710D63C1AC2F4CB0083A297 /* SZTFeedbackViewController.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
 				17C25C4E1ABA70E5007942A5 /* AwesomeMenuItem.m in Sources */,
@@ -620,6 +626,7 @@
 			baseConfigurationReference = F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
@@ -645,6 +652,7 @@
 			baseConfigurationReference = 1133C59E13D5258D149AB63B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";

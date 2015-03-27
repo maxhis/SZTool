@@ -10,7 +10,6 @@
 		1701B6441AB684DA00DAF6FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6431AB684DA00DAF6FC /* main.m */; };
 		1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6461AB684DA00DAF6FC /* AppDelegate.m */; };
 		1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1701B64E1AB684DA00DAF6FC /* Images.xcassets */; };
-		1701B6521AB684DA00DAF6FC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1701B6501AB684DA00DAF6FC /* LaunchScreen.xib */; };
 		1701B65E1AB684DB00DAF6FC /* SZToolTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B65D1AB684DB00DAF6FC /* SZToolTests.m */; };
 		1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B67F1AB6CAAD00DAF6FC /* UIView+Frame.m */; };
 		1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6861AB6D99000DAF6FC /* SZTViewController.m */; };
@@ -61,7 +60,6 @@
 		1701B6451AB684DA00DAF6FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1701B6461AB684DA00DAF6FC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1701B64E1AB684DA00DAF6FC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		1701B6511AB684DA00DAF6FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1701B6571AB684DB00DAF6FC /* SZToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SZToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1701B65C1AB684DB00DAF6FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1701B65D1AB684DB00DAF6FC /* SZToolTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SZToolTests.m; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 				1710D6361AC2DCA00083A297 /* Settings */,
 				1710D6721AC432350083A297 /* Resources */,
 				1701B64E1AB684DA00DAF6FC /* Images.xcassets */,
-				1701B6501AB684DA00DAF6FC /* LaunchScreen.xib */,
 				1701B6411AB684DA00DAF6FC /* Supporting Files */,
 				1701B67B1AB6B7C600DAF6FC /* SZTool-Prefix.pch */,
 				1701B67C1AB6BE0F00DAF6FC /* SZTMacros.h */,
@@ -434,7 +431,6 @@
 			files = (
 				1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */,
 				1710D6761AC432C20083A297 /* privacy.html in Resources */,
-				1701B6521AB684DA00DAF6FC /* LaunchScreen.xib in Resources */,
 				1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,17 +528,6 @@
 			targetProxy = 1701B6581AB684DB00DAF6FC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1701B6501AB684DA00DAF6FC /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1701B6511AB684DA00DAF6FC /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1701B65F1AB684DB00DAF6FC /* Debug */ = {

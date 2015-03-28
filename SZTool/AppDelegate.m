@@ -43,7 +43,7 @@
 
 - (void)setupTheme
 {
-    [MAThemeKit setupThemeWithPrimaryColor:[MAThemeKit colorWithHexString:@"007cd8"]
+    [MAThemeKit setupThemeWithPrimaryColor:kNavigationBarColor
                             secondaryColor:[UIColor whiteColor]
                                   fontName:@"HelveticaNeue-Light"
                             lightStatusBar:YES];

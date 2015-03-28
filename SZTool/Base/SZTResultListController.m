@@ -31,6 +31,11 @@
     _resultList.tableFooterView = [[UIView alloc]init];
     _resultList.delegate = self;
     _resultList.dataSource = self;
+    
+    id desiredColor = [UIColor clearColor];
+    _resultList.backgroundColor = desiredColor;
+    _resultList.backgroundView.backgroundColor = desiredColor;
+    
     [self.view addSubview:_resultList];
 }
 

@@ -37,6 +37,10 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
+    id desiredColor = [UIColor clearColor];
+    self.tableView.backgroundColor = desiredColor;
+    self.tableView.backgroundView.backgroundColor = desiredColor;
+    
     [self.view addSubview:_tableView];
 }
 

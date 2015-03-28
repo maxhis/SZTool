@@ -27,6 +27,8 @@
 #define kRefreshVerifyCodeGongjijin         @"RefreshVerifyCodeGongjijin"
 #define kRefreshVerifyCodeShebao            @"RefreshVerifyCodeShebao"
 
+#define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]
+
 // 系统全局宏定义
 #define DTScreenWidth [UIScreen mainScreen].bounds.size.width
 #define DTScreenHeight [UIScreen mainScreen].bounds.size.height

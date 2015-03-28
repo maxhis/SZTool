@@ -45,40 +45,52 @@
     bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
     
-    _gongjijinButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIColor *textColor = [UIColor dt_colorWithHexString:@"f0f6fc"];
+    CGFloat buttonWidth;
+    if (IS_IPHONE_6 || IS_IPHONE_6P) {
+        buttonWidth = 150;
+    } else {
+        buttonWidth = 100;
+    }
+    
+    _gongjijinButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _gongjijinButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_gongjijinButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_gongjijinButton setImage:[UIImage imageNamed:@"gongjijin"] forState:UIControlStateNormal];
     [_gongjijinButton setTitle:@"公积金" forState:UIControlStateNormal];
+    [_gongjijinButton setTitleColor:textColor forState:UIControlStateNormal];
     _gongjijinButton.dt_right = kCenterX - kEdgeMargin;
     _gongjijinButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_gongjijinButton];
     [_gongjijinButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:_gongjijinButton];
     
-    _shebaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _shebaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _shebaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_shebaoButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_shebaoButton setImage:[UIImage imageNamed:@"shebao"] forState:UIControlStateNormal];
     [_shebaoButton setTitle:@"社保" forState:UIControlStateNormal];
+    [_shebaoButton setTitleColor:textColor forState:UIControlStateNormal];
     _shebaoButton.dt_left = kCenterX + kEdgeMargin;
     _shebaoButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_shebaoButton];
     [_shebaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:_shebaoButton];
     
-    _yaohaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _yaohaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _yaohaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_yaohaoButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_yaohaoButton setImage:[UIImage imageNamed:@"yaohao"] forState:UIControlStateNormal];
     [_yaohaoButton setTitle:@"汽车摇号" forState:UIControlStateNormal];
+    [_yaohaoButton setTitleColor:textColor forState:UIControlStateNormal];
     _yaohaoButton.dt_left = _gongjijinButton.dt_left;
     _yaohaoButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_yaohaoButton];
     [_yaohaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:_yaohaoButton];
     
-    _settingsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _settingsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _settingsButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_settingsButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_settingsButton setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
     [_settingsButton setTitle:@"关于" forState:UIControlStateNormal];
+    [_settingsButton setTitleColor:textColor forState:UIControlStateNormal];
     _settingsButton.dt_left = _shebaoButton.dt_left;
     _settingsButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_settingsButton];

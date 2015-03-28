@@ -1,12 +1,12 @@
 //
-//  SZTHomeController.h
+//  SZTHomeGridController.h
 //  SZTool
 //
-//  Created by iStar on 15/3/18.
+//  Created by iStar on 15/3/28.
 //  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SZTViewController.h"
 
 @interface SZTHomeController : SZTViewController
 

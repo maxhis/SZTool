@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "SZTHomeController.h"
 #import "UIView+HUD.h"
 #import "MBProgressHUD.h"
 #import "RZTransitionsManager.h"
 #import "RZTransitionsAnimationControllers.h"
 #import "MAThemeKit.h"
+#import "SZTHomeController.h"
+#import "RZTransitionsNavigationController.h"
 
 @interface AppDelegate ()
 
@@ -29,7 +30,9 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     SZTHomeController *homeController = [[SZTHomeController alloc] init];
-    self.window.rootViewController = homeController;
+    RZTransitionsNavigationController *navigationController = [[RZTransitionsNavigationController alloc] initWithRootViewController:homeController];
+    [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
+    self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
     // 配置HUD的Icons

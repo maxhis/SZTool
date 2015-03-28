@@ -1,183 +1,132 @@
 //
-//  SZTHomeController.m
+//  SZTHomeGridController.m
 //  SZTool
 //
-//  Created by iStar on 15/3/18.
+//  Created by iStar on 15/3/28.
 //  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
 //
 
 #import "SZTHomeController.h"
 #import "SZTGongjijinController.h"
-#import "SZTYaohaoViewController.h"
 #import "SZTShebaoViewController.h"
-#import "RZTransitionsManager.h"
-#import "AwesomeMenu.h"
-#import "RZTransitionsNavigationController.h"
+#import "SZTYaohaoViewController.h"
 #import "SZTAboutViewController.h"
+#import "RZTransitionsNavigationController.h"
+#import "RZTransitionsManager.h"
 
-@interface SZTHomeController () <AwesomeMenuDelegate>
+#define kCenterX DTScreenWidth/2
+#define kCenterY DTScreenHeight/2 - 44
 
-// menus
-@property (nonatomic, strong) AwesomeMenu *mainMenu;
-@property (nonatomic, strong) AwesomeMenuItem *startItem;
-@property (nonatomic, strong) AwesomeMenuItem *gongjijinItem;
-@property (nonatomic, strong) AwesomeMenuItem *shebaoItem;
-@property (nonatomic, strong) AwesomeMenuItem *yaohaoItem;
-@property (nonatomic, strong) AwesomeMenuItem *settingsItem;
+#define kEdgeMargin 10
 
-// labels
-@property (nonatomic, strong) UILabel *gongjijinLabel;
-@property (nonatomic, strong) UILabel *shebaoLabel;
-@property (nonatomic, strong) UILabel *yaohaoLabel;
-@property (nonatomic, strong) UILabel *settingsLabel;
+@interface SZTHomeController ()
+
+@property (nonatomic, strong) UIButton *gongjijinButton;
+@property (nonatomic, strong) UIButton *shebaoButton;
+@property (nonatomic, strong) UIButton *yaohaoButton;
+@property (nonatomic, strong) UIButton *settingsButton;
 
 @end
 
 @implementation SZTHomeController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    [self loadUIComponet];
+    [self loadUIComponent];
 }
 
-- (void)loadUIComponet
+- (void)loadUIComponent
 {
     self.title = @"深圳通";
     
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgView.image = [UIImage imageNamed:@"home_bg"];
+    bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
     
-    [self initMenu];
-    [self initLabels];
+    _gongjijinButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _gongjijinButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_gongjijinButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_gongjijinButton setTitle:@"公积金" forState:UIControlStateNormal];
+    _gongjijinButton.dt_right = kCenterX - kEdgeMargin;
+    _gongjijinButton.dt_bottom = kCenterY - kEdgeMargin;
+    [self textUnderImageButton:_gongjijinButton];
+    [_gongjijinButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:_gongjijinButton];
+    
+    _shebaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _shebaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_shebaoButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_shebaoButton setTitle:@"社保" forState:UIControlStateNormal];
+    _shebaoButton.dt_left = kCenterX + kEdgeMargin;
+    _shebaoButton.dt_bottom = kCenterY - kEdgeMargin;
+    [self textUnderImageButton:_shebaoButton];
+    [_shebaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:_shebaoButton];
+    
+    _yaohaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _yaohaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_yaohaoButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_yaohaoButton setTitle:@"汽车摇号" forState:UIControlStateNormal];
+    _yaohaoButton.dt_left = _gongjijinButton.dt_left;
+    _yaohaoButton.dt_top = kCenterY + kEdgeMargin;
+    [self textUnderImageButton:_yaohaoButton];
+    [_yaohaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:_yaohaoButton];
+    
+    _settingsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+    _settingsButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_settingsButton setImage:[UIImage imageNamed:@"common_app_icon"] forState:UIControlStateNormal];
+    [_settingsButton setTitle:@"关于" forState:UIControlStateNormal];
+    _settingsButton.dt_left = _shebaoButton.dt_left;
+    _settingsButton.dt_top = kCenterY + kEdgeMargin;
+    [self textUnderImageButton:_settingsButton];
+    [_settingsButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:_settingsButton];
 }
 
-- (void)initMenu
+/**
+ *    将文字放在图片之下
+ */
+- (void)textUnderImageButton:(UIButton *)button
 {
-    UIImage *storyMenuItemImage = [UIImage imageNamed:@"bg-menuitem.png"];
-    UIImage *storyMenuItemImagePressed = [UIImage imageNamed:@"bg-menuitem-highlighted.png"];
-    UIImage *starImage = [UIImage imageNamed:@"icon-star.png"];
-    _gongjijinItem = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                           highlightedImage:storyMenuItemImagePressed
-                                                               ContentImage:starImage
-                                                    highlightedContentImage:nil];
-    _shebaoItem = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                                           highlightedImage:storyMenuItemImagePressed
-                                                               ContentImage:starImage
-                                                    highlightedContentImage:nil];
-    _yaohaoItem = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                           highlightedImage:storyMenuItemImagePressed
-                                               ContentImage:starImage
-                                    highlightedContentImage:nil];
-    _settingsItem = [[AwesomeMenuItem alloc] initWithImage:storyMenuItemImage
-                                        highlightedImage:storyMenuItemImagePressed
-                                            ContentImage:starImage
-                                 highlightedContentImage:nil];
+    // the space between the image and text
+    CGFloat spacing = 6.0;
     
-    // the start item, similar to "add" button of Path
-    _startItem = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"]
-                                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"]
-                                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
-
-    _mainMenu = [[AwesomeMenu alloc] initWithFrame:self.view.bounds
-                                         startItem:_startItem
-                                         menuItems:@[_gongjijinItem, _shebaoItem, _yaohaoItem, _settingsItem]];
-    _mainMenu.delegate = self;
-    _mainMenu.startPoint = CGPointMake(DTScreenWidth/2, DTScreenHeight * 7 / 8);
-    _mainMenu.menuWholeAngle = M_PI_4 * 3;
-    _mainMenu.rotateAngle = -M_PI_4 / 2 * 3;
-    [self.view addSubview:_mainMenu];
+    // lower the text and push it left so it appears centered
+    //  below the image
+    CGSize imageSize = button.imageView.image.size;
+    button.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width, - (imageSize.height + spacing), 0.0);
+    
+    // raise the image and push it right so it appears centered
+    //  above the text
+    CGSize titleSize = [button.titleLabel.text sizeWithAttributes:@{NSFontAttributeName: button.titleLabel.font}];
+    button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, - titleSize.width);
 }
 
-- (void)initLabels
+#pragma mark - button click event
+- (void)buttonPressed:(id)sender
 {
-    _gongjijinLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _gongjijinLabel.textAlignment = NSTextAlignmentCenter;
-    _gongjijinLabel.text = @"公积金";
-    
-    _shebaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _shebaoLabel.textAlignment = NSTextAlignmentCenter;
-    _shebaoLabel.text = @"社保";
-    
-    _yaohaoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _yaohaoLabel.textAlignment = NSTextAlignmentCenter;
-    _yaohaoLabel.text = @"汽车摇号";
-    
-    _settingsLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    _settingsLabel.textAlignment = NSTextAlignmentCenter;
-    _settingsLabel.text = @"设置";
-}
-
-- (void)showLabels
-{
-    _gongjijinLabel.dt_centerX = _gongjijinItem.dt_centerX;
-    _gongjijinLabel.dt_top = _gongjijinItem.dt_bottom;
-    [self.view addSubview:_gongjijinLabel];
-    
-    _shebaoLabel.dt_centerX = _shebaoItem.dt_centerX;
-    _shebaoLabel.dt_top = _shebaoItem.dt_bottom;
-    [self.view addSubview:_shebaoLabel];
-    
-    _yaohaoLabel.dt_centerX = _yaohaoItem.dt_centerX;
-    _yaohaoLabel.dt_top = _yaohaoItem.dt_bottom;
-    [self.view addSubview:_yaohaoLabel];
-    
-    _settingsLabel.dt_centerX = _settingsItem.dt_centerX;
-    _settingsLabel.dt_top = _settingsItem.dt_bottom;
-    [self.view addSubview:_settingsLabel];
-}
-
-- (void)hideLabels
-{
-    [_gongjijinLabel removeFromSuperview];
-    [_shebaoLabel removeFromSuperview];
-    [_yaohaoLabel removeFromSuperview];
-    [_settingsLabel removeFromSuperview];
-}
-
-#pragma mark - AwesomeMenuDelegate
-
-- (void)awesomeMenu:(AwesomeMenu *)menu didSelectIndex:(NSInteger)idx;
-{
-    [self hideLabels];
-    
-    AwesomeMenuItem *item = menu.menuItems[idx];
     UIViewController *destVC;
-    if ([item isEqual:_gongjijinItem])
+    if ([sender isEqual:_gongjijinButton])
     {
         destVC = [[SZTGongjijinController alloc] init];
     }
-    else if ([item isEqual:_shebaoItem])
+    else if ([sender isEqual:_shebaoButton])
     {
         destVC = [[SZTShebaoViewController alloc] init];
     }
-    else if ([item isEqual:_yaohaoItem])
+    else if ([sender isEqual:_yaohaoButton])
     {
         destVC = [[SZTYaohaoViewController alloc] init];
     }
-    else if ([item isEqual:_settingsItem])
+    else if ([sender isEqual:_settingsButton])
     {
         destVC = [[SZTAboutViewController alloc] init];
     }
     
-    RZTransitionsNavigationController *navigationController = [[RZTransitionsNavigationController alloc] initWithRootViewController:destVC];
-    [self setTransitioningDelegate:[RZTransitionsManager shared]];
-    [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
-- (void)awesomeMenuDidFinishAnimationOpen:(AwesomeMenu *)menu
-{
-    if (menu.isExpanded)
-    {
-        [self showLabels];
-    }
-}
-
-- (void)awesomeMenuWillAnimateClose:(AwesomeMenu *)menu
-{
-    [self hideLabels];
+    [self.navigationController pushViewController:destVC animated:YES];
 }
 
 @end

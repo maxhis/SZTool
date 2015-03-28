@@ -22,15 +22,12 @@
 		1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */; };
 		1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */; };
 		1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */; };
-		1701B6C21AB9ABE400DAF6FC /* SZTHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */; };
 		1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */; };
 		1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */; };
 		1710D63F1AC2F7830083A297 /* DTPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D63E1AC2F7830083A297 /* DTPlaceHolderTextView.m */; };
 		1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */; };
 		1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6731AC432550083A297 /* AVOSCloud.bundle */; };
 		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
-		17C25C4D1ABA70E5007942A5 /* AwesomeMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */; };
-		17C25C4E1ABA70E5007942A5 /* AwesomeMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
 		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
 		17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5E1ABB0083007942A5 /* HTMLParser.m */; };
@@ -38,6 +35,7 @@
 		17C25C661ABBBB49007942A5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 17C25C651ABBBB49007942A5 /* libxml2.dylib */; };
 		17C25C691ABBC78A007942A5 /* SZTResultListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C681ABBC78A007942A5 /* SZTResultListController.m */; };
 		17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C5A46B1AC19412001F8C9B /* UIAlertView+Blocks.m */; };
+		17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17EA4FC41AC63D2300F4B064 /* SZTHomeController.m */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -87,8 +85,6 @@
 		1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoViewController.m; path = Shebao/SZTShebaoViewController.m; sourceTree = "<group>"; };
 		1701B6A81AB85BB500DAF6FC /* SZTShebaoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTShebaoService.h; path = Shebao/SZTShebaoService.h; sourceTree = "<group>"; };
 		1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoService.m; path = Shebao/SZTShebaoService.m; sourceTree = "<group>"; };
-		1701B6C01AB9ABE400DAF6FC /* SZTHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeController.h; path = Home/SZTHomeController.h; sourceTree = "<group>"; };
-		1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeController.m; path = Home/SZTHomeController.m; sourceTree = "<group>"; };
 		1701B6C31AB9B18900DAF6FC /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
 		1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		1710D6371AC2DD4A0083A297 /* SZTAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAboutViewController.h; path = Settings/SZTAboutViewController.h; sourceTree = "<group>"; };
@@ -99,10 +95,6 @@
 		1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTPrivacyViewController.m; path = Settings/SZTPrivacyViewController.m; sourceTree = "<group>"; };
 		1710D6731AC432550083A297 /* AVOSCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AVOSCloud.bundle; path = Resources/AVOSCloud.bundle; sourceTree = "<group>"; };
 		1710D6751AC432C20083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy.html; path = Resources/privacy.html; sourceTree = "<group>"; };
-		17C25C491ABA70E5007942A5 /* AwesomeMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenu.h; sourceTree = "<group>"; };
-		17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenu.m; sourceTree = "<group>"; };
-		17C25C4B1ABA70E5007942A5 /* AwesomeMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwesomeMenuItem.h; sourceTree = "<group>"; };
-		17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwesomeMenuItem.m; sourceTree = "<group>"; };
 		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
 		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
 		17C25C5B1ABB0083007942A5 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = HTMLParser/HTMLNode.h; sourceTree = "<group>"; };
@@ -116,6 +108,8 @@
 		17C25C681ABBC78A007942A5 /* SZTResultListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultListController.m; path = Base/SZTResultListController.m; sourceTree = "<group>"; };
 		17C5A46A1AC19412001F8C9B /* UIAlertView+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertView+Blocks.h"; path = "Category/UIAlertView+Blocks.h"; sourceTree = "<group>"; };
 		17C5A46B1AC19412001F8C9B /* UIAlertView+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+Blocks.m"; path = "Category/UIAlertView+Blocks.m"; sourceTree = "<group>"; };
+		17EA4FC31AC63D2300F4B064 /* SZTHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeController.h; path = Home/SZTHomeController.h; sourceTree = "<group>"; };
+		17EA4FC41AC63D2300F4B064 /* SZTHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeController.m; path = Home/SZTHomeController.m; sourceTree = "<group>"; };
 		F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				17C25C521ABAFFC8007942A5 /* HTMLParser */,
-				17C25C481ABA70E5007942A5 /* AwesomeMenu */,
 				1701B6841AB6D96700DAF6FC /* Base */,
 				1701B67D1AB6CA3900DAF6FC /* Category */,
 				1701B66A1AB68B9900DAF6FC /* Home */,
@@ -209,8 +202,8 @@
 		1701B66A1AB68B9900DAF6FC /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				1701B6C01AB9ABE400DAF6FC /* SZTHomeController.h */,
-				1701B6C11AB9ABE400DAF6FC /* SZTHomeController.m */,
+				17EA4FC31AC63D2300F4B064 /* SZTHomeController.h */,
+				17EA4FC41AC63D2300F4B064 /* SZTHomeController.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -302,17 +295,6 @@
 				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		17C25C481ABA70E5007942A5 /* AwesomeMenu */ = {
-			isa = PBXGroup;
-			children = (
-				17C25C491ABA70E5007942A5 /* AwesomeMenu.h */,
-				17C25C4A1ABA70E5007942A5 /* AwesomeMenu.m */,
-				17C25C4B1ABA70E5007942A5 /* AwesomeMenuItem.h */,
-				17C25C4C1ABA70E5007942A5 /* AwesomeMenuItem.m */,
-			);
-			path = AwesomeMenu;
 			sourceTree = "<group>";
 		};
 		17C25C521ABAFFC8007942A5 /* HTMLParser */ = {
@@ -495,19 +477,17 @@
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
-				1701B6C21AB9ABE400DAF6FC /* SZTHomeController.m in Sources */,
 				1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
-				17C25C4E1ABA70E5007942A5 /* AwesomeMenuItem.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,
 				1701B6A01AB812FC00DAF6FC /* SZTResultModel.m in Sources */,
 				1701B6441AB684DA00DAF6FC /* main.m in Sources */,
-				17C25C4D1ABA70E5007942A5 /* AwesomeMenu.m in Sources */,
 				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
+				17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -114,8 +114,9 @@
             
         case 1:
         {
-            NSString *text = @"神器来了！一站式查询深圳公积金、社保、汽车摇号，亲测好用！";
-            [self shareText:text andImage:[UIImage imageNamed:@"common_app_icon"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
+            NSString *text = @"「深圳通」神器来了！一站式查询深圳公积金、社保、汽车摇号，亲测好用！";
+            [self shareText:text andImage:[UIImage imageNamed:@"ShareImage"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
+            [AVAnalytics event:kShareApp];
         }
             break;
             

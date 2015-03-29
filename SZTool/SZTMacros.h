@@ -24,8 +24,9 @@
 #define kUserDefaultKeyYaohaoApplyType      @"YaohaoApplyType"
 
 // 用户行为统计的key
-#define kRefreshVerifyCodeGongjijin         @"RefreshVerifyCodeGongjijin"
-#define kRefreshVerifyCodeShebao            @"RefreshVerifyCodeShebao"
+#define kRefreshVerifyCodeGongjijin         @"刷新公积金验证码"
+#define kRefreshVerifyCodeShebao            @"刷新社保验证码"
+#define kShareApp                           @"分享App给好友"
 
 #define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]
 

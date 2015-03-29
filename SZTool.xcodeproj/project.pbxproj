@@ -28,6 +28,7 @@
 		1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */; };
 		1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6731AC432550083A297 /* AVOSCloud.bundle */; };
 		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
+		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
 		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
 		17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5E1ABB0083007942A5 /* HTMLParser.m */; };
@@ -95,6 +96,7 @@
 		1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTPrivacyViewController.m; path = Settings/SZTPrivacyViewController.m; sourceTree = "<group>"; };
 		1710D6731AC432550083A297 /* AVOSCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AVOSCloud.bundle; path = Resources/AVOSCloud.bundle; sourceTree = "<group>"; };
 		1710D6751AC432C20083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy.html; path = Resources/privacy.html; sourceTree = "<group>"; };
+		17B500CE1AC69AA900426434 /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
 		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
 		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
 		17C25C5B1ABB0083007942A5 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = HTMLParser/HTMLNode.h; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 		1710D6721AC432350083A297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				17B500CE1AC69AA900426434 /* ShareImage.png */,
 				1710D6751AC432C20083A297 /* privacy.html */,
 				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
 			);
@@ -414,6 +417,7 @@
 				1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */,
 				1710D6761AC432C20083A297 /* privacy.html in Resources */,
 				1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */,
+				17B500CF1AC69AA900426434 /* ShareImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -58,6 +58,7 @@
     [_gongjijinButton setImage:[UIImage imageNamed:@"gongjijin"] forState:UIControlStateNormal];
     [_gongjijinButton setTitle:@"公积金" forState:UIControlStateNormal];
     [_gongjijinButton setTitleColor:textColor forState:UIControlStateNormal];
+    _gongjijinButton.showsTouchWhenHighlighted = YES;
     _gongjijinButton.dt_right = kCenterX - kEdgeMargin;
     _gongjijinButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_gongjijinButton];
@@ -69,6 +70,7 @@
     [_shebaoButton setImage:[UIImage imageNamed:@"shebao"] forState:UIControlStateNormal];
     [_shebaoButton setTitle:@"社保" forState:UIControlStateNormal];
     [_shebaoButton setTitleColor:textColor forState:UIControlStateNormal];
+    _shebaoButton.showsTouchWhenHighlighted = YES;
     _shebaoButton.dt_left = kCenterX + kEdgeMargin;
     _shebaoButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_shebaoButton];
@@ -81,6 +83,7 @@
     [_yaohaoButton setTitle:@"汽车摇号" forState:UIControlStateNormal];
     [_yaohaoButton setTitleColor:textColor forState:UIControlStateNormal];
     _yaohaoButton.dt_left = _gongjijinButton.dt_left;
+    _yaohaoButton.showsTouchWhenHighlighted = YES;
     _yaohaoButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_yaohaoButton];
     [_yaohaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,6 +95,7 @@
     [_settingsButton setTitle:@"关于" forState:UIControlStateNormal];
     [_settingsButton setTitleColor:textColor forState:UIControlStateNormal];
     _settingsButton.dt_left = _shebaoButton.dt_left;
+    _settingsButton.showsTouchWhenHighlighted = YES;
     _settingsButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_settingsButton];
     [_settingsButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];

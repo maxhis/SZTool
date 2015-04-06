@@ -182,7 +182,7 @@ static CGFloat const kTopEdge               = 10;
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
-                                                              [self.view dt_postError:error.description delay:3];
+                                                              [self.view dt_postError:error.localizedDescription delay:3];
                                                           }
                                                           else
                                                           {

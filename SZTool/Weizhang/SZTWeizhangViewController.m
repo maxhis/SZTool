@@ -1,0 +1,284 @@
+//
+//  SZTWeizhangViewController.m
+//  SZTool
+//
+//  Created by iStar on 15/4/6.
+//  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
+//
+
+#import "SZTWeizhangViewController.h"
+#import "SZTWeizhangService.h"
+#import "SZTCarTypeManager.h"
+#import "ActionSheetStringPicker.h"
+
+static CGFloat const kTextFieldHeight       = 35;
+static CGFloat kTextFieldWidthNormal        = 220;
+static CGFloat kTextFieldWidthShort         = 100;
+static CGFloat const kDividerWidth          = 10;
+static CGFloat const kTopEdge               = 10;
+
+@interface SZTWeizhangViewController () <UITextFieldDelegate>
+
+/**
+ *    车牌号码
+ */
+@property (nonatomic, strong) UITextField *chepaiNumberView;
+/**
+ *    车牌类型
+ */
+@property (nonatomic, strong) UITextField *chepaiTypeView;
+/**
+ *    车辆识别代号
+ */
+@property (nonatomic, strong) UITextField *chejiaNumberView;
+/**
+ *    机动车登记证书编号
+ */
+@property (nonatomic, strong) UITextField *engineNumberView;
+// 验证码
+@property (nonatomic, strong) UITextField *codeView;
+@property (nonatomic, strong) UIImageView *codeImageView;
+
+@end
+
+@implementation SZTWeizhangViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self loadUIComponets];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadVerifyCode:nil];
+}
+
+- (void)loadUIComponets
+{
+    self.title = @"汽车违章查询";
+    
+    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery:)];
+    self.navigationItem.rightBarButtonItem = queryButton;
+    
+    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    
+    // 车牌号
+    _chepaiNumberView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chepaiNumberView.borderStyle = UITextBorderStyleRoundedRect;
+    _chepaiNumberView.placeholder = @"6位广东牌照";
+    _chepaiNumberView.dt_right = DTScreenWidth - kDividerWidth;
+    _chepaiNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    _chepaiNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:_chepaiNumberView];
+    
+    UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
+    accountLabel.textAlignment = NSTextAlignmentRight;
+    accountLabel.dt_right = _chepaiNumberView.dt_left - kDividerWidth;
+    accountLabel.text = @"车牌号  粤";
+    [self.view addSubview:accountLabel];
+    
+    // 车牌类型
+    _chepaiTypeView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chepaiTypeView.borderStyle = UITextBorderStyleRoundedRect;
+    _chepaiTypeView.enabled = NO;
+    _chepaiTypeView.text = [SZTCarTypeManager sharedManager].displayNames[1]; // 默认选中小汽车
+    [self.view addSubview:_chepaiTypeView];
+    
+    UILabel *chepaiLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiTypeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
+    chepaiLabel.textAlignment = NSTextAlignmentRight;
+    chepaiLabel.dt_right = _chepaiTypeView.dt_left - kDividerWidth;
+    chepaiLabel.text = @"车牌类型";
+    [self.view addSubview:chepaiLabel];
+    
+    UIButton *maskButton = [[UIButton alloc] initWithFrame:_chepaiTypeView.frame];
+    [maskButton addTarget:self action:@selector(showCarTypePicker:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:maskButton];
+    
+    // 车辆识别代号（后6位）
+    _chejiaNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiTypeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chejiaNumberView.borderStyle = UITextBorderStyleRoundedRect;
+    _chejiaNumberView.keyboardType = UIKeyboardTypeNumberPad;
+    _chejiaNumberView.placeholder = @"即车辆识别代号，后6位";
+    _chejiaNumberView.dt_right = DTScreenWidth - kDividerWidth;
+    _chejiaNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    _chejiaNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:_chejiaNumberView];
+    
+    UILabel *clsbdhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chejiaNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
+    clsbdhLabel.textAlignment = NSTextAlignmentRight;
+    clsbdhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
+    clsbdhLabel.text = @"车架号";
+    [self.view addSubview:clsbdhLabel];
+    
+    // 机动车登记证书编号(后7位)
+    _engineNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chejiaNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _engineNumberView.borderStyle = UITextBorderStyleRoundedRect;
+    _engineNumberView.keyboardType = UIKeyboardTypeNumberPad;
+    _engineNumberView.placeholder = @"即机动车登记证书编号，后7位";
+    _engineNumberView.dt_right = DTScreenWidth - kDividerWidth;
+    _engineNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+    _engineNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [self.view addSubview:_engineNumberView];
+    
+    UILabel *djzsbhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _engineNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
+    djzsbhLabel.textAlignment = NSTextAlignmentRight;
+    djzsbhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
+    djzsbhLabel.text = @"发动机号";
+    [self.view addSubview:djzsbhLabel];
+    
+    // 验证码
+    _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _engineNumberView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
+    _codeView.borderStyle = UITextBorderStyleRoundedRect;
+    _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _codeView.keyboardType = UIKeyboardTypeNumberPad;
+    [_codeView setReturnKeyType:UIReturnKeyGo];
+    _codeView.delegate = self;
+    [self.view addSubview:_codeView];
+    
+    UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
+    codeLabel.textAlignment = NSTextAlignmentRight;
+    codeLabel.dt_right = _codeView.dt_left - kDividerWidth;
+    codeLabel.text = @"验证码";
+    [self.view addSubview:codeLabel];
+    
+    _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_codeView.dt_right + kDividerWidth, _codeView.dt_top, kTextFieldWidthShort - kDividerWidth, kTextFieldHeight)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadVerifyCode:)];
+    _codeImageView.userInteractionEnabled = YES;
+    [_codeImageView addGestureRecognizer:tap];
+    [self.view addSubview:_codeImageView];
+    
+    // 点击空白区域关闭键盘
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+    
+    [self loadUserDefaults];
+}
+
+- (void)loadUserDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _chepaiNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiNumber];
+    NSString *type = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiType];
+    if (type) {
+        _chepaiTypeView.text = type;
+    }
+    _chejiaNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChejiaNumber];
+    _engineNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangEngineNumber];
+}
+
+- (void)saveUserDefaults
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_chepaiNumberView.text forKey:kUserDefaultKeyWeizhangChepaiNumber];
+    [defaults setObject:_chepaiTypeView.text forKey:kUserDefaultKeyWeizhangChepaiType];
+    [defaults setObject:_chejiaNumberView.text forKey:kUserDefaultKeyWeizhangChejiaNumber];
+    [defaults setObject:_engineNumberView.text forKey:kUserDefaultKeyWeizhangEngineNumber];
+}
+
+- (void)showCarTypePicker:(id)sender
+{
+    SZTCarTypeManager *typeManager = [SZTCarTypeManager sharedManager];
+    [ActionSheetStringPicker showPickerWithTitle:@"车牌类型"
+                                            rows:typeManager.displayNames
+                                initialSelection:[typeManager.displayNames indexOfObject:_chepaiTypeView.text]
+                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                           _chepaiTypeView.text = selectedValue;
+                                       }
+                                     cancelBlock:^(ActionSheetStringPicker *picker) {
+        
+                                     }
+                                          origin:self.view];
+}
+
+- (void)doQuery:(id)sender
+{
+    NSString *chepaiNumber = _chepaiNumberView.text;
+    if (!chepaiNumber || chepaiNumber.length != 6)
+    {
+        [self.view dt_postError:@"请输入6位车牌号"];
+        return;
+    }
+    
+    NSString *chejiaNumber = _chejiaNumberView.text;
+    if (!chejiaNumber || chejiaNumber.length != 6)
+    {
+        [self.view dt_postError:@"请输入车架号后6位"];
+        return;
+    }
+    
+    NSString *engineNumber = _engineNumberView.text;
+    if (!engineNumber || engineNumber.length != 7)
+    {
+        [self.view dt_postError:@"请输入发动机号后7位"];
+        return;
+    }
+    
+    NSString *verifyCode = _codeView.text;
+    if (!verifyCode || verifyCode.length != 4)
+    {
+        [self.view dt_postError:@"请输入4位验证码"];
+        return;
+    }
+    
+    NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
+    
+    [self.view dt_postLoading:@"玩命查询中..." delay:60];
+    WEAK_SELF;
+    [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
+                                                           chepaiType:chepaiType
+                                                         chejiaNumber:chejiaNumber
+                                                         engineNumber:engineNumber
+                                                           verifyCode:verifyCode
+                                                           completion:^(SZTResultModel *model, NSError *error) {
+                                                               STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+                                                               [self.view dt_cleanUp:YES];
+                                                               if (!error)
+                                                               {
+                                                                   [self saveUserDefaults];
+                                                                   if (model.success)
+                                                                   {
+                                                                       
+                                                                   }
+                                                                   else
+                                                                   {
+                                                                       [UIAlertView showWithTitle:nil message:model.message cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:nil];
+                                                                   }
+                                                               }
+                                                               else
+                                                               {
+                                                                   [self.view dt_postError:error.localizedDescription];
+                                                               }
+    }];
+}
+
+- (void)loadVerifyCode:(id)sender
+{
+    if (sender) {
+        [AVAnalytics event:kRefreshVerifyCodeWeizhang]; // 通知服务器一个验证码点击事件。
+    }
+    
+    WEAK_SELF;
+    [[SZTWeizhangService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
+        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+        if (!error)
+        {
+            self.codeImageView.image = verifyCodeImage;
+        }
+    }];
+}
+
+- (void)hideKeyboard
+{
+    [self.view endEditing:YES];
+}
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self doQuery:nil];
+    return YES;
+}
+
+@end

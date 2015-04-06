@@ -117,7 +117,7 @@ static CGFloat const kTopEdge               = 10;
     
     [ActionSheetStringPicker showPickerWithTitle:@"摇号期数"
                                             rows:self.selections
-                                initialSelection:0
+                                initialSelection:[self.selections indexOfObject:_issueNumberView.text]
                                        doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
                                            _issueNumberView.text = selectedValue;
                                            _selectedIndex = selectedIndex;
@@ -208,7 +208,7 @@ static CGFloat const kTopEdge               = 10;
                                                     completion:^(BOOL hit, NSError *error) {
                                                         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                         if (error) {
-                                                            [self.view dt_postError:error.description];
+                                                            [self.view dt_postError:error.localizedDescription];
                                                             return;
                                                         }
                                                         

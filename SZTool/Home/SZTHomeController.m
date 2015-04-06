@@ -13,6 +13,7 @@
 #import "SZTAboutViewController.h"
 #import "RZTransitionsNavigationController.h"
 #import "RZTransitionsManager.h"
+#import "SZTWeizhangViewController.h"
 
 #define kCenterX DTScreenWidth/2
 #define kCenterY DTScreenHeight/2 - 44
@@ -24,7 +25,8 @@
 @property (nonatomic, strong) UIButton *gongjijinButton;
 @property (nonatomic, strong) UIButton *shebaoButton;
 @property (nonatomic, strong) UIButton *yaohaoButton;
-@property (nonatomic, strong) UIButton *settingsButton;
+@property (nonatomic, strong) UIButton *weizhangButton;
+@property (nonatomic, strong) UIButton *infoButton;
 
 @end
 
@@ -39,6 +41,8 @@
 - (void)loadUIComponent
 {
     self.title = @"深圳通";
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.infoButton];
     
     UIImageView *bgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgView.image = [UIImage imageNamed:@"home_bg"];
@@ -89,17 +93,17 @@
     [_yaohaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [bgView addSubview:_yaohaoButton];
     
-    _settingsButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
-    _settingsButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_settingsButton setImage:[UIImage imageNamed:@"settings"] forState:UIControlStateNormal];
-    [_settingsButton setTitle:@"关于" forState:UIControlStateNormal];
-    [_settingsButton setTitleColor:textColor forState:UIControlStateNormal];
-    _settingsButton.dt_left = _shebaoButton.dt_left;
-    _settingsButton.showsTouchWhenHighlighted = YES;
-    _settingsButton.dt_top = kCenterY + kEdgeMargin;
-    [self textUnderImageButton:_settingsButton];
-    [_settingsButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:_settingsButton];
+    _weizhangButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
+    _weizhangButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    [_weizhangButton setImage:[UIImage imageNamed:@"weizhang"] forState:UIControlStateNormal];
+    [_weizhangButton setTitle:@"汽车违章" forState:UIControlStateNormal];
+    [_weizhangButton setTitleColor:textColor forState:UIControlStateNormal];
+    _weizhangButton.dt_left = _shebaoButton.dt_left;
+    _weizhangButton.showsTouchWhenHighlighted = YES;
+    _weizhangButton.dt_top = kCenterY + kEdgeMargin;
+    [self textUnderImageButton:_weizhangButton];
+    [_weizhangButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [bgView addSubview:_weizhangButton];
 }
 
 /**
@@ -121,6 +125,16 @@
     button.imageEdgeInsets = UIEdgeInsetsMake(- (titleSize.height + spacing), 0.0, 0.0, - titleSize.width);
 }
 
+- (UIButton *)infoButton
+{
+    if (_infoButton == nil)
+    {
+        _infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        [_infoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _infoButton;
+}
+
 #pragma mark - button click event
 - (void)buttonPressed:(id)sender
 {
@@ -137,11 +151,14 @@
     {
         destVC = [[SZTYaohaoViewController alloc] init];
     }
-    else if ([sender isEqual:_settingsButton])
+    else if ([sender isEqual:_weizhangButton])
+    {
+        destVC = [[SZTWeizhangViewController alloc] init];
+    }
+    else if ([sender isEqual:_infoButton])
     {
         destVC = [[SZTAboutViewController alloc] init];
     }
-    
     [self.navigationController pushViewController:destVC animated:YES];
 }
 

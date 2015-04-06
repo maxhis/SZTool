@@ -46,9 +46,6 @@ static CGFloat const kTopEdge               = 10;
 {
     self.title = @"公积金查询";
     
-//    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-//    self.navigationItem.leftBarButtonItem = cancelButton;
-    
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
@@ -183,7 +180,7 @@ static CGFloat const kTopEdge               = 10;
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
                                                           {
-                                                              [self.view dt_postError:error.description delay:3];
+                                                              [self.view dt_postError:error.localizedDescription delay:3];
                                                           }
                                                           else
                                                           {

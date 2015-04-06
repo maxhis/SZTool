@@ -22,10 +22,16 @@
 #define kUserDefaultKeyShebaoID             @"ShebaoID"
 #define kUserDefaultKeyYaohaoApplyNumber    @"YaohaoApplyNumber"
 #define kUserDefaultKeyYaohaoApplyType      @"YaohaoApplyType"
+#define kUserDefaultKeyWeizhangChepaiNumber @"WeizhangChepaiNumber"
+#define kUserDefaultKeyWeizhangChepaiType   @"WeizhangChepaiType"
+#define kUserDefaultKeyWeizhangChejiaNumber @"WeizhangChejiaNumber"
+#define kUserDefaultKeyWeizhangEngineNumber @"WeizhangEngineNumber"
+
 
 // 用户行为统计的key
 #define kRefreshVerifyCodeGongjijin         @"刷新公积金验证码"
 #define kRefreshVerifyCodeShebao            @"刷新社保验证码"
+#define kRefreshVerifyCodeWeizhang          @"刷新违章验证码"
 #define kShareApp                           @"分享App给好友"
 
 #define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]

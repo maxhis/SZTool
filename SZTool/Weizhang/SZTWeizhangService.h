@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "SZTResultModel.h"
 
+extern NSArray const *kWeizhangItemNames;
+
 @interface SZTWeizhangService : NSObject
 
 + (instancetype)sharedService;

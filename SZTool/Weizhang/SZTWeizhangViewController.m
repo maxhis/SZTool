@@ -10,6 +10,7 @@
 #import "SZTWeizhangService.h"
 #import "SZTCarTypeManager.h"
 #import "ActionSheetStringPicker.h"
+#import "SZTWeizhangResultController.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal        = 220;
@@ -77,7 +78,7 @@ static CGFloat const kTopEdge               = 10;
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     accountLabel.textAlignment = NSTextAlignmentRight;
     accountLabel.dt_right = _chepaiNumberView.dt_left - kDividerWidth;
-    accountLabel.text = @"车牌号  粤";
+    accountLabel.text = @"车牌号 粤";
     [self.view addSubview:accountLabel];
     
     // 车牌类型
@@ -194,6 +195,7 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)doQuery:(id)sender
 {
+    [self hideKeyboard];
     NSString *chepaiNumber = _chepaiNumberView.text;
     if (!chepaiNumber || chepaiNumber.length != 6)
     {
@@ -221,10 +223,10 @@ static CGFloat const kTopEdge               = 10;
         [self.view dt_postError:@"请输入4位验证码"];
         return;
     }
-    
+
     NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
     
-    [self.view dt_postLoading:@"玩命查询中..." delay:60];
+    [self.view dt_postLoading:@"努力查询中..." delay:60];
     WEAK_SELF;
     [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
                                                            chepaiType:chepaiType
@@ -239,16 +241,25 @@ static CGFloat const kTopEdge               = 10;
                                                                    [self saveUserDefaults];
                                                                    if (model.success)
                                                                    {
-                                                                       
+                                                                       if ([model.message isKindOfClass:[NSArray class]])
+                                                                       {
+                                                                           SZTWeizhangResultController *resultVC = [[SZTWeizhangResultController alloc] init];
+                                                                           resultVC.dataSource = model.message;
+                                                                           [self.navigationController pushViewController:resultVC animated:YES];
+                                                                       } 
                                                                    }
                                                                    else
                                                                    {
                                                                        [UIAlertView showWithTitle:nil message:model.message cancelButtonTitle:@"确定" otherButtonTitles:nil tapBlock:nil];
+                                                                       self.codeView.text = nil;
+                                                                       [self loadVerifyCode:nil];
                                                                    }
                                                                }
                                                                else
                                                                {
                                                                    [self.view dt_postError:error.localizedDescription];
+                                                                   self.codeView.text = nil;
+                                                                   [self loadVerifyCode:nil];
                                                                }
     }];
 }

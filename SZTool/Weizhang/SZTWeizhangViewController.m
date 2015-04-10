@@ -77,6 +77,7 @@ static CGFloat const kTopEdge               = 10;
     [_chepaiNumberView setReturnKeyType:UIReturnKeyNext];
     _chepaiNumberView.delegate = self;
     _chepaiNumberView.tag = tag++;
+//    _chepaiNumberView.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     [self.view addSubview:_chepaiNumberView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -237,7 +238,7 @@ static CGFloat const kTopEdge               = 10;
 
     NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
     
-    [self.view dt_postLoading:@"努力查询中..." delay:60];
+    [self.view dt_postLoading:@"耐心哦，省公安厅的系统有点慢..." delay:60];
     WEAK_SELF;
     [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
                                                            chepaiType:chepaiType
@@ -281,6 +282,8 @@ static CGFloat const kTopEdge               = 10;
         [AVAnalytics event:kRefreshVerifyCodeWeizhang]; // 通知服务器一个验证码点击事件。
     }
     
+    self.codeImageView.image = nil;
+    self.codeView.text = nil;
     WEAK_SELF;
     [[SZTWeizhangService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
@@ -322,6 +325,7 @@ static CGFloat const kTopEdge               = 10;
     [self animateTextField: textField up: NO];
 }
 
+// 自动滚动到键盘之上
 - (void) animateTextField: (UITextField*) textField up: (BOOL) up
 {
     int animatedDistance;
@@ -350,6 +354,29 @@ static CGFloat const kTopEdge               = 10;
         self.view.frame = CGRectOffset(self.view.frame, 0, movement);
         [UIView commitAnimations];
     }
+}
+
+// 转换成全大写字母
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString *)string {
+    
+    // Check if the added string contains lowercase characters.
+    // If so, those characters are replaced by uppercase characters.
+    // But this has the effect of losing the editing point
+    // (only when trying to edit with lowercase characters),
+    // because the text of the UITextField is modified.
+    // That is why we only replace the text when this is really needed.
+    NSRange lowercaseCharRange;
+    lowercaseCharRange = [string rangeOfCharacterFromSet:[NSCharacterSet lowercaseLetterCharacterSet]];
+    
+    if (lowercaseCharRange.location != NSNotFound) {
+        
+        textField.text = [textField.text stringByReplacingCharactersInRange:range
+                                                                 withString:[string uppercaseString]];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

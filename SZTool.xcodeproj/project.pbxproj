@@ -30,6 +30,7 @@
 		1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */; };
 		1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6731AC432550083A297 /* AVOSCloud.bundle */; };
 		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
+		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
 		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
 		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
@@ -104,6 +105,8 @@
 		1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTPrivacyViewController.m; path = Settings/SZTPrivacyViewController.m; sourceTree = "<group>"; };
 		1710D6731AC432550083A297 /* AVOSCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AVOSCloud.bundle; path = Resources/AVOSCloud.bundle; sourceTree = "<group>"; };
 		1710D6751AC432C20083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy.html; path = Resources/privacy.html; sourceTree = "<group>"; };
+		172DDD341AD7FF3E00013157 /* UIImageView+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Indicator.h"; path = "Category/UIImageView+Indicator.h"; sourceTree = "<group>"; };
+		172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Indicator.m"; path = "Category/UIImageView+Indicator.m"; sourceTree = "<group>"; };
 		17B500CE1AC69AA900426434 /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
 		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
 		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
@@ -252,6 +255,8 @@
 				1701B6961AB71CAB00DAF6FC /* UIView+HUD.m */,
 				1701B67E1AB6CAAD00DAF6FC /* UIView+Frame.h */,
 				1701B67F1AB6CAAD00DAF6FC /* UIView+Frame.m */,
+				172DDD341AD7FF3E00013157 /* UIImageView+Indicator.h */,
+				172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */,
 			);
 			name = Category;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
+				172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */,
 				1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */,

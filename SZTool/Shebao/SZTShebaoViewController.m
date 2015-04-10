@@ -140,11 +140,13 @@ static CGFloat const kTopEdge               = 10;
     }
     
     self.codeImageView.image = nil;
+    [self.codeImageView showIndicator];
     WEAK_SELF;
     [[SZTShebaoService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
         if (!error)
         {
+            [self.codeImageView hideIndicator];
             self.codeImageView.image = verifyCodeImage;
         }
     }];
@@ -222,6 +224,29 @@ static CGFloat const kTopEdge               = 10;
     else
     {
         [view becomeFirstResponder];
+    }
+    
+    return YES;
+}
+
+// 转换成全大写字母
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString *)string {
+    
+    // Check if the added string contains lowercase characters.
+    // If so, those characters are replaced by uppercase characters.
+    // But this has the effect of losing the editing point
+    // (only when trying to edit with lowercase characters),
+    // because the text of the UITextField is modified.
+    // That is why we only replace the text when this is really needed.
+    NSRange lowercaseCharRange;
+    lowercaseCharRange = [string rangeOfCharacterFromSet:[NSCharacterSet lowercaseLetterCharacterSet]];
+    
+    if (lowercaseCharRange.location != NSNotFound) {
+        
+        textField.text = [textField.text stringByReplacingCharactersInRange:range
+                                                                 withString:[string uppercaseString]];
+        return NO;
     }
     
     return YES;

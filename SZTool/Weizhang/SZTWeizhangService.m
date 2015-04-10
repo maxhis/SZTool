@@ -29,7 +29,7 @@ NSArray const *kWeizhangItemNames;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         service = [[SZTWeizhangService alloc] init];
-        kWeizhangItemNames = @[@"车牌号", @"违法时间", @"违法地址", @"违法行为", @"处理标记", @"处理机关", @"违法处理地址"];
+        kWeizhangItemNames = @[@"车牌号", @"违法时间", @"违法地址", @"违法行为", @"处理标记", @"处理机关", @"处理地址"];
     });
     
     return service;

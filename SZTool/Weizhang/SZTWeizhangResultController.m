@@ -61,7 +61,7 @@
     
     NSDictionary *data = self.dataSource[indexPath.section];
     NSString *itemName = kWeizhangItemNames[indexPath.row];
-    cell.nameLabel.text = itemName;
+    cell.nameLabel.text = [NSString stringWithFormat:@"%@:", itemName];
     cell.contentLabel.text = [data objectForKey:itemName];
     if (indexPath.row == 3)
     {

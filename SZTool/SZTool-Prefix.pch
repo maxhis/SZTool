@@ -27,6 +27,7 @@
 #import "UIColor+HexString.h"
 #import "NSString+DT.h"
 #import "UIAlertView+Blocks.h"
+#import "UIImageView+Indicator.h"
 
 #import "SZTViewController.h"
 

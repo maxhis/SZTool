@@ -192,6 +192,7 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)showCarTypePicker:(id)sender
 {
+    [self.view endEditing:YES];
     SZTCarTypeManager *typeManager = [SZTCarTypeManager sharedManager];
     [ActionSheetStringPicker showPickerWithTitle:@"车牌类型"
                                             rows:typeManager.displayNames
@@ -283,12 +284,14 @@ static CGFloat const kTopEdge               = 10;
     }
     
     self.codeImageView.image = nil;
+    [self.codeImageView showIndicator];
     self.codeView.text = nil;
     WEAK_SELF;
     [[SZTWeizhangService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
         if (!error)
         {
+            [self.codeImageView hideIndicator];
             self.codeImageView.image = verifyCodeImage;
         }
     }];

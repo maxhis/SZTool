@@ -44,7 +44,7 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
-    self.title = @"公积金查询";
+    self.title = @"公积金";
     
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;

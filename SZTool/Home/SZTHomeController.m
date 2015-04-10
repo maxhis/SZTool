@@ -96,7 +96,7 @@
     _weizhangButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _weizhangButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [_weizhangButton setImage:[UIImage imageNamed:@"weizhang"] forState:UIControlStateNormal];
-    [_weizhangButton setTitle:@"汽车违章" forState:UIControlStateNormal];
+    [_weizhangButton setTitle:@"粤牌违章" forState:UIControlStateNormal];
     [_weizhangButton setTitleColor:textColor forState:UIControlStateNormal];
     _weizhangButton.dt_left = _shebaoButton.dt_left;
     _weizhangButton.showsTouchWhenHighlighted = YES;

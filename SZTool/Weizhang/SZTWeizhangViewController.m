@@ -58,7 +58,7 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponets
 {
-    self.title = @"汽车违章查询";
+    self.title = @"粤牌全国违章";
     
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery:)];
     self.navigationItem.rightBarButtonItem = queryButton;

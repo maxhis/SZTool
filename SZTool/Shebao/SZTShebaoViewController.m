@@ -44,14 +44,12 @@ static CGFloat const kTopEdge               = 10;
 {
     self.title = @"社保查询";
     
-//    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-//    self.navigationItem.leftBarButtonItem = cancelButton;
-    
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
     kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    NSInteger tag = 0;
     
     // 电脑号
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
@@ -61,6 +59,9 @@ static CGFloat const kTopEdge               = 10;
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _accountView.delegate = self;
+    _accountView.tag = tag++;
+    _accountView.returnKeyType = UIReturnKeyNext;
     [self.view addSubview:_accountView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _accountView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -74,6 +75,9 @@ static CGFloat const kTopEdge               = 10;
     _idView.borderStyle = UITextBorderStyleRoundedRect;
     _idView.placeholder = @"15或18位有效身份证号";
     _idView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    _idView.delegate = self;
+    _idView.tag = tag++;
+    _idView.returnKeyType = UIReturnKeyNext;
     [self.view addSubview:_idView];
     
     UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _idView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -89,6 +93,7 @@ static CGFloat const kTopEdge               = 10;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
     _codeView.keyboardType = UIKeyboardTypeNumberPad;
+    _codeView.tag = tag++;
     [self.view addSubview:_codeView];
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -134,6 +139,7 @@ static CGFloat const kTopEdge               = 10;
         [AVAnalytics event:kRefreshVerifyCodeShebao]; // 通知服务器一个验证码点击事件。
     }
     
+    self.codeImageView.image = nil;
     WEAK_SELF;
     [[SZTShebaoService sharedService] fetchVerifyCodeImageWithCompletion:^(UIImage *verifyCodeImage, NSError *error) {
         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
@@ -208,7 +214,16 @@ static CGFloat const kTopEdge               = 10;
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self doQuery];
+    UIView *view = [self.view viewWithTag:textField.tag + 1];
+    if (!view)
+    {
+        [self doQuery];
+    }
+    else
+    {
+        [view becomeFirstResponder];
+    }
+    
     return YES;
 }
 

@@ -51,6 +51,7 @@ static CGFloat const kTopEdge               = 10;
     
     kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    NSInteger tag = 0;
     
     // 公积金账号
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
@@ -60,6 +61,9 @@ static CGFloat const kTopEdge               = 10;
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_accountView setReturnKeyType:UIReturnKeyNext];
+    _accountView.delegate = self;
+    _accountView.tag = tag++;
     [self.view addSubview:_accountView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _accountView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -73,6 +77,9 @@ static CGFloat const kTopEdge               = 10;
     _idView.borderStyle = UITextBorderStyleRoundedRect;
     _idView.placeholder = @"15或18位有效身份证号";
     _idView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_idView setReturnKeyType:UIReturnKeyNext];
+    _idView.delegate = self;
+    _idView.tag = tag++;
     [self.view addSubview:_idView];
     
     UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _idView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -87,6 +94,7 @@ static CGFloat const kTopEdge               = 10;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
+    _codeView.tag = tag++;
     [self.view addSubview:_codeView];
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -205,7 +213,16 @@ static CGFloat const kTopEdge               = 10;
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self doQuery];
+    UIView *view = [self.view viewWithTag:textField.tag + 1];
+    if (!view)
+    {
+        [self doQuery];
+    }
+    else
+    {
+        [view becomeFirstResponder];
+    }
+    
     return YES;
 }
 

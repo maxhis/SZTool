@@ -65,6 +65,7 @@ static CGFloat const kTopEdge               = 10;
     
     kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    NSInteger tag = 0;
     
     // 车牌号
     _chepaiNumberView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
@@ -73,6 +74,9 @@ static CGFloat const kTopEdge               = 10;
     _chepaiNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _chepaiNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _chepaiNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_chepaiNumberView setReturnKeyType:UIReturnKeyNext];
+    _chepaiNumberView.delegate = self;
+    _chepaiNumberView.tag = tag++;
     [self.view addSubview:_chepaiNumberView];
     
     UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -106,6 +110,9 @@ static CGFloat const kTopEdge               = 10;
     _chejiaNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _chejiaNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _chejiaNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_chejiaNumberView setReturnKeyType:UIReturnKeyNext];
+    _chejiaNumberView.delegate = self;
+    _chejiaNumberView.tag = tag++;
     [self.view addSubview:_chejiaNumberView];
     
     UILabel *clsbdhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chejiaNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -122,6 +129,9 @@ static CGFloat const kTopEdge               = 10;
     _engineNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _engineNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _engineNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [_engineNumberView setReturnKeyType:UIReturnKeyNext];
+    _engineNumberView.delegate = self;
+    _engineNumberView.tag = tag++;
     [self.view addSubview:_engineNumberView];
     
     UILabel *djzsbhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _engineNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -137,6 +147,7 @@ static CGFloat const kTopEdge               = 10;
     _codeView.keyboardType = UIKeyboardTypeNumberPad;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
+    _codeView.tag = tag++;
     [self.view addSubview:_codeView];
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -288,8 +299,57 @@ static CGFloat const kTopEdge               = 10;
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self doQuery:nil];
+    UIView *view = [self.view viewWithTag:textField.tag + 1];
+    if (!view)
+    {
+        [self doQuery:nil];
+    }
+    else
+    {
+        [view becomeFirstResponder];
+    }
+    
     return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: YES];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: NO];
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    int animatedDistance;
+    int moveUpValue = textField.frame.origin.y+ textField.frame.size.height;
+    UIInterfaceOrientation orientation =
+    [[UIApplication sharedApplication] statusBarOrientation];
+    if (orientation == UIInterfaceOrientationPortrait ||
+        orientation == UIInterfaceOrientationPortraitUpsideDown)
+    {
+        
+        animatedDistance = 216-(460-moveUpValue-5);
+    }
+    else
+    {
+        animatedDistance = 162-(320-moveUpValue-5);
+    }
+    
+    if(animatedDistance>0)
+    {
+        const int movementDistance = animatedDistance;
+        const float movementDuration = 0.3f;
+        int movement = (up ? -movementDistance : movementDistance);
+        [UIView beginAnimations: nil context: nil];
+        [UIView setAnimationBeginsFromCurrentState: YES];
+        [UIView setAnimationDuration: movementDuration];
+        self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+        [UIView commitAnimations];
+    }
 }
 
 @end

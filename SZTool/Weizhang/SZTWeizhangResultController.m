@@ -31,6 +31,9 @@
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    id desiredColor = [UIColor clearColor];
+    _tableView.backgroundColor = desiredColor;
+    _tableView.backgroundView.backgroundColor = desiredColor;
     [self.view addSubview:_tableView];
 }
 

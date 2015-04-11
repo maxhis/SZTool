@@ -13,7 +13,6 @@
 - (void)showIndicator
 {
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    indicator.frame = CGRectMake(0, 0, self.dt_width/2, self.dt_height/2);
     indicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin;
     indicator.center =  CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     

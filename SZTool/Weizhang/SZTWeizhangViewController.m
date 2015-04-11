@@ -239,7 +239,7 @@ static CGFloat const kTopEdge               = 10;
 
     NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
     
-    [self.view dt_postLoading:@"耐心哦，省公安厅的系统有点慢..." delay:60];
+    [self.view dt_postLoading:@"忍一忍这超慢的系统吧..." delay:60];
     WEAK_SELF;
     [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
                                                            chepaiType:chepaiType

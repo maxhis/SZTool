@@ -15,6 +15,6 @@ typedef void (^QueryStatusCallback)(BOOL success);
 /**
  *    查询状态回调，如果成功可以提示用户评分
  */
-@property (nonatomic, strong)QueryStatusCallback queryStatusCallback;
+@property (nonatomic, copy)QueryStatusCallback queryStatusCallback;
 
 @end

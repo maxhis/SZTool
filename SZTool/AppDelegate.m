@@ -27,6 +27,7 @@
     [self setupTheme];
     [self setupRZTransitionsManager];
     [self setupAVOS:launchOptions];
+    [self checkPromotingTime];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     SZTHomeController *homeController = [[SZTHomeController alloc] init];
@@ -73,6 +74,22 @@
 #ifdef PrereleaseEnviroment
     [AVAnalytics setAnalyticsEnabled:NO];
 #endif
+}
+
+/**
+ *    检查是不是新版本，如果是则重置可弹框的次数
+ */
+- (void)checkPromotingTime
+{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    CGFloat currentVersion = [infoDic[@"CFBundleShortVersionString"] floatValue];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    CGFloat lastVersion = [[defaults objectForKey:kUserDefaultKeyLastVersion] floatValue];
+    if (currentVersion > lastVersion)
+    {
+        [defaults setObject:@(currentVersion) forKey:kUserDefaultKeyLastVersion];
+        [defaults setObject:@(kMaxPromotingTime) forKey:kUserDefaultKeyRemainPromotingTime];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

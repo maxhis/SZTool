@@ -202,6 +202,12 @@ static CGFloat const kTopEdge               = 10;
                                                                   resultVC.dataSource = model.message;
                                                                   resultVC.title = @"参保情况";
                                                                   [self.navigationController pushViewController:resultVC animated:YES];
+                                                                  
+                                                                  // 通知首页查询成功
+                                                                  if (self.queryStatusCallback)
+                                                                  {
+                                                                      self.queryStatusCallback(YES);
+                                                                  }
                                                               }
                                                               else
                                                               {

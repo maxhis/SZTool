@@ -259,7 +259,13 @@ static CGFloat const kTopEdge               = 10;
                                                                            SZTWeizhangResultController *resultVC = [[SZTWeizhangResultController alloc] init];
                                                                            resultVC.dataSource = model.message;
                                                                            [self.navigationController pushViewController:resultVC animated:YES];
-                                                                       } 
+                                                                       }
+                                                                       
+                                                                       // 通知首页查询成功
+                                                                       if (self.queryStatusCallback)
+                                                                       {
+                                                                           self.queryStatusCallback(YES);
+                                                                       }
                                                                    }
                                                                    else
                                                                    {

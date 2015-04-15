@@ -27,6 +27,10 @@
 #define kUserDefaultKeyWeizhangChejiaNumber @"WeizhangChejiaNumber"
 #define kUserDefaultKeyWeizhangEngineNumber @"WeizhangEngineNumber"
 
+#define kUserDefaultKeyLastVersion          @"UserDefaultKeyLastVersion"
+#define kUserDefaultKeyRemainPromotingTime  @"UserDefaultRemainPromotingTime"
+#define kMaxPromotingTime                   3
+
 
 // 用户行为统计的key
 #define kRefreshVerifyCodeGongjijin         @"刷新公积金验证码"

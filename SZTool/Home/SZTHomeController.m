@@ -28,6 +28,10 @@
 @property (nonatomic, strong) UIButton *weizhangButton;
 @property (nonatomic, strong) UIButton *infoButton;
 
+/**
+ *    是否查询成功
+ */
+@property (nonatomic, assign) BOOL querySuccess;
 @end
 
 @implementation SZTHomeController
@@ -36,6 +40,15 @@
 {
     [super viewDidLoad];
     [self loadUIComponent];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_querySuccess)
+    {
+        [self showPromotingAlertIfNeed];
+    }
 }
 
 - (void)loadUIComponent
@@ -138,28 +151,72 @@
 #pragma mark - button click event
 - (void)buttonPressed:(id)sender
 {
-    UIViewController *destVC;
+    QueryStatusCallback callback = ^void(BOOL success) {
+        _querySuccess = success;
+    };
+    
+    SZTViewController *destVC;
     if ([sender isEqual:_gongjijinButton])
     {
         destVC = [[SZTGongjijinController alloc] init];
+        destVC.queryStatusCallback = callback;
     }
     else if ([sender isEqual:_shebaoButton])
     {
         destVC = [[SZTShebaoViewController alloc] init];
+        destVC.queryStatusCallback = callback;
     }
     else if ([sender isEqual:_yaohaoButton])
     {
         destVC = [[SZTYaohaoViewController alloc] init];
+        destVC.queryStatusCallback = callback;
     }
     else if ([sender isEqual:_weizhangButton])
     {
         destVC = [[SZTWeizhangViewController alloc] init];
+        destVC.queryStatusCallback = callback;
     }
     else if ([sender isEqual:_infoButton])
     {
         destVC = [[SZTAboutViewController alloc] init];
     }
     [self.navigationController pushViewController:destVC animated:YES];
+}
+
+#pragma mark - feedback or promoting app
+
+/**
+ *    在用户成功完成一次查询后给出对话框，反馈或评分，最多展示3次，用户点击后不再出现
+ */
+- (void)showPromotingAlertIfNeed
+{
+    __block NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    __block NSInteger remainTimes = [[defaults objectForKey:kUserDefaultKeyRemainPromotingTime] integerValue];
+    if (remainTimes > 0)
+    {
+        [UIAlertView showWithTitle:@"期待您的声音"
+                           message:@"嘿！App用得还好么？觉得不错可以去给我们评个分，有任何建议或意见都可以反馈给我们哦！"
+                 cancelButtonTitle:@"下次吧"
+                 otherButtonTitles:@[@"去评分", @"意见反馈"]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              _querySuccess = false;
+                              if (buttonIndex == alertView.cancelButtonIndex)
+                              {
+                                  [defaults setObject:@(--remainTimes) forKey:kUserDefaultKeyRemainPromotingTime];
+                              }
+                              else if(buttonIndex == alertView.firstOtherButtonIndex)
+                              {
+                                  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
+                                  [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
+                              }
+                              else if(buttonIndex == alertView.firstOtherButtonIndex + 1)
+                              {
+                                  AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
+                                  [agent showConversations:self title:@"用户反馈" contact:nil];
+                                  [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
+                              }
+                          }];
+    }
 }
 
 @end

@@ -217,6 +217,12 @@ static CGFloat const kTopEdge               = 10;
                                                         {
                                                             NSString *message = @"您可登录系统自行打印指标证明文件、或者到服务窗口领取指标证明文件。";
                                                             [UIAlertView showWithTitle:@"恭喜中签" message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+                                                            
+                                                            // 通知首页查询成功
+                                                            if (self.queryStatusCallback)
+                                                            {
+                                                                self.queryStatusCallback(YES);
+                                                            }
                                                         }
                                                         else
                                                         {

@@ -22,7 +22,6 @@
 		1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */; };
 		1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */; };
 		1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */; };
-		1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */; };
 		170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 170F7D801AD29C0B00ABD24E /* SZTCarTypeManager.m */; };
 		170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 170F7D831AD5749C00ABD24E /* SZTWeizhangModel.m */; };
 		1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */; };
@@ -30,6 +29,14 @@
 		1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */; };
 		1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6731AC432550083A297 /* AVOSCloud.bundle */; };
 		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
+		1719C5B41AE2283E000D161B /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5B31AE2283E000D161B /* UIColor+HexString.m */; };
+		1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */; };
+		1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5BA1AE2861E000D161B /* Weizhang.m */; };
+		1719C5BE1AE2861F000D161B /* Gongjijin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5BD1AE2861F000D161B /* Gongjijin.m */; };
+		1719C5C11AE2861F000D161B /* Shebao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C01AE2861F000D161B /* Shebao.m */; };
+		1719C5C41AE2861F000D161B /* Yaohao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C31AE2861F000D161B /* Yaohao.m */; };
+		1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C91AE2B78F000D161B /* SZTInputViewController.m */; };
+		1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5D01AE35205000D161B /* SZTAccountTableView.m */; };
 		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
 		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
@@ -92,7 +99,6 @@
 		1701B6A61AB85A3D00DAF6FC /* SZTShebaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoViewController.m; path = Shebao/SZTShebaoViewController.m; sourceTree = "<group>"; };
 		1701B6A81AB85BB500DAF6FC /* SZTShebaoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTShebaoService.h; path = Shebao/SZTShebaoService.h; sourceTree = "<group>"; };
 		1701B6A91AB85BB500DAF6FC /* SZTShebaoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTShebaoService.m; path = Shebao/SZTShebaoService.m; sourceTree = "<group>"; };
-		1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		170F7D7F1AD29C0B00ABD24E /* SZTCarTypeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTCarTypeManager.h; path = Weizhang/SZTCarTypeManager.h; sourceTree = "<group>"; };
 		170F7D801AD29C0B00ABD24E /* SZTCarTypeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTCarTypeManager.m; path = Weizhang/SZTCarTypeManager.m; sourceTree = "<group>"; };
 		170F7D821AD5749C00ABD24E /* SZTWeizhangModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTWeizhangModel.h; path = Weizhang/SZTWeizhangModel.h; sourceTree = "<group>"; };
@@ -105,6 +111,21 @@
 		1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTPrivacyViewController.m; path = Settings/SZTPrivacyViewController.m; sourceTree = "<group>"; };
 		1710D6731AC432550083A297 /* AVOSCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AVOSCloud.bundle; path = Resources/AVOSCloud.bundle; sourceTree = "<group>"; };
 		1710D6751AC432C20083A297 /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = privacy.html; path = Resources/privacy.html; sourceTree = "<group>"; };
+		1719C5B21AE1FD29000D161B /* SZTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SZTool.entitlements; sourceTree = "<group>"; };
+		1719C5B31AE2283E000D161B /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexString.m"; path = "Category/UIColor+HexString.m"; sourceTree = "<group>"; };
+		1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SZTool.xcdatamodel; sourceTree = "<group>"; };
+		1719C5B91AE2861E000D161B /* Weizhang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weizhang.h; path = Models/Weizhang.h; sourceTree = "<group>"; };
+		1719C5BA1AE2861E000D161B /* Weizhang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weizhang.m; path = Models/Weizhang.m; sourceTree = "<group>"; };
+		1719C5BC1AE2861F000D161B /* Gongjijin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gongjijin.h; path = Models/Gongjijin.h; sourceTree = "<group>"; };
+		1719C5BD1AE2861F000D161B /* Gongjijin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gongjijin.m; path = Models/Gongjijin.m; sourceTree = "<group>"; };
+		1719C5BF1AE2861F000D161B /* Shebao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shebao.h; path = Models/Shebao.h; sourceTree = "<group>"; };
+		1719C5C01AE2861F000D161B /* Shebao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shebao.m; path = Models/Shebao.m; sourceTree = "<group>"; };
+		1719C5C21AE2861F000D161B /* Yaohao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Yaohao.h; path = Models/Yaohao.h; sourceTree = "<group>"; };
+		1719C5C31AE2861F000D161B /* Yaohao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Yaohao.m; path = Models/Yaohao.m; sourceTree = "<group>"; };
+		1719C5C81AE2B78F000D161B /* SZTInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTInputViewController.h; path = Base/SZTInputViewController.h; sourceTree = "<group>"; };
+		1719C5C91AE2B78F000D161B /* SZTInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTInputViewController.m; path = Base/SZTInputViewController.m; sourceTree = "<group>"; };
+		1719C5CF1AE35205000D161B /* SZTAccountTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountTableView.h; path = DropdownMenu/SZTAccountTableView.h; sourceTree = "<group>"; };
+		1719C5D01AE35205000D161B /* SZTAccountTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountTableView.m; path = DropdownMenu/SZTAccountTableView.m; sourceTree = "<group>"; };
 		172DDD341AD7FF3E00013157 /* UIImageView+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Indicator.h"; path = "Category/UIImageView+Indicator.h"; sourceTree = "<group>"; };
 		172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Indicator.m"; path = "Category/UIImageView+Indicator.m"; sourceTree = "<group>"; };
 		17B500CE1AC69AA900426434 /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
@@ -176,6 +197,9 @@
 		1701B6401AB684DA00DAF6FC /* SZTool */ = {
 			isa = PBXGroup;
 			children = (
+				1719C5CB1AE3516C000D161B /* DropdownMenu */,
+				1719C5B51AE2284A000D161B /* Models */,
+				1719C5B21AE1FD29000D161B /* SZTool.entitlements */,
 				17C25C521ABAFFC8007942A5 /* HTMLParser */,
 				1701B6841AB6D96700DAF6FC /* Base */,
 				1701B67D1AB6CA3900DAF6FC /* Category */,
@@ -246,9 +270,9 @@
 			isa = PBXGroup;
 			children = (
 				17FC55651AD2275000BAA1A7 /* UIColor+HexString.h */,
+				1719C5B31AE2283E000D161B /* UIColor+HexString.m */,
 				17C5A46A1AC19412001F8C9B /* UIAlertView+Blocks.h */,
 				17C5A46B1AC19412001F8C9B /* UIAlertView+Blocks.m */,
-				1701B6C41AB9B18900DAF6FC /* UIColor+HexString.m */,
 				1701B69B1AB7DC7100DAF6FC /* NSString+DT.h */,
 				1701B69C1AB7DC7100DAF6FC /* NSString+DT.m */,
 				1701B6951AB71CAB00DAF6FC /* UIView+HUD.h */,
@@ -271,6 +295,8 @@
 				1701B6851AB6D99000DAF6FC /* SZTViewController.h */,
 				1701B6861AB6D99000DAF6FC /* SZTViewController.m */,
 				17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */,
+				1719C5C81AE2B78F000D161B /* SZTInputViewController.h */,
+				1719C5C91AE2B78F000D161B /* SZTInputViewController.m */,
 				17C25C501ABACFFD007942A5 /* SZTResultItem.m */,
 			);
 			name = Base;
@@ -319,6 +345,31 @@
 				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		1719C5B51AE2284A000D161B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */,
+				1719C5C21AE2861F000D161B /* Yaohao.h */,
+				1719C5C31AE2861F000D161B /* Yaohao.m */,
+				1719C5BF1AE2861F000D161B /* Shebao.h */,
+				1719C5C01AE2861F000D161B /* Shebao.m */,
+				1719C5BC1AE2861F000D161B /* Gongjijin.h */,
+				1719C5BD1AE2861F000D161B /* Gongjijin.m */,
+				1719C5B91AE2861E000D161B /* Weizhang.h */,
+				1719C5BA1AE2861E000D161B /* Weizhang.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1719C5CB1AE3516C000D161B /* DropdownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1719C5CF1AE35205000D161B /* SZTAccountTableView.h */,
+				1719C5D01AE35205000D161B /* SZTAccountTableView.m */,
+			);
+			name = DropdownMenu;
 			sourceTree = "<group>";
 		};
 		17C25C521ABAFFC8007942A5 /* HTMLParser */ = {
@@ -421,6 +472,11 @@
 					1701B63D1AB684DA00DAF6FC = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = XV9FUP6U8C;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					1701B6561AB684DB00DAF6FC = {
 						CreatedOnToolsVersion = 6.2;
@@ -506,7 +562,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1719C5B41AE2283E000D161B /* UIColor+HexString.m in Sources */,
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
+				1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */,
+				1719C5C11AE2861F000D161B /* Shebao.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
 				17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */,
@@ -514,16 +573,18 @@
 				1710D63F1AC2F7830083A297 /* DTPlaceHolderTextView.m in Sources */,
 				1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
+				1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */,
 				17C25C621ABB0083007942A5 /* README.md in Sources */,
 				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
+				1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */,
 				17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
 				172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */,
-				1701B6C51AB9B18900DAF6FC /* UIColor+HexString.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */,
+				1719C5C41AE2861F000D161B /* Yaohao.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
 				170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
@@ -534,6 +595,8 @@
 				1701B6441AB684DA00DAF6FC /* main.m in Sources */,
 				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
+				1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */,
+				1719C5BE1AE2861F000D161B /* Gongjijin.m in Sources */,
 				17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */,
 				17FC55641AD2270100BAA1A7 /* SZTWeizhangViewController.m in Sources */,
 			);
@@ -640,6 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SZTool/SZTool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
@@ -666,6 +730,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SZTool/SZTool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
@@ -751,6 +816,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */,
+			);
+			currentVersion = 1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */;
+			name = SZTool.xcdatamodeld;
+			path = Models/SZTool.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1701B6361AB684DA00DAF6FC /* Project object */;
 }

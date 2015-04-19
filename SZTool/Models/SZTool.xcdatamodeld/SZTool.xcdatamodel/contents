@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Gongjijin" representedClassName="Gongjijin" syncable="YES">
+        <attribute name="accountNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Shebao" representedClassName="Shebao" syncable="YES">
+        <attribute name="accountNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identityNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Weizhang" representedClassName="Weizhang" syncable="YES">
+        <attribute name="chejiaNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chepaiNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chepaiType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="engineNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Yaohao" representedClassName="Yaohao" syncable="YES">
+        <attribute name="applyNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Gongjijin" positionX="-4457" positionY="-1962" width="128" height="88"/>
+        <element name="Shebao" positionX="-4293" positionY="-1962" width="128" height="88"/>
+        <element name="Yaohao" positionX="-4455" positionY="-1845" width="128" height="88"/>
+        <element name="Weizhang" positionX="-4295" positionY="-1845" width="128" height="118"/>
+    </elements>
+</model>

@@ -8,6 +8,6 @@
 
 #import "SZTViewController.h"
 
-@interface SZTYaohaoViewController : SZTViewController
+@interface SZTYaohaoViewController : SZTInputViewController
 
 @end

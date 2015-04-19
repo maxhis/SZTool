@@ -10,6 +10,7 @@
 #import "SZTGongjijinService.h"
 #import "SZTResultModel.h"
 #import "SZTResultListController.h"
+#import "Gongjijin.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal  = 220;
@@ -17,7 +18,7 @@ static CGFloat kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTGongjijinController () <UITextFieldDelegate>
+@interface SZTGongjijinController () <UITextFieldDelegate,SZTDropdownMenuDelegate>
 
 @property (strong, nonatomic) UITextField *idView;
 @property (strong, nonatomic) UITextField *accountView;
@@ -109,10 +110,10 @@ static CGFloat const kTopEdge               = 10;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
     
-    // 点击空白区域关闭键盘
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
-    
     [self loadDefaultData];
+    
+    self.dropdownDelegate = self;
+    self.modelType = ModelTypeGongjijin;
 }
 
 - (void)loadDefaultData
@@ -127,11 +128,6 @@ static CGFloat const kTopEdge               = 10;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_accountView.text forKey:kUserDefaultKeyGongjijinAccount];
     [defaults setObject:_idView.text forKey:kUserDefaultKeyGongjijinID];
-}
-
-- (void)hideKeyboard
-{
-    [self.view endEditing:YES];
 }
 
 - (void)loadVerifyCode:(id) sender
@@ -183,6 +179,15 @@ static CGFloat const kTopEdge               = 10;
         return;
     }
     [self.view dt_postLoading:nil];
+    
+    Gongjijin *gongjijin = [Gongjijin MR_createEntity];
+    gongjijin.accountNumber = account;
+    gongjijin.identityNumber = idNumber;
+    gongjijin.title = @"我的公积金2";
+    NSManagedObjectContext *context = gongjijin.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        
+    }];
     WEAK_SELF;
     [[SZTGongjijinService sharedService] queryBalanceWithAccount:account
                                                         IDNumber:idNumber
@@ -217,6 +222,11 @@ static CGFloat const kTopEdge               = 10;
                                                           }
                                                           self.codeView.text = nil;
                                                       }];
+}
+
+- (void)saveModel
+{
+
 }
 
 #pragma mark - UITextFieldDelegate
@@ -256,6 +266,13 @@ replacementString:(NSString *)string {
     }
     
     return YES;
+}
+
+#pragma mark - SZTInputViewControllerProtocol
+- (void)configWithModel:(Gongjijin *)gongjijin
+{
+    self.accountView.text = gongjijin.accountNumber;
+    self.idView.text = gongjijin.identityNumber;
 }
 
 @end

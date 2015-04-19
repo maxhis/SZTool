@@ -11,6 +11,7 @@
 #import "SZTCarTypeManager.h"
 #import "ActionSheetStringPicker.h"
 #import "SZTWeizhangResultController.h"
+#import "Weizhang.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal        = 220;
@@ -18,7 +19,7 @@ static CGFloat kTextFieldWidthShort         = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTWeizhangViewController () <UITextFieldDelegate>
+@interface SZTWeizhangViewController () <UITextFieldDelegate,SZTDropdownMenuDelegate>
 
 /**
  *    车牌号码
@@ -163,10 +164,10 @@ static CGFloat const kTopEdge               = 10;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
     
-    // 点击空白区域关闭键盘
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
-    
     [self loadUserDefaults];
+    
+    self.dropdownDelegate = self;
+    self.modelType = ModelTypeYaohao;
 }
 
 - (void)loadUserDefaults
@@ -386,6 +387,15 @@ replacementString:(NSString *)string {
     }
     
     return YES;
+}
+
+#pragma mark - SZTDropdownMenuDelegate
+- (void)configWithModel:(Weizhang *)model
+{
+    _chepaiNumberView.text = model.chepaiNumber;
+    _chepaiTypeView.text = model.chepaiType;
+    _chejiaNumberView.text = model.chejiaNumber;
+    _engineNumberView.text = model.engineNumber;
 }
 
 @end

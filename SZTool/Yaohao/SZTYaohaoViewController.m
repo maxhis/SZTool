@@ -9,6 +9,7 @@
 #import "SZTYaohaoViewController.h"
 #import "ActionSheetStringPicker.h"
 #import "SZTYaohaoService.h"
+#import "Yaohao.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal  = 200;
@@ -16,7 +17,7 @@ static CGFloat kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTYaohaoViewController () <UITextFieldDelegate>
+@interface SZTYaohaoViewController () <UITextFieldDelegate, SZTDropdownMenuDelegate>
 
 @property (nonatomic, strong) UITextField *applyCodeView;
 
@@ -91,10 +92,10 @@ static CGFloat const kTopEdge               = 10;
     idLabel.text = @"期号";
     [self.view addSubview:idLabel];
     
-    // 点击空白区域关闭键盘
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
-    
     [self loadDefaultData];
+    
+    self.dropdownDelegate = self;
+    self.modelType = ModelTypeYaohao;
 }
 
 - (void)loadDefaultData
@@ -236,6 +237,13 @@ static CGFloat const kTopEdge               = 10;
 {
     [self doQuery];
     return YES;
+}
+
+#pragma mark - SZTDropdownMenuDelegate
+- (void)configWithModel:(Yaohao *)model
+{
+    _applyCodeView.text = model.applyNumber;
+    _typeView.selectedSegmentIndex = [model.type integerValue];
 }
 
 @end

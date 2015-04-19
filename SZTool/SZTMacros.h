@@ -38,7 +38,12 @@
 #define kRefreshVerifyCodeWeizhang          @"刷新违章验证码"
 #define kShareApp                           @"分享App给好友"
 
+// 存储相关
+#define kPersistentiCloudContainerId        @"com.15tar.SZTool"
+#define kPersistentLocalDatabaseName        @"sztool.sqlite"
+
 #define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]
+#define kDropdownMenuColor [UIColor dt_colorWithHexString:@"a6b1ac"]
 
 // 系统全局宏定义
 #define DTScreenWidth [UIScreen mainScreen].bounds.size.width

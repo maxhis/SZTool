@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SZTShebaoViewController : SZTViewController
+@interface SZTShebaoViewController : SZTInputViewController
 
 @end

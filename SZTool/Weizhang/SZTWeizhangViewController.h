@@ -8,6 +8,6 @@
 
 #import "SZTViewController.h"
 
-@interface SZTWeizhangViewController : SZTViewController
+@interface SZTWeizhangViewController : SZTInputViewController
 
 @end

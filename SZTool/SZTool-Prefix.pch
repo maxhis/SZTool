@@ -19,6 +19,7 @@
 #import <UIKit/UIKit.h>
 
 #import <AVOSCloud/AVOSCloud.h>
+#import "CoreData+MagicalRecord.h"
 
 #import "SZTMacros.h"
 
@@ -30,5 +31,6 @@
 #import "UIImageView+Indicator.h"
 
 #import "SZTViewController.h"
+#import "SZTInputViewController.h"
 
 #endif

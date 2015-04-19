@@ -9,6 +9,7 @@
 #import "SZTShebaoViewController.h"
 #import "SZTShebaoService.h"
 #import "SZTResultListController.h"
+#import "Shebao.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal  = 200;
@@ -16,7 +17,7 @@ static CGFloat kTextFieldWidthShort   = 100;
 static CGFloat const kDividerWidth          = 10;
 static CGFloat const kTopEdge               = 10;
 
-@interface SZTShebaoViewController () <UITextFieldDelegate>
+@interface SZTShebaoViewController () <UITextFieldDelegate,SZTDropdownMenuDelegate>
 @property (strong, nonatomic) UITextField *idView;
 @property (strong, nonatomic) UITextField *accountView;
 @property (strong, nonatomic) UITextField *codeView;
@@ -108,10 +109,10 @@ static CGFloat const kTopEdge               = 10;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
     
-    // 点击空白区域关闭键盘
-    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
-    
     [self loadDefaultData];
+    
+    self.dropdownDelegate = self;
+    self.modelType = ModelTypeShebao;
 }
 
 - (void)loadDefaultData
@@ -126,11 +127,6 @@ static CGFloat const kTopEdge               = 10;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_accountView.text forKey: kUserDefaultKeyShebaoAccount];
     [defaults setObject:_idView.text forKey: kUserDefaultKeyShebaoID];
-}
-
-- (void)hideKeyboard
-{
-    [self.view endEditing:YES];
 }
 
 - (void)loadVerifyCode:(id) sender
@@ -256,6 +252,13 @@ replacementString:(NSString *)string {
     }
     
     return YES;
+}
+
+#pragma mark - DropdownDelegate
+- (void)configWithModel:(Shebao *)model
+{
+    _accountView.text = model.accountNumber;
+    _idView.text = model.identityNumber;
 }
 
 @end

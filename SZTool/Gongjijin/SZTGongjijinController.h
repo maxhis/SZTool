@@ -8,6 +8,6 @@
 
 #import "SZTViewController.h"
 
-@interface SZTGongjijinController : SZTViewController
+@interface SZTGongjijinController : SZTInputViewController
 
 @end

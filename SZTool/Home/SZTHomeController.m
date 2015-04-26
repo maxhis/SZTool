@@ -195,7 +195,7 @@
     if (remainTimes > 0)
     {
         [UIAlertView showWithTitle:@"期待您的声音"
-                           message:@"嘿！App用得还好么？觉得不错可以去给我们评个分，有任何建议或意见都可以反馈给我们哦！"
+                           message:@"嘿！App用着还好么？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
                  cancelButtonTitle:@"下次吧"
                  otherButtonTitles:@[@"去评分", @"意见反馈"]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {

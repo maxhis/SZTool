@@ -11,6 +11,7 @@
 #import "SZTCarTypeManager.h"
 #import "ActionSheetStringPicker.h"
 #import "SZTWeizhangResultController.h"
+#import "RNBlurModalView.h"
 
 static CGFloat const kTextFieldHeight       = 35;
 static CGFloat kTextFieldWidthNormal        = 220;
@@ -39,6 +40,10 @@ static CGFloat const kTopEdge               = 10;
 // 验证码
 @property (nonatomic, strong) UITextField *codeView;
 @property (nonatomic, strong) UIImageView *codeImageView;
+
+// 弹出图片引导用户的button
+@property (nonatomic, strong) UIButton *chejiaInfoBtn;
+@property (nonatomic, strong) UIButton *engineInfoBtn;
 
 @end
 
@@ -116,6 +121,12 @@ static CGFloat const kTopEdge               = 10;
     _chejiaNumberView.tag = tag++;
     [self.view addSubview:_chejiaNumberView];
     
+    _chejiaInfoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [_chejiaInfoBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    _chejiaInfoBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+    _chejiaNumberView.rightView = _chejiaInfoBtn;
+    _chejiaNumberView.rightViewMode = UITextFieldViewModeAlways;
+    
     UILabel *clsbdhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chejiaNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     clsbdhLabel.textAlignment = NSTextAlignmentRight;
     clsbdhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
@@ -126,7 +137,7 @@ static CGFloat const kTopEdge               = 10;
     _engineNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chejiaNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _engineNumberView.borderStyle = UITextBorderStyleRoundedRect;
     _engineNumberView.keyboardType = UIKeyboardTypeNumberPad;
-    _engineNumberView.placeholder = @"即机动车登记证书编号，后7位";
+    _engineNumberView.placeholder = @"机动车登记证书编号后7位";
     _engineNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _engineNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _engineNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -135,10 +146,16 @@ static CGFloat const kTopEdge               = 10;
     _engineNumberView.tag = tag++;
     [self.view addSubview:_engineNumberView];
     
+    _engineInfoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
+    [_engineInfoBtn addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    _engineInfoBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
+    _engineNumberView.rightView = _engineInfoBtn;
+    _engineNumberView.rightViewMode = UITextFieldViewModeAlways;
+    
     UILabel *djzsbhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _engineNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
     djzsbhLabel.textAlignment = NSTextAlignmentRight;
     djzsbhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
-    djzsbhLabel.text = @"发动机号";
+    djzsbhLabel.text = @"登记证书号";
     [self.view addSubview:djzsbhLabel];
     
     // 验证码
@@ -206,6 +223,22 @@ static CGFloat const kTopEdge               = 10;
                                           origin:self.view];
 }
 
+- (void)buttonPressed:(UIButton *)sender
+{
+    UIImage *image = nil;
+    if ([sender isEqual:_chejiaInfoBtn])
+    {
+        image = [UIImage imageNamed:@"chejiaNumber"];
+    }
+    else if ([sender isEqual:_engineInfoBtn])
+    {
+        image = [UIImage imageNamed:@"jdcdjzs.jpg" ];
+    }
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    RNBlurModalView *modal = [[RNBlurModalView alloc] initWithViewController:self view:imageView];
+    [modal show];
+}
+
 - (void)doQuery:(id)sender
 {
     [self hideKeyboard];
@@ -226,7 +259,7 @@ static CGFloat const kTopEdge               = 10;
     NSString *engineNumber = _engineNumberView.text;
     if (!engineNumber || engineNumber.length != 7)
     {
-        [self.view dt_postError:@"请输入发动机号后7位"];
+        [self.view dt_postError:@"请输入机动车登记证书编号(后7位)"];
         return;
     }
     
@@ -239,7 +272,7 @@ static CGFloat const kTopEdge               = 10;
 
     NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
     
-    [self.view dt_postLoading:@"忍一忍这超慢的系统吧..." delay:60];
+    [self.view dt_postLoading:@"努力查询中..." delay:60];
     WEAK_SELF;
     [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
                                                            chepaiType:chepaiType

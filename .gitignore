@@ -1,7 +1,7 @@
 # CocoaPods
 *.xcworkspace
 Pods/
-#Podfile.lock
+Podfile.lock
 
 # Xcode
 .DS_Store

@@ -43,6 +43,7 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
+    self.modelType = ModelTypeShebao;
     self.title = @"社保";
     
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
@@ -112,7 +113,6 @@ static CGFloat const kTopEdge               = 10;
     [self loadDefaultData];
     
     self.dropdownDelegate = self;
-    self.modelType = ModelTypeShebao;
 }
 
 - (void)loadDefaultData

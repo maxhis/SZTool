@@ -7,12 +7,8 @@
 //
 
 #import "SZTAccountTableView.h"
-#import "Gongjijin.h"
-#import "Shebao.h"
-#import "Yaohao.h"
-#import "Weizhang.h"
 
-@interface SZTAccountTableView () <UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface SZTAccountTableView () <UITableViewDataSource>
 
 @end
 
@@ -26,11 +22,6 @@
         self.dataSource = self;
         self.backgroundColor = kDropdownMenuColor;
 //        self.separatorStyle = UITableViewCellSeparatorStyleNone;
-        NSError *error = nil;
-        if (![[self fetchedResultsController] performFetch:&error]) {
-            
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        }
     }
     return self;
 }
@@ -40,36 +31,6 @@
     _selectedIndex = selectedIndex;
     [self reloadData];
 }
-
-- (void)setModeType:(ModelType)modeType
-{
-    _modeType = modeType;
-    if (!_fetchedResultsController)
-    {
-        switch (_modeType) {
-            case ModelTypeGongjijin:
-                _fetchedResultsController = [Gongjijin MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
-                break;
-                
-            case ModelTypeShebao:
-                _fetchedResultsController = [Shebao MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
-                break;
-                
-            case ModelTypeYaohao:
-                _fetchedResultsController = [Yaohao MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
-                break;
-                
-            case ModelTypeWeizhang:
-                _fetchedResultsController = [Weizhang MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
-                break;
-                
-            default:
-                break;
-        }
-    }
-    [self reloadData];
-}
-
 
 #pragma mark - UITableViewDataSource
 

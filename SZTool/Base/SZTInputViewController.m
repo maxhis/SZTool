@@ -8,6 +8,10 @@
 
 #import "SZTInputViewController.h"
 #import "LMDropdownView.h"
+#import "Gongjijin.h"
+#import "Shebao.h"
+#import "Yaohao.h"
+#import "Weizhang.h"
 
 @interface SZTInputViewController () <UITableViewDelegate, LMDropdownViewDelegate>
 
@@ -30,6 +34,24 @@
     [self shouldHideKeyboardWhenTouchOutside:YES];
 }
 
+- (void)setTitle:(NSString *)title
+{
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    
+    if (self.fetchedResultsController.fetchedObjects.count)
+    {
+        [self.titleButton setTitle:title forState:UIControlStateNormal];
+    }
+    else
+    {
+        [super setTitle:title];
+    }
+}
+
 - (void)shouldHideKeyboardWhenTouchOutside:(BOOL)enable
 {
     // 这是个大坑，给self.view addGestureRecognizer后，会屏蔽所有的touch时间，从而导致弹出的 tableView 不能点击
@@ -48,11 +70,6 @@
     [self.view endEditing:YES];
 }
 
-- (void)setTitle:(NSString *)title
-{
-    [self.titleButton setTitle:title forState:UIControlStateNormal];
-}
-
 #pragma mark - getter & setter
 
 - (UITapGestureRecognizer *)gesture
@@ -69,7 +86,10 @@
     if (!_titleButton)
     {
         _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_titleButton setImage:[UIImage imageNamed:@"ico_white_arrow"] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"ico_white_arrow"];
+        [_titleButton setImage:image forState:UIControlStateNormal];
+        [_titleButton sizeToFit];
+        
         _titleButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [_titleButton addTarget:self action:@selector(titlePressed:) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.titleView = _titleButton;
@@ -77,10 +97,34 @@
     return _titleButton;
 }
 
-- (void)setModelType:(ModelType)modelType
+- (NSFetchedResultsController *)fetchedResultsController
 {
-    _modelType = modelType;
-    self.accountTableView.modeType = _modelType;
+    if (!_fetchedResultsController)
+    {
+        switch (_modelType) {
+            case ModelTypeGongjijin:
+                _fetchedResultsController = [Gongjijin MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
+                break;
+                
+            case ModelTypeShebao:
+                _fetchedResultsController = [Shebao MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
+                break;
+                
+            case ModelTypeYaohao:
+                _fetchedResultsController = [Yaohao MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
+                break;
+                
+            case ModelTypeWeizhang:
+                _fetchedResultsController = [Weizhang MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
+                break;
+                
+            default:
+                break;
+        }
+        self.accountTableView.fetchedResultsController = _fetchedResultsController;
+    }
+    
+    return _fetchedResultsController;
 }
 
 - (LMDropdownView *)dropdownView
@@ -121,6 +165,20 @@
         [self shouldHideKeyboardWhenTouchOutside:NO];
         [self.dropdownView showInView:self.view withFrame:self.view.bounds];
     }
+//    [self rotateButtonIcon];
+}
+
+- (void)rotateButtonIcon
+{
+    [UIView beginAnimations:@"rotate" context:nil];
+    [UIView setAnimationDuration:.3f];
+    if( CGAffineTransformEqualToTransform(_titleButton.imageView.transform, CGAffineTransformIdentity ) )
+    {
+        _titleButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+    } else {
+        _titleButton.imageView.transform = CGAffineTransformIdentity;
+    }
+    [UIView commitAnimations];
 }
 
 #pragma mark - UITableViewDelegate

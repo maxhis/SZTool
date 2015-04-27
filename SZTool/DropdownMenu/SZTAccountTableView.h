@@ -8,19 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, ModelType) {
-    ModelTypeGongjijin,
-    ModelTypeShebao,
-    ModelTypeYaohao,
-    ModelTypeWeizhang
-};
+@interface SZTAccountTableView : UITableView <NSFetchedResultsControllerDelegate>
 
-@interface SZTAccountTableView : UITableView
-
-@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, weak) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, assign) NSInteger selectedIndex;
-
-@property (nonatomic, assign) ModelType modeType;
 
 @end

@@ -45,6 +45,8 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)loadUIComponent
 {
+    self.modelType = ModelTypeGongjijin;
+    
     self.title = @"公积金";
     
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
@@ -113,7 +115,6 @@ static CGFloat const kTopEdge               = 10;
     [self loadDefaultData];
     
     self.dropdownDelegate = self;
-    self.modelType = ModelTypeGongjijin;
 }
 
 - (void)loadDefaultData
@@ -183,7 +184,7 @@ static CGFloat const kTopEdge               = 10;
     Gongjijin *gongjijin = [Gongjijin MR_createEntity];
     gongjijin.accountNumber = account;
     gongjijin.identityNumber = idNumber;
-    gongjijin.title = @"我的公积金2";
+    gongjijin.title = @"我的公积金";
     NSManagedObjectContext *context = gongjijin.managedObjectContext;
     [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
         

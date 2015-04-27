@@ -9,6 +9,13 @@
 #import "SZTViewController.h"
 #import "SZTAccountTableView.h"
 
+typedef NS_ENUM(NSInteger, ModelType) {
+    ModelTypeGongjijin,
+    ModelTypeShebao,
+    ModelTypeYaohao,
+    ModelTypeWeizhang
+};
+
 @protocol SZTDropdownMenuDelegate <NSObject>
 
 @required
@@ -20,6 +27,8 @@
 @end
 
 @interface SZTInputViewController : SZTViewController
+
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, weak) id<SZTDropdownMenuDelegate> dropdownDelegate;
 

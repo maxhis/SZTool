@@ -39,7 +39,7 @@
 #define kShareApp                           @"分享App给好友"
 
 // 存储相关
-#define kPersistentiCloudContainerId        @"com.15tar.SZTool"
+#define kPersistentiCloudContentNameKey     @"SZTool"
 #define kPersistentLocalDatabaseName        @"sztool.sqlite"
 
 #define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]

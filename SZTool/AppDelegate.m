@@ -39,10 +39,11 @@
     // 配置HUD的Icons
     [self setupHUD];
     
-    // 存储相关
-    [MagicalRecord setupCoreDataStackWithiCloudContainer:kPersistentiCloudContainerId
-                                         localStoreNamed:kPersistentLocalDatabaseName];
-//    [MagicalRecord setupCoreDataStackWithStoreNamed:kPersistentLocalDatabaseName];
+    // 存储相关，同时启用iCloud
+    [MagicalRecord setupCoreDataStackWithiCloudContainer:nil
+                                          contentNameKey:kPersistentiCloudContentNameKey
+                                         localStoreNamed:kPersistentLocalDatabaseName
+                                 cloudStorePathComponent:nil];
     return YES;
 }
 

@@ -13,6 +13,8 @@
 #import "Yaohao.h"
 #import "Weizhang.h"
 
+#define kTitleButtonArrowTag 9999
+
 @interface SZTInputViewController () <UITableViewDelegate, LMDropdownViewDelegate>
 
 // 下拉选项
@@ -31,11 +33,13 @@
     [super viewDidLoad];
     
     // 点击空白区域关闭键盘
-    [self shouldHideKeyboardWhenTouchOutside:YES];
+    [self toggelMainViewGesture:YES];
 }
 
 - (void)setTitle:(NSString *)title
 {
+    [super setTitle:title];
+    
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
         
@@ -45,14 +49,23 @@
     if (self.fetchedResultsController.fetchedObjects.count)
     {
         [self.titleButton setTitle:title forState:UIControlStateNormal];
-    }
-    else
-    {
-        [super setTitle:title];
+        UIView *headArrowImg = [self.titleButton viewWithTag:kTitleButtonArrowTag];
+        
+        // 动态调整按钮位置
+        CGRect labelRect = [title boundingRectWithSize:CGSizeMake(self.titleButton.dt_width, self.titleButton.dt_height)
+                                               options:NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingTruncatesLastVisibleLine
+                                            attributes:@{NSFontAttributeName:self.titleButton.titleLabel.font}
+                                               context:nil];
+        CGFloat centerX = self.titleButton.center.x + (labelRect.size.width + headArrowImg.frame.size.width)/2 + 2.0;
+        CGPoint arrowCenter = headArrowImg.center;
+        arrowCenter.x = centerX;
+        [headArrowImg setCenter:arrowCenter];
+        
+        self.navigationItem.titleView = _titleButton;
     }
 }
 
-- (void)shouldHideKeyboardWhenTouchOutside:(BOOL)enable
+- (void)toggelMainViewGesture:(BOOL)enable
 {
     // 这是个大坑，给self.view addGestureRecognizer后，会屏蔽所有的touch时间，从而导致弹出的 tableView 不能点击
     if (enable)
@@ -85,16 +98,39 @@
 {
     if (!_titleButton)
     {
-        _titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *image = [UIImage imageNamed:@"ico_white_arrow"];
-        [_titleButton setImage:image forState:UIControlStateNormal];
-        [_titleButton sizeToFit];
+        _titleButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 150, 20)];
+        UIImageView *headArrowImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 16, 16)];
+        [headArrowImg setImage:[UIImage imageNamed:@"navi_title_arrow"]];
+        [headArrowImg setCenter:CGPointMake(115, 10)];
+        headArrowImg.tag = kTitleButtonArrowTag;
+        [_titleButton addSubview:headArrowImg];
         
         _titleButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:20];
         [_titleButton addTarget:self action:@selector(titlePressed:) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.titleView = _titleButton;
     }
     return _titleButton;
+}
+
+/**
+ *    旋转箭头
+ *
+ *    @param direction 0(原方向)、1(旋转180°)
+ *    @param animated  <#animated description#>
+ */
+- (void)rotateTitleArrow:(NSInteger)direction animated:(BOOL)animated
+{
+    WEAK_SELF;
+    [UIView animateWithDuration:animated ? 0.3 : 0.01
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         STRONG_SELF;
+                         UIView *headArrowImg = [self.titleButton viewWithTag:kTitleButtonArrowTag];
+                         headArrowImg.transform = CGAffineTransformMakeRotation(direction * M_PI);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                     }];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -134,6 +170,7 @@
         _dropdownView = [[LMDropdownView alloc] init];
         _dropdownView.menuContentView = self.accountTableView;
         _dropdownView.menuBackgroundColor = kDropdownMenuColor;
+        _dropdownView.delegate = self;
     }
     return _dropdownView;
 }
@@ -157,28 +194,26 @@
     // Show/hide dropdown view
     if ([self.dropdownView isOpen])
     {
-        [self.dropdownView hide];
-        [self shouldHideKeyboardWhenTouchOutside:YES];
+        [self hideDropdownView];
     }
     else
     {
-        [self shouldHideKeyboardWhenTouchOutside:NO];
-        [self.dropdownView showInView:self.view withFrame:self.view.bounds];
+        [self showDropdownView];
     }
-//    [self rotateButtonIcon];
 }
 
-- (void)rotateButtonIcon
+- (void)hideDropdownView
 {
-    [UIView beginAnimations:@"rotate" context:nil];
-    [UIView setAnimationDuration:.3f];
-    if( CGAffineTransformEqualToTransform(_titleButton.imageView.transform, CGAffineTransformIdentity ) )
-    {
-        _titleButton.imageView.transform = CGAffineTransformMakeRotation(M_PI);
-    } else {
-        _titleButton.imageView.transform = CGAffineTransformIdentity;
-    }
-    [UIView commitAnimations];
+    [self.dropdownView hide];
+    [self toggelMainViewGesture:YES];
+    [self rotateTitleArrow:0 animated:YES];
+}
+
+- (void)showDropdownView
+{
+    [self toggelMainViewGesture:NO];
+    [self.dropdownView showInView:self.view withFrame:self.view.bounds];
+    [self rotateTitleArrow:1 animated:YES];
 }
 
 #pragma mark - UITableViewDelegate
@@ -186,8 +221,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.dropdownView hide];
-    [self shouldHideKeyboardWhenTouchOutside:YES];
+    [self hideDropdownView];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.dropdownView.animationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         SZTAccountTableView *accountTable = (SZTAccountTableView *)tableView;
@@ -199,7 +233,8 @@
 #pragma mark - LMDropdownViewDelegate
 - (void)dropdownViewDidTapBackgroundButton:(LMDropdownView *)dropdownView
 {
-    [self shouldHideKeyboardWhenTouchOutside:YES];
+    [self toggelMainViewGesture:YES];
+    [self rotateTitleArrow:0 animated:YES];
 }
 
 @end

@@ -38,6 +38,8 @@
 		1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C91AE2B78F000D161B /* SZTInputViewController.m */; };
 		1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5D01AE35205000D161B /* SZTAccountTableView.m */; };
 		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
+		179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F41AF740A200952883 /* SZTAccountManagerController.m */; };
+		179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F71AF74E0300952883 /* SZTAccountListController.m */; };
 		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
 		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
@@ -128,6 +130,10 @@
 		1719C5D01AE35205000D161B /* SZTAccountTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountTableView.m; path = DropdownMenu/SZTAccountTableView.m; sourceTree = "<group>"; };
 		172DDD341AD7FF3E00013157 /* UIImageView+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Indicator.h"; path = "Category/UIImageView+Indicator.h"; sourceTree = "<group>"; };
 		172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Indicator.m"; path = "Category/UIImageView+Indicator.m"; sourceTree = "<group>"; };
+		179B58F31AF740A200952883 /* SZTAccountManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountManagerController.h; path = Settings/SZTAccountManagerController.h; sourceTree = "<group>"; };
+		179B58F41AF740A200952883 /* SZTAccountManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountManagerController.m; path = Settings/SZTAccountManagerController.m; sourceTree = "<group>"; };
+		179B58F61AF74E0300952883 /* SZTAccountListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountListController.h; path = Settings/SZTAccountListController.h; sourceTree = "<group>"; };
+		179B58F71AF74E0300952883 /* SZTAccountListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountListController.m; path = Settings/SZTAccountListController.m; sourceTree = "<group>"; };
 		17B500CE1AC69AA900426434 /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
 		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
 		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
@@ -333,6 +339,10 @@
 				1710D6381AC2DD4A0083A297 /* SZTAboutViewController.m */,
 				1710D66D1AC3DC700083A297 /* SZTPrivacyViewController.h */,
 				1710D66E1AC3DC700083A297 /* SZTPrivacyViewController.m */,
+				179B58F31AF740A200952883 /* SZTAccountManagerController.h */,
+				179B58F41AF740A200952883 /* SZTAccountManagerController.m */,
+				179B58F61AF74E0300952883 /* SZTAccountListController.h */,
+				179B58F71AF74E0300952883 /* SZTAccountListController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -563,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1719C5B41AE2283E000D161B /* UIColor+HexString.m in Sources */,
+				179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */,
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
 				1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */,
 				1719C5C11AE2861F000D161B /* Shebao.m in Sources */,
@@ -597,6 +608,7 @@
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
 				1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */,
 				1719C5BE1AE2861F000D161B /* Gongjijin.m in Sources */,
+				179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */,
 				17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */,
 				17FC55641AD2270100BAA1A7 /* SZTWeizhangViewController.m in Sources */,
 			);

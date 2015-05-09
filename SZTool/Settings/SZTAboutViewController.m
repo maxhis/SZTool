@@ -8,6 +8,7 @@
 
 #import "SZTAboutViewController.h"
 #import "SZTPrivacyViewController.h"
+#import "SZTAccountManagerController.h"
 
 @interface SZTAboutViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -70,7 +71,7 @@
 {
     if (_items == nil)
     {
-        _items = @[@"给个好评", @"推荐「深圳通」给好友", @"意见反馈", @"隐私声明"];
+        _items = @[@"账户管理", @"给个好评", @"推荐「深圳通」给好友", @"意见反馈", @"隐私声明"];
     }
     return _items;
 }
@@ -108,11 +109,18 @@
     switch (indexPath.row) {
         case 0:
         {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
+            SZTAccountManagerController *accountVC = [[SZTAccountManagerController alloc] init];
+            [self.navigationController pushViewController:accountVC animated:YES];
         }
             break;
             
         case 1:
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
+        }
+            break;
+            
+        case 2:
         {
             NSString *text = @"「深圳通」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、汽车摇号，亲测好用！";
             [self shareText:text andImage:[UIImage imageNamed:@"ShareImage"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
@@ -120,14 +128,14 @@
         }
             break;
             
-        case 2:
+        case 3:
         {
             AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
             [agent showConversations:self title:@"用户反馈" contact:nil];
         }
             break;
             
-        case 3:
+        case 4:
         {
             SZTPrivacyViewController *privacyVC = [[SZTPrivacyViewController alloc] init];
             [self.navigationController pushViewController:privacyVC animated:YES];

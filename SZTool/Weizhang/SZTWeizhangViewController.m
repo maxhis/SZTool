@@ -46,6 +46,11 @@ static CGFloat const kTopEdge               = 10;
 @property (nonatomic, strong) UIButton *chejiaInfoBtn;
 @property (nonatomic, strong) UIButton *engineInfoBtn;
 
+/**
+ *    从结果页返回时是否弹出保存输入信息的提示框
+ */
+@property (assign, nonatomic) BOOL shouldShowSaveAlert;
+
 @end
 
 @implementation SZTWeizhangViewController
@@ -60,6 +65,14 @@ static CGFloat const kTopEdge               = 10;
 {
     [super viewWillAppear:animated];
     [self loadVerifyCode:nil];
+    
+    if (self.shouldShowSaveAlert) {
+        // 保存输入的信息
+        [self showSaveAlertIfNeededWithIdentity:_chepaiNumberView.text
+                                      saveBlock:^(NSString *title) {
+                                          [self saveModelWithTitle:title];
+                                      }];
+    }
 }
 
 - (void)loadUIComponets
@@ -67,7 +80,16 @@ static CGFloat const kTopEdge               = 10;
     self.modelType = ModelTypeWeizhang;
     self.title = @"粤牌全国违章";
     
-    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery:)];
+    NSString *rightBarTitle;
+    if (self.saveOnly)
+    {
+        rightBarTitle = @"保存";
+    }
+    else
+    {
+        rightBarTitle = @"查询";
+    }
+    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
     kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
@@ -161,6 +183,17 @@ static CGFloat const kTopEdge               = 10;
     [self.view addSubview:djzsbhLabel];
     
     // 验证码
+    if (!self.saveOnly)
+    {
+        [self setupVerifyCode:tag];
+        [self loadUserDefaults];
+    }
+    
+    self.dropdownDelegate = self;
+}
+
+- (void)setupVerifyCode:(NSInteger)tag
+{
     _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _engineNumberView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -181,22 +214,30 @@ static CGFloat const kTopEdge               = 10;
     _codeImageView.userInteractionEnabled = YES;
     [_codeImageView addGestureRecognizer:tap];
     [self.view addSubview:_codeImageView];
-    
-    [self loadUserDefaults];
-    
-    self.dropdownDelegate = self;
 }
 
 - (void)loadUserDefaults
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _chepaiNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiNumber];
-    NSString *type = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiType];
-    if (type) {
-        _chepaiTypeView.text = type;
+    if (self.model && [self.model isKindOfClass:[Weizhang class]])
+    {
+        Weizhang *weizhang = (Weizhang *)self.model;
+        _chepaiNumberView.text = weizhang.chepaiNumber;
+        _chejiaNumberView.text = weizhang.chejiaNumber;
+        _chepaiTypeView.text = weizhang.chepaiType;
+        _engineNumberView.text = weizhang.engineNumber;
     }
-    _chejiaNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChejiaNumber];
-    _engineNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangEngineNumber];
+    else
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _chepaiNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiNumber];
+        NSString *type = [defaults stringForKey:kUserDefaultKeyWeizhangChepaiType];
+        if (type)
+        {
+            _chepaiTypeView.text = type;
+        }
+        _chejiaNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangChejiaNumber];
+        _engineNumberView.text = [defaults stringForKey:kUserDefaultKeyWeizhangEngineNumber];
+    }
 }
 
 - (void)saveUserDefaults
@@ -240,46 +281,93 @@ static CGFloat const kTopEdge               = 10;
     [modal show];
 }
 
-- (void)doQuery:(id)sender
+- (BOOL)validateInputs
 {
     [self hideKeyboard];
     NSString *chepaiNumber = _chepaiNumberView.text;
     if (!chepaiNumber || chepaiNumber.length != 6)
     {
         [self.view dt_postError:@"请输入6位车牌号"];
-        return;
+        return NO;
     }
     
     NSString *chejiaNumber = _chejiaNumberView.text;
     if (!chejiaNumber || chejiaNumber.length != 6)
     {
         [self.view dt_postError:@"请输入车架号后6位"];
-        return;
+        return NO;
     }
     
     NSString *engineNumber = _engineNumberView.text;
     if (!engineNumber || engineNumber.length != 7)
     {
         [self.view dt_postError:@"请输入机动车登记证书编号(后7位)"];
-        return;
+        return NO;
     }
     
-    NSString *verifyCode = _codeView.text;
-    if (!verifyCode || verifyCode.length != 4)
-    {
-        [self.view dt_postError:@"请输入4位验证码"];
-        return;
+    if (self.saveOnly == NO) {
+        NSString *verifyCode = _codeView.text;
+        if (!verifyCode || verifyCode.length != 4)
+        {
+            [self.view dt_postError:@"请输入4位验证码"];
+            return NO;
+        }
     }
+    return YES;
+}
+
+- (void)rightAction
+{
+    if (self.saveOnly)
+    {
+        [self doSave];
+    }
+    else
+    {
+        [self doQuery];
+    }
+}
+
+- (void)doSave
+{
+    if ([self validateInputs] == NO) return;
+    
+    UIAlertViewCompletionBlock block = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if(alertView.cancelButtonIndex == buttonIndex)
+        {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            [self saveModelWithTitle:tf.text];
+        }
+    };
+    
+    UIAlertView *alertView = [UIAlertView showWithTitle:@"保存输入的信息以便下次查询"
+                                                message:nil
+                                                  style:UIAlertViewStylePlainTextInput
+                                      cancelButtonTitle:@"确定"
+                                      otherButtonTitles:@[@"取消"]
+                                               tapBlock:block];
+    UITextField *tf=[alertView textFieldAtIndex:0];
+    tf.placeholder = @"建议输入一个有意义的名称";
+}
+
+- (void)popSelf
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)doQuery
+{
+    if (![self validateInputs]) return;
 
     NSString *chepaiType = [[SZTCarTypeManager sharedManager] valueForName:_chepaiTypeView.text];
     
     [self.view dt_postLoading:@"努力查询中..." delay:60];
     WEAK_SELF;
-    [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:chepaiNumber
+    [[SZTWeizhangService sharedService] queryWeizhangWithChepaiNumber:_chepaiNumberView.text
                                                            chepaiType:chepaiType
-                                                         chejiaNumber:chejiaNumber
-                                                         engineNumber:engineNumber
-                                                           verifyCode:verifyCode
+                                                         chejiaNumber:_chejiaNumberView.text
+                                                         engineNumber:_engineNumberView.text
+                                                           verifyCode:_codeView.text
                                                            completion:^(SZTResultModel *model, NSError *error) {
                                                                STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                                [self.view dt_cleanUp:YES];
@@ -293,8 +381,9 @@ static CGFloat const kTopEdge               = 10;
                                                                            SZTWeizhangResultController *resultVC = [[SZTWeizhangResultController alloc] init];
                                                                            resultVC.dataSource = model.message;
                                                                            [self.navigationController pushViewController:resultVC animated:YES];
+                                                                           self.shouldShowSaveAlert = YES;
                                                                        }
-                                                                       
+
                                                                        // 通知首页查询成功
                                                                        if (self.queryStatusCallback)
                                                                        {
@@ -314,6 +403,26 @@ static CGFloat const kTopEdge               = 10;
                                                                    self.codeView.text = nil;
                                                                    [self loadVerifyCode:nil];
                                                                }
+    }];
+}
+
+- (void)saveModelWithTitle:(NSString *)title
+{
+    WEAK_SELF;
+    Weizhang *weizhang = [Weizhang MR_createEntity];
+    weizhang.chepaiNumber = _chepaiNumberView.text;
+    weizhang.chejiaNumber = _chejiaNumberView.text;
+    weizhang.chepaiType = _chepaiTypeView.text;
+    weizhang.engineNumber = _engineNumberView.text;
+    weizhang.title = title;
+    NSManagedObjectContext *context = weizhang.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+        if (success)
+        {
+            [self.view dt_postSuccess:@"保存成功"];
+            [self performSelector:@selector(popSelf) withObject:nil afterDelay:2];
+        }
     }];
 }
 
@@ -348,7 +457,7 @@ static CGFloat const kTopEdge               = 10;
     UIView *view = [self.view viewWithTag:textField.tag + 1];
     if (!view)
     {
-        [self doQuery:nil];
+        [self rightAction];
     }
     else
     {

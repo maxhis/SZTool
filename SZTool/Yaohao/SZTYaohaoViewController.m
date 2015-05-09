@@ -44,7 +44,16 @@ static CGFloat const kTopEdge               = 10;
     self.modelType = ModelTypeYaohao;
     self.title = @"汽车摇号中签";
     
-    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
+    NSString *rightBarTitle;
+    if (self.saveOnly)
+    {
+        rightBarTitle = @"保存";
+    }
+    else
+    {
+        rightBarTitle = @"查询";
+    }
+    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
     // 个人或单位
@@ -90,16 +99,32 @@ static CGFloat const kTopEdge               = 10;
     idLabel.text = @"期号";
     [self.view addSubview:idLabel];
     
-    [self loadDefaultData];
+    if (!self.saveOnly)
+    {
+        [self loadDefaultData];
+    }
+    else
+    {
+        _typeView.selectedSegmentIndex = 0;
+    }
     
     self.dropdownDelegate = self;
 }
 
 - (void)loadDefaultData
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _applyCodeView.text = [defaults stringForKey:kUserDefaultKeyYaohaoApplyNumber];
-    _typeView.selectedSegmentIndex = [defaults integerForKey:kUserDefaultKeyYaohaoApplyType];
+    if (self.model && [self.model isKindOfClass:[Yaohao class]])
+    {
+        Yaohao *yaohao = (Yaohao *)self.model;
+        _applyCodeView.text = yaohao.applyNumber;
+        _typeView.selectedSegmentIndex = [yaohao.type integerValue];
+    }
+    else
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _applyCodeView.text = [defaults stringForKey:kUserDefaultKeyYaohaoApplyNumber];
+        _typeView.selectedSegmentIndex = [defaults integerForKey:kUserDefaultKeyYaohaoApplyType];
+    }
 }
 
 - (void)saveUserData
@@ -172,7 +197,46 @@ static CGFloat const kTopEdge               = 10;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)doQuery
+- (void)rightAction
+{
+    if (self.saveOnly)
+    {
+        [self doSave];
+    }
+    else
+    {
+        [self doQuery];
+    }
+}
+
+- (void)doSave
+{
+    if ([self validateInputs] == NO) return;
+    
+    UIAlertViewCompletionBlock block = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if(alertView.cancelButtonIndex == buttonIndex)
+        {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            [self saveModelWithTitle:tf.text];
+        }
+    };
+    
+    UIAlertView *alertView = [UIAlertView showWithTitle:@"保存输入的信息以便下次查询"
+                                                message:nil
+                                                  style:UIAlertViewStylePlainTextInput
+                                      cancelButtonTitle:@"确定"
+                                      otherButtonTitles:@[@"取消"]
+                                               tapBlock:block];
+    UITextField *tf=[alertView textFieldAtIndex:0];
+    tf.placeholder = @"建议输入一个有意义的名称";
+}
+
+- (void)popSelf
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)validateInputs
 {
     [self hideKeyboard];
     
@@ -180,29 +244,19 @@ static CGFloat const kTopEdge               = 10;
     if (!applyNumber || applyNumber.length != 13)
     {
         [self.view dt_postError:@"请输入13位有效的申请编码"];
-        return;
+        return NO;
     }
-    
-    NSString *issueNumber;
-    if (_selectedIndex == 0)
-    {
-        issueNumber = @"000000";
-    }
-    else
-    {
-        issueNumber = _selections[_selectedIndex];
-    }
-    
-    ApplyType type = ApplyTypePerson;
-    if (_typeView.selectedSegmentIndex == 1)
-    {
-        type = ApplyTypeUnit;
-    }
+    return YES;
+}
+
+- (void)doQuery
+{
+    if (![self validateInputs]) return;
     
     WEAK_SELF;
-    [[SZTYaohaoService sharedService] queryStatusWithApplycode:applyNumber
-                                                    issueNmber:issueNumber
-                                                          type:type
+    [[SZTYaohaoService sharedService] queryStatusWithApplycode:_applyCodeView.text
+                                                    issueNmber:[self issueNumber]
+                                                          type:[self applyType]
                                                     completion:^(BOOL hit, NSError *error) {
                                                         STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                         if (error) {
@@ -211,10 +265,17 @@ static CGFloat const kTopEdge               = 10;
                                                         }
                                                         
                                                         [self saveUserData];
+                                                        UIAlertViewCompletionBlock tapBlock = ^ void ((UIAlertView *alertView, NSInteger buttonIndex)){
+                                                            // 保存输入的信息
+                                                            [self showSaveAlertIfNeededWithIdentity:self.applyCodeView.text
+                                                                                          saveBlock:^(NSString *title) {
+                                                                                              [self saveModelWithTitle:title];
+                                                                                          }];
+                                                        };
                                                         if (hit)
                                                         {
                                                             NSString *message = @"您可登录系统自行打印指标证明文件、或者到服务窗口领取指标证明文件。";
-                                                            [UIAlertView showWithTitle:@"恭喜中签" message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+                                                            [UIAlertView showWithTitle:@"恭喜中签" message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:tapBlock];
                                                             
                                                             // 通知首页查询成功
                                                             if (self.queryStatusCallback)
@@ -224,15 +285,57 @@ static CGFloat const kTopEdge               = 10;
                                                         }
                                                         else
                                                         {
-                                                            [UIAlertView showWithTitle:nil message:@"中签指标中无此数据!" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+                                                            [UIAlertView showWithTitle:nil message:@"中签指标中无此数据!" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:tapBlock];
                                                         }
                                                     }];
+}
+
+- (NSString *)issueNumber
+{
+    NSString *issueNumber;
+    if (_selectedIndex == 0)
+    {
+        issueNumber = @"000000";
+    }
+    else
+    {
+        issueNumber = _selections[_selectedIndex];
+    }
+    return issueNumber;
+}
+
+- (ApplyType)applyType
+{
+    ApplyType type = ApplyTypePerson;
+    if (_typeView.selectedSegmentIndex == 1)
+    {
+        type = ApplyTypeUnit;
+    }
+    return type;
+}
+
+- (void)saveModelWithTitle:(NSString *)title
+{
+    WEAK_SELF;
+    Yaohao *yaohao = [Yaohao MR_createEntity];
+    yaohao.applyNumber = _applyCodeView.text;
+    yaohao.type = @([self applyType]);
+    yaohao.title = title;
+    NSManagedObjectContext *context = yaohao.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+        if (success)
+        {
+            [self.view dt_postSuccess:@"保存成功"];
+            [self performSelector:@selector(popSelf) withObject:nil afterDelay:2];
+        }
+    }];
 }
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self doQuery];
+    [self rightAction];
     return YES;
 }
 

@@ -24,6 +24,11 @@ static CGFloat const kTopEdge               = 10;
 @property (strong, nonatomic) UIImageView *codeImageView;
 @property (strong, nonatomic) UIButton *queryBtn;
 
+/**
+ *    从结果页返回时是否弹出保存输入信息的提示框
+ */
+@property (assign, nonatomic) BOOL shouldShowSaveAlert;
+
 @end
 
 @implementation SZTShebaoViewController
@@ -39,6 +44,14 @@ static CGFloat const kTopEdge               = 10;
 {
     [super viewWillAppear:animated];
     [self loadVerifyCode:nil];
+    
+    if (self.shouldShowSaveAlert) {
+        // 保存输入的信息
+        [self showSaveAlertIfNeededWithIdentity:_accountView.text
+                                      saveBlock:^(NSString *title) {
+                                          [self saveModelWithTitle:title];
+                                      }];
+    }
 }
 
 - (void)loadUIComponent
@@ -46,7 +59,16 @@ static CGFloat const kTopEdge               = 10;
     self.modelType = ModelTypeShebao;
     self.title = @"社保";
     
-    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:@"查询" style:UIBarButtonItemStyleDone target:self action:@selector(doQuery)];
+    NSString *rightBarTitle;
+    if (self.saveOnly)
+    {
+        rightBarTitle = @"保存";
+    }
+    else
+    {
+        rightBarTitle = @"查询";
+    }
+    UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
     kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
@@ -56,7 +78,7 @@ static CGFloat const kTopEdge               = 10;
     // 电脑号
     _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
-    _accountView.keyboardType = UIKeyboardTypeNumberPad;
+//    _accountView.keyboardType = UIKeyboardTypeNumberPad;
     _accountView.placeholder = @"9位数字";
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
@@ -89,13 +111,23 @@ static CGFloat const kTopEdge               = 10;
     [self.view addSubview:idLabel];
     
     // 验证码
+    if (!self.saveOnly)
+    {
+        [self setupVerifyCode:tag];
+    }
+    
+    self.dropdownDelegate = self;
+}
+
+- (void)setupVerifyCode:(NSInteger)viewTag
+{
     _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _idView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
     _codeView.keyboardType = UIKeyboardTypeNumberPad;
-    _codeView.tag = tag++;
+    _codeView.tag = viewTag++;
     [self.view addSubview:_codeView];
     
     UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
@@ -111,15 +143,22 @@ static CGFloat const kTopEdge               = 10;
     [self.view addSubview:_codeImageView];
     
     [self loadDefaultData];
-    
-    self.dropdownDelegate = self;
 }
 
 - (void)loadDefaultData
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _accountView.text = [defaults stringForKey:kUserDefaultKeyShebaoAccount];
-    _idView.text = [defaults stringForKey:kUserDefaultKeyShebaoID];
+    if (self.model && [self.model isKindOfClass:[Shebao class]])
+    {
+        Shebao *shebao = (Shebao *)self.model;
+        _accountView.text = shebao.accountNumber;
+        _idView.text = shebao.identityNumber;
+    }
+    else
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        _accountView.text = [defaults stringForKey:kUserDefaultKeyShebaoAccount];
+        _idView.text = [defaults stringForKey:kUserDefaultKeyShebaoID];
+    }
 }
 
 - (void)saveUserData
@@ -153,7 +192,41 @@ static CGFloat const kTopEdge               = 10;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)doQuery
+- (void)rightAction
+{
+    if (self.saveOnly)
+    {
+        [self doSave];
+    }
+    else
+    {
+        [self doQuery];
+    }
+}
+
+- (void)doSave
+{
+    if ([self validateInputs] == NO) return;
+    
+    UIAlertViewCompletionBlock block = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if(alertView.cancelButtonIndex == buttonIndex)
+        {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            [self saveModelWithTitle:tf.text];
+        }
+    };
+    
+    UIAlertView *alertView = [UIAlertView showWithTitle:@"保存输入的信息以便下次查询"
+                                                message:nil
+                                                  style:UIAlertViewStylePlainTextInput
+                                      cancelButtonTitle:@"确定"
+                                      otherButtonTitles:@[@"取消"]
+                                               tapBlock:block];
+    UITextField *tf=[alertView textFieldAtIndex:0];
+    tf.placeholder = @"建议输入一个有意义的名称";
+}
+
+- (BOOL)validateInputs
 {
     [self.view endEditing:YES];
     
@@ -161,27 +234,42 @@ static CGFloat const kTopEdge               = 10;
     if (!account || account.length != 9)
     {
         [self.view dt_postError:@"请输入正确的电脑号"];
-        return;
+        return NO;
     }
     
     NSString *idNumber = _idView.text;
     if (!idNumber || (idNumber.length != 15 && idNumber.length != 18))
     {
         [self.view dt_postError:@"请输入正确的身份证号"];
-        return;
+        return NO;
     }
     
-    NSString *code = _codeView.text;
-    if (!code || code.length != 4)
+    if (!self.saveOnly)
     {
-        [self.view dt_postError:@"请输入正确的验证码"];
-        return;
+        NSString *code = _codeView.text;
+        if (!code || code.length != 4)
+        {
+            [self.view dt_postError:@"请输入正确的验证码"];
+            return NO;
+        }
     }
+    return YES;
+}
+
+- (void)popSelf
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)doQuery
+{
+    if ([self validateInputs] == NO) return;
+    
     WEAK_SELF;
     [self.view dt_postLoading:nil];
-    [[SZTShebaoService sharedService] queryBalanceWithAccount:account
-                                                        IDNumber:idNumber
-                                                      verifyCode:code
+    [[SZTShebaoService sharedService] queryBalanceWithAccount:_accountView.text
+                                                        IDNumber:_idView.text
+                                                      verifyCode:_codeView.text
                                                       completion:^(SZTResultModel *model, NSError *error) {
                                                           STRONG_SELF_AND_RETURN_IF_SELF_NULL;
                                                           if (error)
@@ -198,6 +286,7 @@ static CGFloat const kTopEdge               = 10;
                                                                   resultVC.dataSource = model.message;
                                                                   resultVC.title = @"参保情况";
                                                                   [self.navigationController pushViewController:resultVC animated:YES];
+                                                                  self.shouldShowSaveAlert = YES;
                                                                   
                                                                   // 通知首页查询成功
                                                                   if (self.queryStatusCallback)
@@ -215,13 +304,31 @@ static CGFloat const kTopEdge               = 10;
                                                       }];
 }
 
+- (void)saveModelWithTitle:(NSString *)title
+{
+    WEAK_SELF;
+    Shebao *shebao = [Shebao MR_createEntity];
+    shebao.accountNumber = _accountView.text;
+    shebao.identityNumber = _idView.text;
+    shebao.title = title;
+    NSManagedObjectContext *context = shebao.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
+        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+        if (success)
+        {
+            [self.view dt_postSuccess:@"保存成功"];
+            [self performSelector:@selector(popSelf) withObject:nil afterDelay:2];
+        }
+    }];
+}
+
 #pragma mark - UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     UIView *view = [self.view viewWithTag:textField.tag + 1];
     if (!view)
     {
-        [self doQuery];
+        [self rightAction];
     }
     else
     {

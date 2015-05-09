@@ -39,6 +39,7 @@
 #define kShareApp                           @"分享App给好友"
 
 // 存储相关
+#define kPersistentiCloudContainer          @"iCloud.com.15tar.SZTool"
 #define kPersistentiCloudContentNameKey     @"SZTool"
 #define kPersistentLocalDatabaseName        @"sztool.sqlite"
 

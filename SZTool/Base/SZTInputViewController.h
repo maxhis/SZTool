@@ -33,5 +33,19 @@ typedef NS_ENUM(NSInteger, ModelType) {
 @property (nonatomic, weak) id<SZTDropdownMenuDelegate> dropdownDelegate;
 
 @property (nonatomic, assign) ModelType modelType;
+/**
+ *    根据传入的NSManagedObject对象初始化输入框
+ */
+@property (nonatomic, strong) NSManagedObject *model;
+
+@property (nonatomic, assign) BOOL saveOnly;
+
+/**
+ *    先判断是否已经存在这条记录，没有则弹出提示框输入标题进行保存
+ *
+ *    @param identity  唯一标记，如公积金的账号、车牌号等
+ *    @param saveBlock 保存操作
+ */
+- (void)showSaveAlertIfNeededWithIdentity:(NSString *)identity saveBlock:(void (^)(NSString *title))saveBlock;
 
 @end

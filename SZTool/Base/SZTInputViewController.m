@@ -46,7 +46,8 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
     }
     
-    if (self.fetchedResultsController.fetchedObjects.count)
+    if (self.saveOnly == NO
+        && self.fetchedResultsController.fetchedObjects.count)
     {
         [self.titleButton setTitle:title forState:UIControlStateNormal];
         UIView *headArrowImg = [self.titleButton viewWithTag:kTitleButtonArrowTag];
@@ -235,6 +236,92 @@
 {
     [self toggelMainViewGesture:YES];
     [self rotateTitleArrow:0 animated:YES];
+}
+
+#pragma mark - 保存输入的数据
+- (void)showSaveAlertIfNeededWithIdentity:(NSString *)identity
+                                saveBlock:(void (^)(NSString *))saveBlock
+{
+    if ([self shouldSaveInputs:identity])
+    {
+        UIAlertView *alertView = [UIAlertView showWithTitle:@"是否保存输入的信息以便下次查询？"
+                           message:nil
+                             style:UIAlertViewStylePlainTextInput
+                 cancelButtonTitle:@"保存"
+                 otherButtonTitles:@[@"不了"]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              if(alertView.cancelButtonIndex == buttonIndex)
+                              {
+                                  UITextField *tf=[alertView textFieldAtIndex:0];
+                                  saveBlock(tf.text);
+                              }
+        }];
+        UITextField *tf=[alertView textFieldAtIndex:0];
+        tf.placeholder = @"建议输入一个有意义的名称";
+    }
+}
+
+/**
+ *    检查是否需要保存到数据库，检查库里是否已存在这条数据
+ *
+ *    @param identity 唯一标记，如公积金的账号、车牌号等
+ */
+- (BOOL)shouldSaveInputs:(NSString *)identity
+{
+    switch (_modelType) {
+        case ModelTypeGongjijin:
+        {
+            for (Gongjijin *gongjijin in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([gongjijin.accountNumber isEqualToString:identity])
+                {
+                    return NO;
+                }
+            }
+        }
+            break;
+        
+        case ModelTypeShebao:
+        {
+            for (Shebao *shebao in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([shebao.accountNumber isEqualToString:identity])
+                {
+                    return NO;
+                }
+            }
+        }
+            break;
+        
+        case ModelTypeYaohao:
+        {
+            for (Yaohao *yaohao in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([yaohao.applyNumber isEqualToString:identity])
+                {
+                    return NO;
+                }
+            }
+        }
+            break;
+        
+        case ModelTypeWeizhang:
+        {
+            for (Weizhang *weizhang in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([weizhang.chepaiNumber isEqualToString:identity])
+                {
+                    return NO;
+                }
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    return YES;
 }
 
 @end

@@ -29,12 +29,10 @@
 {
     self.title = @"关于";
     
-//    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-//    self.navigationItem.leftBarButtonItem = cancelButton;
-    
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _tableView.tableHeaderView = [self headerView];
+    _tableView.tableFooterView = [self footerView];
     _tableView.dataSource = self;
     _tableView.delegate = self;
     
@@ -53,8 +51,7 @@
     iconView.dt_centerX = headerView.dt_centerX;
     iconView.dt_top = 25;
     
-    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
-    NSString *version = [NSString stringWithFormat:@"%@ v%@", infoDic[@"CFBundleDisplayName"], infoDic[@"CFBundleShortVersionString"]];
+    NSString *version = [NSString stringWithFormat:@"%@ v%@", APP_NAME, APP_VERSION];
     UILabel *versionLable = [[UILabel alloc] init];
     versionLable.text = version;
     [versionLable sizeToFit];
@@ -67,24 +64,41 @@
     return headerView;
 }
 
+- (UIView *)footerView
+{
+    UILabel *footer = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.dt_width, 50)];
+    footer.textAlignment = NSTextAlignmentCenter;
+    footer.textColor = [UIColor grayColor];
+    footer.font = [UIFont systemFontOfSize:14];
+    footer.lineBreakMode = NSLineBreakByWordWrapping;
+    footer.numberOfLines = 0;
+    footer.text = @"©弼码翁工作室 版权所有";
+    
+    return footer;
+}
+
 - (NSArray *)items
 {
     if (_items == nil)
     {
-        _items = @[@"账户管理", @"给个好评", @"推荐「深圳通」给好友", @"意见反馈", @"隐私声明"];
+        _items = @[@"给个好评", [NSString stringWithFormat:@"推荐「%@」给好友", APP_NAME], @"意见反馈", @"隐私声明"];
     }
     return _items;
 }
 
-- (void)cancel
-{
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-}
-
 #pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 0)
+    {
+        return 1;
+    }
     return self.items.count;
 }
 
@@ -97,45 +111,61 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.textLabel.text = self.items[indexPath.row];
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = @"账号管理";
+    }
+    else
+    {
+        cell.textLabel.text = self.items[indexPath.row];
+    }
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return @"可以在这里查看已保存的所有账号信息，并可一键查询；也可以增加或删除任意账号信息。";
+    }
+    return nil;
 }
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0)
+    {
+        SZTAccountManagerController *accountVC = [[SZTAccountManagerController alloc] init];
+        [self.navigationController pushViewController:accountVC animated:YES];
+        return;
+    }
     
     switch (indexPath.row) {
+ 
         case 0:
-        {
-            SZTAccountManagerController *accountVC = [[SZTAccountManagerController alloc] init];
-            [self.navigationController pushViewController:accountVC animated:YES];
-        }
-            break;
-            
-        case 1:
         {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
         }
             break;
             
-        case 2:
+        case 1:
         {
-            NSString *text = @"「深圳通」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、汽车摇号，亲测好用！";
+            NSString *text =  [NSString stringWithFormat:@"「%@」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、汽车摇号，还支持iCloud同步！", APP_NAME];
             [self shareText:text andImage:[UIImage imageNamed:@"ShareImage"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
             [AVAnalytics event:kShareApp];
         }
             break;
             
-        case 3:
+        case 2:
         {
             AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
             [agent showConversations:self title:@"用户反馈" contact:nil];
         }
             break;
             
-        case 4:
+        case 3:
         {
             SZTPrivacyViewController *privacyVC = [[SZTPrivacyViewController alloc] init];
             [self.navigationController pushViewController:privacyVC animated:YES];

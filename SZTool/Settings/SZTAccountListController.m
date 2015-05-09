@@ -90,6 +90,29 @@
     [self.view addSubview:_tableView];
     
     [self.fetchedResultsController performFetch:nil];
+    [self showEmptyViewIfNeeded];
+}
+
+- (void)showEmptyViewIfNeeded
+{
+    if (self.fetchedResultsController.fetchedObjects.count)
+    {
+        _tableView.backgroundView = nil;
+    }
+    else
+    {
+        _tableView.backgroundView = [self emptyView];
+    }
+}
+
+- (UIView *)emptyView
+{
+    UILabel *emptyView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.dt_width, 50)];
+    emptyView.textAlignment = NSTextAlignmentCenter;
+    emptyView.textColor = [UIColor grayColor];
+    emptyView.text = @"暂无数据，可点击右上角「+」添加";
+    
+    return emptyView;
 }
 
 - (void)addNew:(id)sender
@@ -176,6 +199,15 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if ([tableView.dataSource tableView:tableView numberOfRowsInSection:section] == 0) {
+        return nil;
+    } else {
+        return @"已保存的账户，可左滑删除";
+    }
+}
+
 # pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -249,6 +281,7 @@
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
     [self.tableView endUpdates];
+    [self showEmptyViewIfNeeded];
 }
 
 @end

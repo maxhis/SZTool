@@ -53,7 +53,7 @@
 
 - (void)loadUIComponent
 {
-    self.title = @"深圳通";
+    self.title = APP_NAME;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.infoButton];
     
@@ -208,12 +208,14 @@
                               {
                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppStoreUrl]];
                                   [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
+                                  [AVAnalytics event:@"用户选择去评分"];
                               }
                               else if(buttonIndex == alertView.firstOtherButtonIndex + 1)
                               {
                                   AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
                                   [agent showConversations:self title:@"用户反馈" contact:nil];
                                   [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
+                                  [AVAnalytics event:@"用户选择去反馈"];
                               }
                           }];
     }

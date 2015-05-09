@@ -58,6 +58,9 @@
 __strong typeof(weakSelf) self = weakSelf;      \
 if (!self) { return; }                          \
 
+#define APP_INFO_DICT [[NSBundle mainBundle] infoDictionary]
+#define APP_NAME APP_INFO_DICT[@"CFBundleDisplayName"]
+#define APP_VERSION APP_INFO_DICT[@"CFBundleShortVersionString"]
 
 ////////////////////////////////////////////////////////////////////
 ////// 设备相关

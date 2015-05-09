@@ -14,6 +14,7 @@
 #import "MAThemeKit.h"
 #import "SZTHomeController.h"
 #import "RZTransitionsNavigationController.h"
+#import "AVOSCloudCrashReporting.h"
 
 @interface AppDelegate ()
 
@@ -44,6 +45,7 @@
                                           contentNameKey:kPersistentiCloudContentNameKey
                                          localStoreNamed:kPersistentLocalDatabaseName
                                  cloudStorePathComponent:nil];
+    
     return YES;
 }
 
@@ -73,12 +75,15 @@
 
 - (void)setupAVOS:(NSDictionary *)launchOptions
 {
-    [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
-    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    
 #ifdef PrereleaseEnviroment
     [AVAnalytics setAnalyticsEnabled:NO];
+#else
+    // Enable Crash Reporting
+    [AVOSCloudCrashReporting enable];
 #endif
+    
+    [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 }
 
 /**

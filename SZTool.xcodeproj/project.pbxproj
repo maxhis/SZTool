@@ -38,6 +38,7 @@
 		1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C91AE2B78F000D161B /* SZTInputViewController.m */; };
 		1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5D01AE35205000D161B /* SZTAccountTableView.m */; };
 		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
+		17945C741B272BB900643A97 /* BaiduAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 17945C731B272BB900643A97 /* BaiduAPIUtils.m */; };
 		179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F41AF740A200952883 /* SZTAccountManagerController.m */; };
 		179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F71AF74E0300952883 /* SZTAccountListController.m */; };
 		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
@@ -130,6 +131,8 @@
 		1719C5D01AE35205000D161B /* SZTAccountTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountTableView.m; path = DropdownMenu/SZTAccountTableView.m; sourceTree = "<group>"; };
 		172DDD341AD7FF3E00013157 /* UIImageView+Indicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+Indicator.h"; path = "Category/UIImageView+Indicator.h"; sourceTree = "<group>"; };
 		172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Indicator.m"; path = "Category/UIImageView+Indicator.m"; sourceTree = "<group>"; };
+		17945C721B272BB900643A97 /* BaiduAPIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaiduAPIUtils.h; path = Utils/BaiduAPIUtils.h; sourceTree = "<group>"; };
+		17945C731B272BB900643A97 /* BaiduAPIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaiduAPIUtils.m; path = Utils/BaiduAPIUtils.m; sourceTree = "<group>"; };
 		179B58F31AF740A200952883 /* SZTAccountManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountManagerController.h; path = Settings/SZTAccountManagerController.h; sourceTree = "<group>"; };
 		179B58F41AF740A200952883 /* SZTAccountManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountManagerController.m; path = Settings/SZTAccountManagerController.m; sourceTree = "<group>"; };
 		179B58F61AF74E0300952883 /* SZTAccountListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountListController.h; path = Settings/SZTAccountListController.h; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		1701B6401AB684DA00DAF6FC /* SZTool */ = {
 			isa = PBXGroup;
 			children = (
+				17945C711B272B6F00643A97 /* Utils */,
 				1719C5CB1AE3516C000D161B /* DropdownMenu */,
 				1719C5B51AE2284A000D161B /* Models */,
 				1719C5B21AE1FD29000D161B /* SZTool.entitlements */,
@@ -380,6 +384,15 @@
 				1719C5D01AE35205000D161B /* SZTAccountTableView.m */,
 			);
 			name = DropdownMenu;
+			sourceTree = "<group>";
+		};
+		17945C711B272B6F00643A97 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				17945C721B272BB900643A97 /* BaiduAPIUtils.h */,
+				17945C731B272BB900643A97 /* BaiduAPIUtils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		17C25C521ABAFFC8007942A5 /* HTMLParser */ = {
@@ -605,6 +618,7 @@
 				1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */,
 				17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
+				17945C741B272BB900643A97 /* BaiduAPIUtils.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
 				172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */,

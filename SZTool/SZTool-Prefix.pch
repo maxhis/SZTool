@@ -13,13 +13,14 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 // 正式打包时注释掉
-//#define PrereleaseEnviroment 1
+#define PrereleaseEnviroment 1
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 #import <AVOSCloud/AVOSCloud.h>
-#import "CoreData+MagicalRecord.h"
+#import <MagicalRecord/MagicalRecord.h>
+#import <AFNetworking/AFNetworking.h>
 
 #import "SZTMacros.h"
 

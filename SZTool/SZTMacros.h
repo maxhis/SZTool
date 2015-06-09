@@ -15,6 +15,9 @@
 #define kAVOSAppId                          @"qhvjl1rn8hr86rhsi9c0fa2akox7pvvib9ijicxdajzdx41p"
 #define kAVOSAppKey                         @"3jftm0l9bpgpsf9pewyp9arfs8t2vvcbn9601uyixtde91ki"
 
+// 百度API
+#define kBaiduAPIKey                        @"f64aeb2ab9ca6b04c6524cbcb29617c8"
+
 // 缓存用户输入的key
 #define kUserDefaultKeyGongjijinAccount     @"GongjijinAccount"
 #define kUserDefaultKeyGongjijinID          @"GongjijinID"

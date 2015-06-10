@@ -14,11 +14,15 @@
 #import "RZTransitionsNavigationController.h"
 #import "RZTransitionsManager.h"
 #import "SZTWeizhangViewController.h"
+#import "SZTWidgetView.h"
 
 #define kCenterX DTScreenWidth/2
-#define kCenterY DTScreenHeight/2 - 44
+#define kCenterY DTScreenHeight/2
 
 #define kEdgeMargin 10
+
+static CGFloat const kWidgetWidth   = 120;
+static CGFloat const kWidgetHeight  = 200;
 
 @interface SZTHomeController ()
 
@@ -28,10 +32,17 @@
 @property (nonatomic, strong) UIButton *weizhangButton;
 @property (nonatomic, strong) UIButton *infoButton;
 
+@property (nonatomic, strong) UIView *widgetPanel;
+@property (nonatomic, strong) SZTWidgetView *airView;
+@property (nonatomic, strong) SZTWidgetView *weatherView;
+
 /**
  *    是否查询成功
  */
 @property (nonatomic, assign) BOOL querySuccess;
+
+@property (nonatomic, assign) BOOL displayingWeather;
+
 @end
 
 @implementation SZTHomeController
@@ -62,6 +73,21 @@
     bgView.userInteractionEnabled = YES;
     [self.view addSubview:bgView];
     
+    _widgetPanel = [[UIView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - kWidgetWidth, 0, kWidgetWidth, kWidgetHeight)];
+    [self.view addSubview:_widgetPanel];
+    
+    _airView = [[SZTWidgetView alloc] initWithFrame:CGRectMake(0, 0, kWidgetWidth, kWidgetWidth) type:WidgetTypeAir];
+    [_widgetPanel addSubview:_airView];
+    _weatherView = [[SZTWidgetView alloc] initWithFrame:CGRectMake(0, 0, kWidgetWidth, kWidgetWidth) type:WidgetTypeWeather];
+    [_widgetPanel addSubview:_weatherView];
+    _weatherView.hidden = YES;
+    
+    [NSTimer scheduledTimerWithTimeInterval:3.0
+                                     target:self
+                                   selector:@selector(flip)
+                                   userInfo:nil
+                                    repeats:YES];
+    
     UIColor *textColor = [UIColor dt_colorWithHexString:@"f0f6fc"];
     CGFloat buttonWidth;
     if (IS_IPHONE_6 || IS_IPHONE_6P) {
@@ -80,7 +106,7 @@
     _gongjijinButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_gongjijinButton];
     [_gongjijinButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:_gongjijinButton];
+    [self.view addSubview:_gongjijinButton];
     
     _shebaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _shebaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -92,7 +118,7 @@
     _shebaoButton.dt_bottom = kCenterY - kEdgeMargin;
     [self textUnderImageButton:_shebaoButton];
     [_shebaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:_shebaoButton];
+    [self.view addSubview:_shebaoButton];
     
     _yaohaoButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _yaohaoButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -104,7 +130,7 @@
     _yaohaoButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_yaohaoButton];
     [_yaohaoButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:_yaohaoButton];
+    [self.view addSubview:_yaohaoButton];
     
     _weizhangButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, buttonWidth, buttonWidth)];
     _weizhangButton.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -116,7 +142,32 @@
     _weizhangButton.dt_top = kCenterY + kEdgeMargin;
     [self textUnderImageButton:_weizhangButton];
     [_weizhangButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [bgView addSubview:_weizhangButton];
+    [self.view addSubview:_weizhangButton];
+}
+
+- (void)flip
+{
+    [UIView transitionWithView:self.widgetPanel
+                      duration:1.0
+                       options:(self.displayingWeather ? UIViewAnimationOptionTransitionFlipFromRight :
+                                UIViewAnimationOptionTransitionFlipFromLeft)
+                    animations: ^{
+                        if(self.displayingWeather)
+                        {
+                            self.weatherView.hidden = true;
+                            self.airView.hidden = false;
+                        }
+                        else
+                        {
+                            self.weatherView.hidden = false;
+                            self.airView.hidden = true;
+                        }
+                    }
+                    completion:^(BOOL finished) {
+                        if (finished) {
+                            self.displayingWeather = !self.displayingWeather;
+                        }
+                    }];
 }
 
 /**

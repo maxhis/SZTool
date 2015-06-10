@@ -30,11 +30,14 @@ static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservic
     [manager GET:kWeatherUrl
       parameters:params
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@", responseObject);
-             doneBlock([responseObject objectForKey:@"retData"], nil);
+             //NSLog(@"%@", responseObject);
+             id data = [responseObject objectForKey:@"retData"];
+             if ([data isKindOfClass:[NSDictionary class]]) {
+                 doneBlock(data, nil);
+             }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"%@", error.localizedDescription);
+             //NSLog(@"%@", error.localizedDescription);
              doneBlock(nil, error);
          }];
 }
@@ -56,8 +59,11 @@ static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservic
     [manager GET:kAirUrl
       parameters:params
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@", responseObject);
-             doneBlock([responseObject objectForKey:@"retData"], nil);
+             //NSLog(@"%@", responseObject);
+             id data = [responseObject objectForKey:@"retData"];
+             if ([data isKindOfClass:[NSDictionary class]]) {
+                 doneBlock(data, nil);
+             }
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              doneBlock(nil, error);

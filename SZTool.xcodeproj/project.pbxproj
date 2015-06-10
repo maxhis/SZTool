@@ -39,6 +39,20 @@
 		1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5D01AE35205000D161B /* SZTAccountTableView.m */; };
 		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
 		17945C741B272BB900643A97 /* BaiduAPIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 17945C731B272BB900643A97 /* BaiduAPIUtils.m */; };
+		17945C771B27DC2A00643A97 /* SZTWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 17945C761B27DC2A00643A97 /* SZTWidgetView.m */; };
+		17945C791B27DD2900643A97 /* SZTWidgetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17945C781B27DD2900643A97 /* SZTWidgetView.xib */; };
+		17945C9A1B2824B100643A97 /* Sunny@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C901B2824B100643A97 /* Sunny@2x.png */; };
+		17945C9B1B2824B100643A97 /* Sunny@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C911B2824B100643A97 /* Sunny@3x.png */; };
+		17945C9C1B2824B100643A97 /* Foggy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C921B2824B100643A97 /* Foggy@2x.png */; };
+		17945C9D1B2824B100643A97 /* Foggy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C931B2824B100643A97 /* Foggy@3x.png */; };
+		17945C9E1B2824B100643A97 /* Cloudy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C941B2824B100643A97 /* Cloudy@2x.png */; };
+		17945C9F1B2824B100643A97 /* Cloudy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C951B2824B100643A97 /* Cloudy@3x.png */; };
+		17945CA01B2824B100643A97 /* Rainy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C961B2824B100643A97 /* Rainy@2x.png */; };
+		17945CA11B2824B100643A97 /* Rainy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C971B2824B100643A97 /* Rainy@3x.png */; };
+		17945CA21B2824B100643A97 /* Lightnings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C981B2824B100643A97 /* Lightnings@2x.png */; };
+		17945CA31B2824B100643A97 /* Lightnings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945C991B2824B100643A97 /* Lightnings@3x.png */; };
+		17945CA61B28325C00643A97 /* Snowflake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945CA41B28325C00643A97 /* Snowflake@2x.png */; };
+		17945CA71B28325C00643A97 /* Snowflake@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945CA51B28325C00643A97 /* Snowflake@3x.png */; };
 		179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F41AF740A200952883 /* SZTAccountManagerController.m */; };
 		179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F71AF74E0300952883 /* SZTAccountListController.m */; };
 		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
@@ -133,6 +147,21 @@
 		172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+Indicator.m"; path = "Category/UIImageView+Indicator.m"; sourceTree = "<group>"; };
 		17945C721B272BB900643A97 /* BaiduAPIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaiduAPIUtils.h; path = Utils/BaiduAPIUtils.h; sourceTree = "<group>"; };
 		17945C731B272BB900643A97 /* BaiduAPIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaiduAPIUtils.m; path = Utils/BaiduAPIUtils.m; sourceTree = "<group>"; };
+		17945C751B27DC2A00643A97 /* SZTWidgetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTWidgetView.h; path = Home/SZTWidgetView.h; sourceTree = "<group>"; };
+		17945C761B27DC2A00643A97 /* SZTWidgetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTWidgetView.m; path = Home/SZTWidgetView.m; sourceTree = "<group>"; };
+		17945C781B27DD2900643A97 /* SZTWidgetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SZTWidgetView.xib; path = Home/SZTWidgetView.xib; sourceTree = "<group>"; };
+		17945C901B2824B100643A97 /* Sunny@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sunny@2x.png"; path = "Resources/Weather/Sunny@2x.png"; sourceTree = "<group>"; };
+		17945C911B2824B100643A97 /* Sunny@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Sunny@3x.png"; path = "Resources/Weather/Sunny@3x.png"; sourceTree = "<group>"; };
+		17945C921B2824B100643A97 /* Foggy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Foggy@2x.png"; path = "Resources/Weather/Foggy@2x.png"; sourceTree = "<group>"; };
+		17945C931B2824B100643A97 /* Foggy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Foggy@3x.png"; path = "Resources/Weather/Foggy@3x.png"; sourceTree = "<group>"; };
+		17945C941B2824B100643A97 /* Cloudy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cloudy@2x.png"; path = "Resources/Weather/Cloudy@2x.png"; sourceTree = "<group>"; };
+		17945C951B2824B100643A97 /* Cloudy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Cloudy@3x.png"; path = "Resources/Weather/Cloudy@3x.png"; sourceTree = "<group>"; };
+		17945C961B2824B100643A97 /* Rainy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rainy@2x.png"; path = "Resources/Weather/Rainy@2x.png"; sourceTree = "<group>"; };
+		17945C971B2824B100643A97 /* Rainy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rainy@3x.png"; path = "Resources/Weather/Rainy@3x.png"; sourceTree = "<group>"; };
+		17945C981B2824B100643A97 /* Lightnings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Lightnings@2x.png"; path = "Resources/Weather/Lightnings@2x.png"; sourceTree = "<group>"; };
+		17945C991B2824B100643A97 /* Lightnings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Lightnings@3x.png"; path = "Resources/Weather/Lightnings@3x.png"; sourceTree = "<group>"; };
+		17945CA41B28325C00643A97 /* Snowflake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Snowflake@2x.png"; path = "Resources/Weather/Snowflake@2x.png"; sourceTree = "<group>"; };
+		17945CA51B28325C00643A97 /* Snowflake@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Snowflake@3x.png"; path = "Resources/Weather/Snowflake@3x.png"; sourceTree = "<group>"; };
 		179B58F31AF740A200952883 /* SZTAccountManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountManagerController.h; path = Settings/SZTAccountManagerController.h; sourceTree = "<group>"; };
 		179B58F41AF740A200952883 /* SZTAccountManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountManagerController.m; path = Settings/SZTAccountManagerController.m; sourceTree = "<group>"; };
 		179B58F61AF74E0300952883 /* SZTAccountListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountListController.h; path = Settings/SZTAccountListController.h; sourceTree = "<group>"; };
@@ -259,6 +288,9 @@
 			children = (
 				17EA4FC31AC63D2300F4B064 /* SZTHomeController.h */,
 				17EA4FC41AC63D2300F4B064 /* SZTHomeController.m */,
+				17945C751B27DC2A00643A97 /* SZTWidgetView.h */,
+				17945C761B27DC2A00643A97 /* SZTWidgetView.m */,
+				17945C781B27DD2900643A97 /* SZTWidgetView.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -354,6 +386,7 @@
 		1710D6721AC432350083A297 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				17945C7A1B28248500643A97 /* Weather */,
 				17B500CE1AC69AA900426434 /* ShareImage.png */,
 				1710D6751AC432C20083A297 /* privacy.html */,
 				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
@@ -393,6 +426,25 @@
 				17945C731B272BB900643A97 /* BaiduAPIUtils.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		17945C7A1B28248500643A97 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				17945C901B2824B100643A97 /* Sunny@2x.png */,
+				17945CA41B28325C00643A97 /* Snowflake@2x.png */,
+				17945CA51B28325C00643A97 /* Snowflake@3x.png */,
+				17945C911B2824B100643A97 /* Sunny@3x.png */,
+				17945C921B2824B100643A97 /* Foggy@2x.png */,
+				17945C931B2824B100643A97 /* Foggy@3x.png */,
+				17945C941B2824B100643A97 /* Cloudy@2x.png */,
+				17945C951B2824B100643A97 /* Cloudy@3x.png */,
+				17945C961B2824B100643A97 /* Rainy@2x.png */,
+				17945C971B2824B100643A97 /* Rainy@3x.png */,
+				17945C981B2824B100643A97 /* Lightnings@2x.png */,
+				17945C991B2824B100643A97 /* Lightnings@3x.png */,
+			);
+			name = Weather;
 			sourceTree = "<group>";
 		};
 		17C25C521ABAFFC8007942A5 /* HTMLParser */ = {
@@ -532,10 +584,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17945CA71B28325C00643A97 /* Snowflake@3x.png in Resources */,
 				1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */,
+				17945C9F1B2824B100643A97 /* Cloudy@3x.png in Resources */,
 				1710D6761AC432C20083A297 /* privacy.html in Resources */,
+				17945C9E1B2824B100643A97 /* Cloudy@2x.png in Resources */,
+				17945CA31B2824B100643A97 /* Lightnings@3x.png in Resources */,
+				17945CA01B2824B100643A97 /* Rainy@2x.png in Resources */,
+				17945CA11B2824B100643A97 /* Rainy@3x.png in Resources */,
+				17945CA61B28325C00643A97 /* Snowflake@2x.png in Resources */,
 				1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */,
+				17945CA21B2824B100643A97 /* Lightnings@2x.png in Resources */,
 				17B500CF1AC69AA900426434 /* ShareImage.png in Resources */,
+				17945C9A1B2824B100643A97 /* Sunny@2x.png in Resources */,
+				17945C9C1B2824B100643A97 /* Foggy@2x.png in Resources */,
+				17945C9B1B2824B100643A97 /* Sunny@3x.png in Resources */,
+				17945C791B27DD2900643A97 /* SZTWidgetView.xib in Resources */,
+				17945C9D1B2824B100643A97 /* Foggy@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +692,7 @@
 				1719C5C41AE2861F000D161B /* Yaohao.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
 				170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */,
+				17945C771B27DC2A00643A97 /* SZTWidgetView.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,

@@ -626,7 +626,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "leancloud upload_symbol \\\n-f \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\" \\\n-i \"qhvjl1rn8hr86rhsi9c0fa2akox7pvvib9ijicxdajzdx41p\" \\\n-k \"3jftm0l9bpgpsf9pewyp9arfs8t2vvcbn9601uyixtde91ki\"";
+			shellScript = "";
 		};
 		A57169588525DD0D203426DD /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

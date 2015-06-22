@@ -10,9 +10,13 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "SZTResultItem.h"
 
-static NSString *const kVerifyCodeUrl = @"http://www.szzfgjj.com/code.jsp";
+static NSString *const kVerifyCodeUrl = @"http://app.szzfgjj.com:7001/pages/code.jsp";
 
-static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/download/Com_accountQuery.do";
+static NSString *const kQueryUrl = @"http://app.szzfgjj.com:7001/accountQuery";
+
+static NSString *const UserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36";
+
+static AFHTTPRequestOperationManager *manager;
 
 @implementation SZTGongjijinService
 
@@ -22,28 +26,45 @@ static NSString *const kQueryUrl = @"http://www.szzfgjj.com/admin/download/downl
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[SZTGongjijinService alloc] init];
+        manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:UserAgent forHTTPHeaderField:@"User-Agent"];
     });
     
     return instance;
 }
 
+//- (void)fetchVerifyCodeImageWithCompletion:(void (^)(UIImage *verifyCodeImage, NSError *error))completionBlock
+//{
+//    NSString *url = [NSString stringWithFormat:@"%@%@", kVerifyCodeUrl, @([[NSDate date] timeIntervalSince1970] * 1000)];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+//    [request setValue:UserAgent forHTTPHeaderField:@"User-Agent"];
+//    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+//    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//                                                completionBlock(responseObject, nil);
+//                                            }
+//                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//                                                completionBlock(nil, error);
+//                                            }];
+//    [requestOperation start];
+//}
+
 - (void)fetchVerifyCodeImageWithCompletion:(void (^)(UIImage *verifyCodeImage, NSError *error))completionBlock
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kVerifyCodeUrl]];
-    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
-    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                                                completionBlock(responseObject, nil);
-                                            }
-                                            failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                                completionBlock(nil, error);
-                                            }];
-    [requestOperation start];
+    manager.responseSerializer = [AFImageResponseSerializer serializer];
+    NSDictionary *params = @{@"yzm": @([[NSDate date] timeIntervalSince1970] * 1000)};
+    [manager GET:kVerifyCodeUrl
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             completionBlock(responseObject, nil);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             completionBlock(nil, error);
+         }];
 }
 
 - (void)queryBalanceWithAccount:(NSString *)accountNumber IDNumber:(NSString *)IDNumber verifyCode:(NSString *)verifyCode completion:(void (^)(SZTResultModel *model, NSError *error))completionBlock
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *params = @{@"accnum": accountNumber,
                              @"certinum":IDNumber,

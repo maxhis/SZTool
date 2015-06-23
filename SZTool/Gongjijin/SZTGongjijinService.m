@@ -52,9 +52,9 @@ static AFHTTPRequestOperationManager *manager;
 - (void)fetchVerifyCodeImageWithCompletion:(void (^)(UIImage *verifyCodeImage, NSError *error))completionBlock
 {
     manager.responseSerializer = [AFImageResponseSerializer serializer];
-    NSDictionary *params = @{@"yzm": @([[NSDate date] timeIntervalSince1970] * 1000)};
+//    NSDictionary *params = @{@"yzm": @([[NSDate date] timeIntervalSince1970] * 1000)};
     [manager GET:kVerifyCodeUrl
-      parameters:params
+      parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              completionBlock(responseObject, nil);
          }
@@ -69,7 +69,7 @@ static AFHTTPRequestOperationManager *manager;
     NSDictionary *params = @{@"accnum": accountNumber,
                              @"certinum":IDNumber,
                              @"qryflag":@"1",
-                             @"verifycode":verifyCode};
+                             @"verify":verifyCode};
     [manager POST:kQueryUrl
        parameters:params
           success:^(AFHTTPRequestOperation *operation, id responseObject) {

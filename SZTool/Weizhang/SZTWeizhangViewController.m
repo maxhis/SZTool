@@ -13,33 +13,28 @@
 #import "SZTWeizhangResultController.h"
 #import "Weizhang.h"
 #import "RNBlurModalView.h"
-
-static CGFloat const kTextFieldHeight       = 35;
-static CGFloat kTextFieldWidthNormal        = 220;
-static CGFloat kTextFieldWidthShort         = 100;
-static CGFloat const kDividerWidth          = 10;
-static CGFloat const kTopEdge               = 10;
+#import "JVFloatLabeledTextField.h"
 
 @interface SZTWeizhangViewController () <UITextFieldDelegate,SZTDropdownMenuDelegate>
 
 /**
  *    车牌号码
  */
-@property (nonatomic, strong) UITextField *chepaiNumberView;
+@property (nonatomic, strong) JVFloatLabeledTextField *chepaiNumberView;
 /**
  *    车牌类型
  */
-@property (nonatomic, strong) UITextField *chepaiTypeView;
+@property (nonatomic, strong) JVFloatLabeledTextField *chepaiTypeView;
 /**
  *    车辆识别代号
  */
-@property (nonatomic, strong) UITextField *chejiaNumberView;
+@property (nonatomic, strong) JVFloatLabeledTextField *chejiaNumberView;
 /**
  *    机动车登记证书编号
  */
-@property (nonatomic, strong) UITextField *engineNumberView;
+@property (nonatomic, strong) JVFloatLabeledTextField *engineNumberView;
 // 验证码
-@property (nonatomic, strong) UITextField *codeView;
+@property (nonatomic, strong) JVFloatLabeledTextField *codeView;
 @property (nonatomic, strong) UIImageView *codeImageView;
 
 // 弹出图片引导用户的button
@@ -92,57 +87,48 @@ static CGFloat const kTopEdge               = 10;
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
-    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthNormal = SCREEN_WIDTH - 2 * kDividerWidth;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
     NSInteger tag = 0;
     
     // 车牌号
-    _chepaiNumberView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chepaiNumberView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _chepaiNumberView.borderStyle = UITextBorderStyleRoundedRect;
-    _chepaiNumberView.placeholder = @"6位广东牌照";
+    _chepaiNumberView.placeholder = @"车牌号 粤";
     _chepaiNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _chepaiNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _chepaiNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_chepaiNumberView setReturnKeyType:UIReturnKeyNext];
     _chepaiNumberView.delegate = self;
     _chepaiNumberView.tag = tag++;
-//    _chepaiNumberView.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    _chepaiNumberView.font = kDigitalFont;
     [self.view addSubview:_chepaiNumberView];
     
-    UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    accountLabel.textAlignment = NSTextAlignmentRight;
-    accountLabel.dt_right = _chepaiNumberView.dt_left - kDividerWidth;
-    accountLabel.text = @"车牌号 粤";
-    [self.view addSubview:accountLabel];
-    
     // 车牌类型
-    _chepaiTypeView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chepaiTypeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _chepaiTypeView.borderStyle = UITextBorderStyleRoundedRect;
     _chepaiTypeView.enabled = NO;
     _chepaiTypeView.text = [SZTCarTypeManager sharedManager].displayNames[1]; // 默认选中小汽车
+    _chepaiTypeView.font = kDigitalFont;
+    _chepaiTypeView.placeholder = @"车牌类型";
     [self.view addSubview:_chepaiTypeView];
-    
-    UILabel *chepaiLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chepaiTypeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    chepaiLabel.textAlignment = NSTextAlignmentRight;
-    chepaiLabel.dt_right = _chepaiTypeView.dt_left - kDividerWidth;
-    chepaiLabel.text = @"车牌类型";
-    [self.view addSubview:chepaiLabel];
     
     UIButton *maskButton = [[UIButton alloc] initWithFrame:_chepaiTypeView.frame];
     [maskButton addTarget:self action:@selector(showCarTypePicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:maskButton];
     
     // 车辆识别代号（后6位）
-    _chejiaNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiTypeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _chejiaNumberView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chepaiTypeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _chejiaNumberView.borderStyle = UITextBorderStyleRoundedRect;
     _chejiaNumberView.keyboardType = UIKeyboardTypeNumberPad;
-    _chejiaNumberView.placeholder = @"即车辆识别代号，后6位";
+    _chejiaNumberView.placeholder = @"车辆识别代号后6位";
     _chejiaNumberView.dt_right = DTScreenWidth - kDividerWidth;
     _chejiaNumberView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _chejiaNumberView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_chejiaNumberView setReturnKeyType:UIReturnKeyNext];
     _chejiaNumberView.delegate = self;
     _chejiaNumberView.tag = tag++;
+    _chejiaNumberView.font = kDigitalFont;
     [self.view addSubview:_chejiaNumberView];
     
     _chejiaInfoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -151,14 +137,8 @@ static CGFloat const kTopEdge               = 10;
     _chejiaNumberView.rightView = _chejiaInfoBtn;
     _chejiaNumberView.rightViewMode = UITextFieldViewModeAlways;
     
-    UILabel *clsbdhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _chejiaNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    clsbdhLabel.textAlignment = NSTextAlignmentRight;
-    clsbdhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
-    clsbdhLabel.text = @"车架号";
-    [self.view addSubview:clsbdhLabel];
-    
     // 机动车登记证书编号(后7位)
-    _engineNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chejiaNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _engineNumberView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _chejiaNumberView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _engineNumberView.borderStyle = UITextBorderStyleRoundedRect;
     _engineNumberView.keyboardType = UIKeyboardTypeNumberPad;
     _engineNumberView.placeholder = @"机动车登记证书编号后7位";
@@ -168,6 +148,7 @@ static CGFloat const kTopEdge               = 10;
     [_engineNumberView setReturnKeyType:UIReturnKeyNext];
     _engineNumberView.delegate = self;
     _engineNumberView.tag = tag++;
+    _engineNumberView.font = kDigitalFont;
     [self.view addSubview:_engineNumberView];
     
     _engineInfoBtn = [UIButton buttonWithType:UIButtonTypeInfoLight];
@@ -175,12 +156,6 @@ static CGFloat const kTopEdge               = 10;
     _engineInfoBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -8, 0, 0);
     _engineNumberView.rightView = _engineInfoBtn;
     _engineNumberView.rightViewMode = UITextFieldViewModeAlways;
-    
-    UILabel *djzsbhLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _engineNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    djzsbhLabel.textAlignment = NSTextAlignmentRight;
-    djzsbhLabel.dt_right = _chejiaNumberView.dt_left - kDividerWidth;
-    djzsbhLabel.text = @"登记证书号";
-    [self.view addSubview:djzsbhLabel];
     
     // 验证码
     if (!self.saveOnly)
@@ -194,20 +169,16 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)setupVerifyCode:(NSInteger)tag
 {
-    _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _engineNumberView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
+    _codeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_chepaiNumberView.dt_left, _engineNumberView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     _codeView.keyboardType = UIKeyboardTypeNumberPad;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
     _codeView.tag = tag++;
+    _codeView.font = kDigitalFont;
+    _codeView.placeholder = @"验证码";
     [self.view addSubview:_codeView];
-    
-    UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    codeLabel.textAlignment = NSTextAlignmentRight;
-    codeLabel.dt_right = _codeView.dt_left - kDividerWidth;
-    codeLabel.text = @"验证码";
-    [self.view addSubview:codeLabel];
     
     _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_codeView.dt_right + kDividerWidth, _codeView.dt_top, kTextFieldWidthShort - kDividerWidth, kTextFieldHeight)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadVerifyCode:)];

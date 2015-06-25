@@ -49,6 +49,8 @@
 #define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]
 #define kDropdownMenuColor [UIColor dt_colorWithHexString:@"a6b1ac"]
 
+#define kDigitalFont     [UIFont fontWithName:@"Menlo-Regular" size:20]
+
 // 系统全局宏定义
 #define DTScreenWidth [UIScreen mainScreen].bounds.size.width
 #define DTScreenHeight [UIScreen mainScreen].bounds.size.height

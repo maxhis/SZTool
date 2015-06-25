@@ -9,6 +9,12 @@
 #import "SZTViewController.h"
 #import "SZTAccountTableView.h"
 
+static CGFloat const kTextFieldHeight       = 50;
+static CGFloat kTextFieldWidthNormal        = 220;
+static CGFloat kTextFieldWidthShort         = 100;
+static CGFloat const kDividerWidth          = 15;
+static CGFloat const kTopEdge               = 20;
+
 typedef NS_ENUM(NSInteger, ModelType) {
     ModelTypeGongjijin,
     ModelTypeShebao,

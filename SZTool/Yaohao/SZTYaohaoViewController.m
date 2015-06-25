@@ -10,18 +10,13 @@
 #import "ActionSheetStringPicker.h"
 #import "SZTYaohaoService.h"
 #import "Yaohao.h"
-
-static CGFloat const kTextFieldHeight       = 35;
-static CGFloat kTextFieldWidthNormal  = 200;
-static CGFloat kTextFieldWidthShort   = 100;
-static CGFloat const kDividerWidth          = 10;
-static CGFloat const kTopEdge               = 10;
+#import "JVFloatLabeledTextField.h"
 
 @interface SZTYaohaoViewController () <UITextFieldDelegate, SZTDropdownMenuDelegate>
 
-@property (nonatomic, strong) UITextField *applyCodeView;
+@property (nonatomic, strong) JVFloatLabeledTextField *applyCodeView;
 
-@property (nonatomic, strong) UITextField *issueNumberView;
+@property (nonatomic, strong) JVFloatLabeledTextField *issueNumberView;
 
 @property (nonatomic, strong) UISegmentedControl *typeView;
 
@@ -58,46 +53,37 @@ static CGFloat const kTopEdge               = 10;
     
     // 个人或单位
     _typeView = [[UISegmentedControl alloc] initWithItems:@[@"个人" , @"单位" ]];
-    _typeView.frame = CGRectMake(kDividerWidth, DTScreenHeight/16, DTScreenWidth - kDividerWidth * 2, kTextFieldHeight);
+    _typeView.frame = CGRectMake(kDividerWidth, DTScreenHeight/16, DTScreenWidth - kDividerWidth * 2, 35);
     [self.view addSubview:_typeView];
     
-    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthNormal = SCREEN_WIDTH - 2*kDividerWidth;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
     
     // 申请编码
-    _applyCodeView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _applyCodeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _applyCodeView.borderStyle = UITextBorderStyleRoundedRect;
     _applyCodeView.keyboardType = UIKeyboardTypeNumberPad;
-    _applyCodeView.placeholder = @"13位数字";
+    _applyCodeView.placeholder = @"申请编码,13位数字";
     _applyCodeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     _applyCodeView.dt_right = DTScreenWidth - kDividerWidth;
     _applyCodeView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     [_applyCodeView setReturnKeyType:UIReturnKeyGo];
     _applyCodeView.delegate = self;
+    _applyCodeView.font = kDigitalFont;
     [self.view addSubview:_applyCodeView];
     
-    UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _applyCodeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    accountLabel.textAlignment = NSTextAlignmentRight;
-    accountLabel.dt_right = _applyCodeView.dt_left - kDividerWidth;
-    accountLabel.text = @"申请编码";
-    [self.view addSubview:accountLabel];
-    
     // 期号
-    _issueNumberView = [[UITextField alloc] initWithFrame:CGRectMake(_applyCodeView.dt_left, _applyCodeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _issueNumberView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_applyCodeView.dt_left, _applyCodeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _issueNumberView.borderStyle = UITextBorderStyleRoundedRect;
     _issueNumberView.enabled = NO;
     _issueNumberView.text = self.selections[0];
+    _issueNumberView.placeholder = @"期号";
+    _issueNumberView.font = kDigitalFont;
     [self.view addSubview:_issueNumberView];
     
     UIButton *maskBtn = [[UIButton alloc] initWithFrame:_issueNumberView.frame];
     [maskBtn addTarget:self action:@selector(showIssuePicker) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:maskBtn];
-    
-    UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _issueNumberView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    idLabel.textAlignment = NSTextAlignmentRight;
-    idLabel.dt_right = _issueNumberView.dt_left - kDividerWidth;
-    idLabel.text = @"期号";
-    [self.view addSubview:idLabel];
     
     if (!self.saveOnly)
     {

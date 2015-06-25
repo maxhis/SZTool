@@ -10,17 +10,12 @@
 #import "SZTShebaoService.h"
 #import "SZTResultListController.h"
 #import "Shebao.h"
-
-static CGFloat const kTextFieldHeight       = 35;
-static CGFloat kTextFieldWidthNormal  = 200;
-static CGFloat kTextFieldWidthShort   = 100;
-static CGFloat const kDividerWidth          = 10;
-static CGFloat const kTopEdge               = 10;
+#import "JVFloatLabeledTextField.h"
 
 @interface SZTShebaoViewController () <UITextFieldDelegate,SZTDropdownMenuDelegate>
-@property (strong, nonatomic) UITextField *idView;
-@property (strong, nonatomic) UITextField *accountView;
-@property (strong, nonatomic) UITextField *codeView;
+@property (strong, nonatomic) JVFloatLabeledTextField *idView;
+@property (strong, nonatomic) JVFloatLabeledTextField *accountView;
+@property (strong, nonatomic) JVFloatLabeledTextField *codeView;
 @property (strong, nonatomic) UIImageView *codeImageView;
 @property (strong, nonatomic) UIButton *queryBtn;
 
@@ -71,44 +66,35 @@ static CGFloat const kTopEdge               = 10;
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
-    kTextFieldWidthNormal = DTScreenWidth * 2 / 3;
+    kTextFieldWidthNormal = SCREEN_WIDTH - 2 * kDividerWidth;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
     NSInteger tag = 0;
     
     // 电脑号
-    _accountView = [[UITextField alloc] initWithFrame:CGRectMake(DTScreenWidth / 3, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
+    _accountView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
 //    _accountView.keyboardType = UIKeyboardTypeNumberPad;
-    _accountView.placeholder = @"9位数字";
+    _accountView.placeholder = @"电脑号，9位数字";
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
     _accountView.delegate = self;
     _accountView.tag = tag++;
     _accountView.returnKeyType = UIReturnKeyNext;
+    _accountView.font = kDigitalFont;
     [self.view addSubview:_accountView];
-    
-    UILabel *accountLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _accountView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    accountLabel.textAlignment = NSTextAlignmentRight;
-    accountLabel.dt_right = _accountView.dt_left - kDividerWidth;
-    accountLabel.text = @"电脑号";
-    [self.view addSubview:accountLabel];
+
     
     // 身份证号
-    _idView = [[UITextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _accountView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _idView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _accountView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
     _idView.borderStyle = UITextBorderStyleRoundedRect;
-    _idView.placeholder = @"15或18位有效身份证号";
+    _idView.placeholder = @"身份证号";
     _idView.clearButtonMode = UITextFieldViewModeWhileEditing;
     _idView.delegate = self;
     _idView.tag = tag++;
     _idView.returnKeyType = UIReturnKeyNext;
+    _idView.font = kDigitalFont;
     [self.view addSubview:_idView];
-    
-    UILabel *idLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _idView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    idLabel.textAlignment = NSTextAlignmentRight;
-    idLabel.dt_right = _idView.dt_left - kDividerWidth;
-    idLabel.text = @"身份证号";
-    [self.view addSubview:idLabel];
     
     // 验证码
     if (!self.saveOnly)
@@ -121,20 +107,16 @@ static CGFloat const kTopEdge               = 10;
 
 - (void)setupVerifyCode:(NSInteger)viewTag
 {
-    _codeView = [[UITextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _idView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
+    _codeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _idView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;
     _codeView.keyboardType = UIKeyboardTypeNumberPad;
     _codeView.tag = viewTag++;
+    _codeView.font = kDigitalFont;
+    _codeView.placeholder = @"验证码";
     [self.view addSubview:_codeView];
-    
-    UILabel *codeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _codeView.dt_top, kTextFieldWidthShort, kTextFieldHeight)];
-    codeLabel.textAlignment = NSTextAlignmentRight;
-    codeLabel.dt_right = _codeView.dt_left - kDividerWidth;
-    codeLabel.text = @"验证码";
-    [self.view addSubview:codeLabel];
     
     _codeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(_codeView.dt_right + kDividerWidth, _codeView.dt_top, kTextFieldWidthShort - kDividerWidth, kTextFieldHeight)];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadVerifyCode:)];

@@ -34,6 +34,9 @@
     
     // 点击空白区域关闭键盘
     [self toggelMainViewGesture:YES];
+    
+    kTextFieldWidthNormal = SCREEN_WIDTH - 2 * kDividerWidth;
+    kTextFieldWidthShort = kTextFieldWidthNormal / 2;
 }
 
 - (void)setTitle:(NSString *)title

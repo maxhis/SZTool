@@ -15,6 +15,7 @@
 #import "SZTHomeController.h"
 #import "RZTransitionsNavigationController.h"
 #import "AVOSCloudCrashReporting.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @interface AppDelegate ()
 
@@ -36,6 +37,8 @@
     [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     // 配置HUD的Icons
     [self setupHUD];

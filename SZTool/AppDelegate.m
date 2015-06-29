@@ -16,6 +16,7 @@
 #import "RZTransitionsNavigationController.h"
 #import "AVOSCloudCrashReporting.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "SZTHomeCollectionViewController.h"
 
 @interface AppDelegate ()
 
@@ -32,7 +33,7 @@
     [self checkPromotingTime];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    SZTHomeController *homeController = [[SZTHomeController alloc] init];
+    SZTHomeCollectionViewController *homeController = [[SZTHomeCollectionViewController alloc] init];
     RZTransitionsNavigationController *navigationController = [[RZTransitionsNavigationController alloc] initWithRootViewController:homeController];
     [navigationController setTransitioningDelegate:[RZTransitionsManager shared]];
     self.window.rootViewController = navigationController;

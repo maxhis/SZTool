@@ -17,6 +17,7 @@
 #import "CategoriesLayout.h"
 #import "OrangeView.h"
 #import "SZTHomeHeaderView.h"
+#import "SZTAccountManagerController.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 static NSString *HeaderIdentifier = @"HeaderIdentifier";
@@ -41,12 +42,13 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     
     self.title = APP_NAME;
 
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    CategoriesLayout *flowLayout = [[CategoriesLayout alloc] init];
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _collectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_collectionView];
     
     [_collectionView registerClass:[SZTHomeCell class] forCellWithReuseIdentifier:CellIdentifier];
@@ -79,9 +81,9 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     if (remainTimes > 0)
     {
         [UIAlertView showWithTitle:@"期待您的声音"
-                           message:@"嘿！App用着还好么？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
+                           message:@"对深圳通还满意吗？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
                  cancelButtonTitle:@"下次吧"
-                 otherButtonTitles:@[@"去评分", @"意见反馈"]
+                 otherButtonTitles:@[@"去评分", @"反馈意见"]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                               _querySuccess = false;
                               if (buttonIndex == alertView.cancelButtonIndex)
@@ -112,7 +114,9 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
         SZTHomeModel *shebao = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"shebao"] title:@"社保"];
         SZTHomeModel *yaohao = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"yaohao"] title:@"汽车摇号"];
         SZTHomeModel *weizhang = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"weizhang"] title:@"粤牌违章"];
-        _dataSource = @[gongjijin, shebao, yaohao, weizhang];
+        SZTHomeModel *settings = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"settings"] title:@"账户管理"];
+        SZTHomeModel *about = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"about"] title:@"关于"];
+        _dataSource = @[gongjijin, shebao, yaohao, weizhang, settings, about];
     }
     
     return _dataSource;
@@ -179,6 +183,11 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
         }
             break;
             
+        case 4: {
+            destVC = [[SZTAccountManagerController alloc] init];
+        }
+            break;
+            
         default:
             destVC = [[SZTAboutViewController alloc] init];
             break;
@@ -188,13 +197,20 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(100, 120);
+    return CGSizeMake(120, 120);
 }
 
 // the spacing between the cells, headers, and footers.
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(10, 50, 50, 50);
+    CGFloat xMargin = 35;
+    if (IS_IPHONE_6) {
+        xMargin = 50;
+    }
+    else if (IS_IPHONE_6P) {
+        xMargin = 65;
+    }
+    return UIEdgeInsetsMake(10, xMargin, 10, xMargin);
 }
 
 @end

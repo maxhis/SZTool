@@ -90,15 +90,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 1;
-    }
     return self.items.count;
 }
 
@@ -111,36 +107,15 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if (indexPath.section == 0)
-    {
-        cell.textLabel.text = @"账号管理";
-    }
-    else
-    {
-        cell.textLabel.text = self.items[indexPath.row];
-    }
+    cell.textLabel.text = self.items[indexPath.row];
+    
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    if (section == 0)
-    {
-        return @"可以在这里查看已保存的所有账号信息，并可一键查询；也可以增加或删除任意账号信息。";
-    }
-    return nil;
 }
 
 #pragma mark - tableview delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0)
-    {
-        SZTAccountManagerController *accountVC = [[SZTAccountManagerController alloc] init];
-        [self.navigationController pushViewController:accountVC animated:YES];
-        return;
-    }
     
     switch (indexPath.row) {
  

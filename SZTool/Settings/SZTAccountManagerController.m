@@ -9,7 +9,7 @@
 #import "SZTAccountManagerController.h"
 #import "SZTAccountListController.h"
 
-#define kAccountTypes @[@"公积金账户管理",@"社保账户管理", @"查违章车辆管理", @"摇号申请码管理"]
+#define kAccountTypes @[@"公积金账户",@"社保账户", @"查违章车辆", @"摇号申请码"]
 
 @interface SZTAccountManagerController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -58,6 +58,11 @@
     cell.textLabel.text = kAccountTypes[indexPath.row];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return @"可以在这里查看已保存的所有账号信息，并可一键查询；也可以增加或删除任意账号信息。";
 }
 
 # pragma mark - UITableViewDelegate

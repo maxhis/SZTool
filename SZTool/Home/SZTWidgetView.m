@@ -39,7 +39,7 @@
 
 - (void)setupWeather
 {
-    [BaiduAPIUtils fetchWeatherData:^(NSDictionary *result, NSError *error) {
+    [BaiduAPIUtils fetchWeatherDataV2:^(NSDictionary *result, NSError *error) {
         if (error == nil && result) {
             self.tempView.text = result[@"temp"];
             NSString *weather = result[@"weather"];

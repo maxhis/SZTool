@@ -48,4 +48,11 @@ typedef void (^APIDoneBlock)(NSDictionary *result, NSError *error);
  */
 + (void)fetchAirData:(APIDoneBlock) doneBlock;
 
+/**
+ *  从中国气象网获取天气，数据更精确，实时更新
+ *
+ *  @param doneBlock <#doneBlock description#>
+ */
++ (void)fetchWeatherDataV2:(APIDoneBlock)doneBlock;
+
 @end

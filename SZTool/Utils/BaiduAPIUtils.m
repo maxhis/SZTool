@@ -7,9 +7,11 @@
 //
 
 #import "BaiduAPIUtils.h"
+#import "HTMLParser.h"
 
 static NSString *const kWeatherUrl  = @"http://apis.baidu.com/apistore/weatherservice/weather";
 static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservice/aqi";
+static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/101280601.shtml";
 
 @implementation BaiduAPIUtils
 
@@ -40,6 +42,50 @@ static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservic
              //NSLog(@"%@", error.localizedDescription);
              doneBlock(nil, error);
          }];
+}
+
++ (void)fetchWeatherDataV2:(APIDoneBlock)doneBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager GET:kWeatherV2Url
+      parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSString *html = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+             [self parseHtml:html withBlock:doneBlock];
+    }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             doneBlock(nil, error);
+    }];
+}
+
++ (void )parseHtml:(NSString *)html withBlock:(APIDoneBlock)doneBlock
+{
+    NSError *error;
+    HTMLParser *parser = [[HTMLParser alloc] initWithString:html error:&error];
+    if (error) {
+        doneBlock(nil, error);
+        return ;
+    }
+    
+    HTMLNode *body = [parser body];
+    NSArray *tdTags = [body findChildTags:@"td"];
+    NSString *temp, *weather;
+    for (HTMLNode *node in tdTags) {
+        // <td width="50%" class="wd">28℃</td>
+        if ([[node getAttributeNamed:@"class"] isEqualToString:@"wd"]) {
+            temp = [[node contents] componentsSeparatedByString:@"℃"][0];
+        }
+        else { // <td width="30%"><span>多云</span><span>无持续风向</span><span>微风</span></td>
+            NSArray *spanNodes = [node findChildTags:@"span"];
+            if (spanNodes.count > 0) {
+                weather = [spanNodes[0] contents];
+            }
+        }
+    }
+    if (temp && weather) {
+        doneBlock(@{@"temp":temp, @"weather": weather}, nil);
+    }
 }
 
 /**

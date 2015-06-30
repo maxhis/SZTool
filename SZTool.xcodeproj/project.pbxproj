@@ -55,7 +55,6 @@
 		17945CA71B28325C00643A97 /* Snowflake@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 17945CA51B28325C00643A97 /* Snowflake@3x.png */; };
 		179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F41AF740A200952883 /* SZTAccountManagerController.m */; };
 		179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 179B58F71AF74E0300952883 /* SZTAccountListController.m */; };
-		17B500CF1AC69AA900426434 /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 17B500CE1AC69AA900426434 /* ShareImage.png */; };
 		17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C501ABACFFD007942A5 /* SZTResultItem.m */; };
 		17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5C1ABB0083007942A5 /* HTMLNode.m */; };
 		17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 17C25C5E1ABB0083007942A5 /* HTMLParser.m */; };
@@ -72,6 +71,7 @@
 		A14E79871B41264700637A90 /* SZTHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E79861B41264700637A90 /* SZTHomeCell.xib */; };
 		A14E79931B413E4E00637A90 /* SZTHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */; };
 		A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */; };
+		A1FB1B521B42DF5C0031AB5E /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FB1B511B42DF5C0031AB5E /* ShareImage.png */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -171,7 +171,6 @@
 		179B58F41AF740A200952883 /* SZTAccountManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountManagerController.m; path = Settings/SZTAccountManagerController.m; sourceTree = "<group>"; };
 		179B58F61AF74E0300952883 /* SZTAccountListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountListController.h; path = Settings/SZTAccountListController.h; sourceTree = "<group>"; };
 		179B58F71AF74E0300952883 /* SZTAccountListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTAccountListController.m; path = Settings/SZTAccountListController.m; sourceTree = "<group>"; };
-		17B500CE1AC69AA900426434 /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
 		17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTResultItem.h; path = Base/SZTResultItem.h; sourceTree = "<group>"; };
 		17C25C501ABACFFD007942A5 /* SZTResultItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTResultItem.m; path = Base/SZTResultItem.m; sourceTree = "<group>"; };
 		17C25C5B1ABB0083007942A5 /* HTMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLNode.h; path = HTMLParser/HTMLNode.h; sourceTree = "<group>"; };
@@ -203,6 +202,7 @@
 		A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeHeaderView.m; path = Home/SZTHomeHeaderView.m; sourceTree = "<group>"; };
 		A1C97B721B3D4A750014A7EF /* SZTHomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeCollectionViewController.h; path = Home/SZTHomeCollectionViewController.h; sourceTree = "<group>"; };
 		A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeCollectionViewController.m; path = Home/SZTHomeCollectionViewController.m; sourceTree = "<group>"; };
+		A1FB1B511B42DF5C0031AB5E /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
 		F79474117C160AAF0F080EDE /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -410,8 +410,8 @@
 			isa = PBXGroup;
 			children = (
 				17945C7A1B28248500643A97 /* Weather */,
-				17B500CE1AC69AA900426434 /* ShareImage.png */,
 				1710D6751AC432C20083A297 /* privacy.html */,
+				A1FB1B511B42DF5C0031AB5E /* ShareImage.png */,
 				1710D6731AC432550083A297 /* AVOSCloud.bundle */,
 			);
 			name = Resources;
@@ -608,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17945CA71B28325C00643A97 /* Snowflake@3x.png in Resources */,
+				A1FB1B521B42DF5C0031AB5E /* ShareImage.png in Resources */,
 				1710D6741AC432550083A297 /* AVOSCloud.bundle in Resources */,
 				A14E79871B41264700637A90 /* SZTHomeCell.xib in Resources */,
 				17945C9F1B2824B100643A97 /* Cloudy@3x.png in Resources */,
@@ -619,7 +620,6 @@
 				17945CA61B28325C00643A97 /* Snowflake@2x.png in Resources */,
 				1701B64F1AB684DA00DAF6FC /* Images.xcassets in Resources */,
 				17945CA21B2824B100643A97 /* Lightnings@2x.png in Resources */,
-				17B500CF1AC69AA900426434 /* ShareImage.png in Resources */,
 				17945C9A1B2824B100643A97 /* Sunny@2x.png in Resources */,
 				17945C9C1B2824B100643A97 /* Foggy@2x.png in Resources */,
 				17945C9B1B2824B100643A97 /* Sunny@3x.png in Resources */,

@@ -70,9 +70,6 @@
 		A14E79821B3D911A00637A90 /* SZTHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79811B3D911A00637A90 /* SZTHomeCell.m */; };
 		A14E79851B3D9A0900637A90 /* SZTHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79841B3D9A0900637A90 /* SZTHomeModel.m */; };
 		A14E79871B41264700637A90 /* SZTHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E79861B41264700637A90 /* SZTHomeCell.xib */; };
-		A14E798A1B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79891B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.m */; };
-		A14E798D1B41355000637A90 /* OrangeView.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E798C1B41355000637A90 /* OrangeView.m */; };
-		A14E79901B4136B200637A90 /* CategoriesLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E798F1B4136B200637A90 /* CategoriesLayout.m */; };
 		A14E79931B413E4E00637A90 /* SZTHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */; };
 		A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
@@ -202,12 +199,6 @@
 		A14E79831B3D9A0900637A90 /* SZTHomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeModel.h; path = Home/SZTHomeModel.h; sourceTree = "<group>"; };
 		A14E79841B3D9A0900637A90 /* SZTHomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeModel.m; path = Home/SZTHomeModel.m; sourceTree = "<group>"; };
 		A14E79861B41264700637A90 /* SZTHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SZTHomeCell.xib; path = Home/SZTHomeCell.xib; sourceTree = "<group>"; };
-		A14E79881B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UICollectionViewFlowLayout+Helpers.h"; path = "Home/UICollectionViewFlowLayout+Helpers.h"; sourceTree = "<group>"; };
-		A14E79891B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UICollectionViewFlowLayout+Helpers.m"; path = "Home/UICollectionViewFlowLayout+Helpers.m"; sourceTree = "<group>"; };
-		A14E798B1B41355000637A90 /* OrangeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrangeView.h; path = Home/OrangeView.h; sourceTree = "<group>"; };
-		A14E798C1B41355000637A90 /* OrangeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrangeView.m; path = Home/OrangeView.m; sourceTree = "<group>"; };
-		A14E798E1B4136B200637A90 /* CategoriesLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesLayout.h; path = Home/CategoriesLayout.h; sourceTree = "<group>"; };
-		A14E798F1B4136B200637A90 /* CategoriesLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesLayout.m; path = Home/CategoriesLayout.m; sourceTree = "<group>"; };
 		A14E79911B413E4E00637A90 /* SZTHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeHeaderView.h; path = Home/SZTHomeHeaderView.h; sourceTree = "<group>"; };
 		A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeHeaderView.m; path = Home/SZTHomeHeaderView.m; sourceTree = "<group>"; };
 		A1C97B721B3D4A750014A7EF /* SZTHomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeCollectionViewController.h; path = Home/SZTHomeCollectionViewController.h; sourceTree = "<group>"; };
@@ -323,12 +314,6 @@
 				A14E79861B41264700637A90 /* SZTHomeCell.xib */,
 				A14E79831B3D9A0900637A90 /* SZTHomeModel.h */,
 				A14E79841B3D9A0900637A90 /* SZTHomeModel.m */,
-				A14E79881B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.h */,
-				A14E79891B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.m */,
-				A14E798B1B41355000637A90 /* OrangeView.h */,
-				A14E798C1B41355000637A90 /* OrangeView.m */,
-				A14E798E1B4136B200637A90 /* CategoriesLayout.h */,
-				A14E798F1B4136B200637A90 /* CategoriesLayout.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -711,7 +696,6 @@
 				1719C5C11AE2861F000D161B /* Shebao.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
-				A14E79901B4136B200637A90 /* CategoriesLayout.m in Sources */,
 				17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */,
 				A14E79851B3D9A0900637A90 /* SZTHomeModel.m in Sources */,
 				17C25C691ABBC78A007942A5 /* SZTResultListController.m in Sources */,
@@ -729,7 +713,6 @@
 				A14E79821B3D911A00637A90 /* SZTHomeCell.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
-				A14E798A1B4133FA00637A90 /* UICollectionViewFlowLayout+Helpers.m in Sources */,
 				172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */,
@@ -743,7 +726,6 @@
 				17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */,
 				1701B6A01AB812FC00DAF6FC /* SZTResultModel.m in Sources */,
 				1701B6441AB684DA00DAF6FC /* main.m in Sources */,
-				A14E798D1B41355000637A90 /* OrangeView.m in Sources */,
 				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
 				1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */,

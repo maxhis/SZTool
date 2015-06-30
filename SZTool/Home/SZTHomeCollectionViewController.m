@@ -14,8 +14,6 @@
 #import "SZTYaohaoViewController.h"
 #import "SZTWeizhangViewController.h"
 #import "SZTAboutViewController.h"
-#import "CategoriesLayout.h"
-#import "OrangeView.h"
 #import "SZTHomeHeaderView.h"
 #import "SZTAccountManagerController.h"
 
@@ -42,7 +40,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     
     self.title = APP_NAME;
 
-    CategoriesLayout *flowLayout = [[CategoriesLayout alloc] init];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:flowLayout];
     _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.dataSource = self;

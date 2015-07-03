@@ -81,7 +81,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
         [UIAlertView showWithTitle:@"期待您的声音"
                            message:@"对深圳通还满意吗？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
                  cancelButtonTitle:@"下次吧"
-                 otherButtonTitles:@[@"去评分", @"反馈意见"]
+                 otherButtonTitles:@[@"五星好评", @"反馈意见"]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                               _querySuccess = false;
                               if (buttonIndex == alertView.cancelButtonIndex)
@@ -96,8 +96,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
                               }
                               else if(buttonIndex == alertView.firstOtherButtonIndex + 1)
                               {
-                                  AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
-                                  [agent showConversations:self title:@"用户反馈" contact:nil];
+                                  [self feedback];
                                   [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
                                   [AVAnalytics event:@"用户选择去反馈"];
                               }

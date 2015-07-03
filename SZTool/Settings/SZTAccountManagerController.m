@@ -62,7 +62,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
 {
-    return @"可以在这里查看已保存的所有账号信息，并可一键查询；也可以增加或删除任意账号信息。";
+    return @"可以在这里查看已保存的所有账号信息，并可一键查询；也可以增加或删除任意账号信息，所有改动都会自动iCloud同步。";
 }
 
 # pragma mark - UITableViewDelegate

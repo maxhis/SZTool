@@ -135,8 +135,7 @@
             
         case 2:
         {
-            AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
-            [agent showConversations:self title:@"用户反馈" contact:nil];
+            [self feedback];
         }
             break;
             

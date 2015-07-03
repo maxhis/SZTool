@@ -66,6 +66,9 @@
 		17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7941D1AD64B80006FEBA1 /* SZTWeizhangResultController.m */; };
 		17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FC55601AD224D500BAA1A7 /* SZTWeizhangService.m */; };
 		17FC55641AD2270100BAA1A7 /* SZTWeizhangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FC55631AD2270100BAA1A7 /* SZTWeizhangViewController.m */; };
+		A1331A641B4638F300BA2D89 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331A631B4638F300BA2D89 /* MessageUI.framework */; };
+		A1331A6B1B46D05400BA2D89 /* SZTViewController+Feedback.m in Sources */ = {isa = PBXBuildFile; fileRef = A1331A6A1B46D05400BA2D89 /* SZTViewController+Feedback.m */; };
+		A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1331A6D1B46D90D00BA2D89 /* SZTDeviceUtil.m */; };
 		A14E79821B3D911A00637A90 /* SZTHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79811B3D911A00637A90 /* SZTHomeCell.m */; };
 		A14E79851B3D9A0900637A90 /* SZTHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79841B3D9A0900637A90 /* SZTHomeModel.m */; };
 		A14E79871B41264700637A90 /* SZTHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E79861B41264700637A90 /* SZTHomeCell.xib */; };
@@ -193,6 +196,11 @@
 		17FC55621AD2270100BAA1A7 /* SZTWeizhangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTWeizhangViewController.h; path = Weizhang/SZTWeizhangViewController.h; sourceTree = "<group>"; };
 		17FC55631AD2270100BAA1A7 /* SZTWeizhangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTWeizhangViewController.m; path = Weizhang/SZTWeizhangViewController.m; sourceTree = "<group>"; };
 		17FC55651AD2275000BAA1A7 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexString.h"; path = "Category/UIColor+HexString.h"; sourceTree = "<group>"; };
+		A1331A631B4638F300BA2D89 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A1331A691B46D05400BA2D89 /* SZTViewController+Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SZTViewController+Feedback.h"; path = "Base/SZTViewController+Feedback.h"; sourceTree = "<group>"; };
+		A1331A6A1B46D05400BA2D89 /* SZTViewController+Feedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SZTViewController+Feedback.m"; path = "Base/SZTViewController+Feedback.m"; sourceTree = "<group>"; };
+		A1331A6C1B46D90D00BA2D89 /* SZTDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTDeviceUtil.h; path = Utils/SZTDeviceUtil.h; sourceTree = "<group>"; };
+		A1331A6D1B46D90D00BA2D89 /* SZTDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTDeviceUtil.m; path = Utils/SZTDeviceUtil.m; sourceTree = "<group>"; };
 		A14E79801B3D911A00637A90 /* SZTHomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeCell.h; path = Home/SZTHomeCell.h; sourceTree = "<group>"; };
 		A14E79811B3D911A00637A90 /* SZTHomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeCell.m; path = Home/SZTHomeCell.m; sourceTree = "<group>"; };
 		A14E79831B3D9A0900637A90 /* SZTHomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeModel.h; path = Home/SZTHomeModel.h; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1331A641B4638F300BA2D89 /* MessageUI.framework in Frameworks */,
 				17C25C661ABBBB49007942A5 /* libxml2.dylib in Frameworks */,
 				E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */,
 			);
@@ -359,9 +368,11 @@
 				1710D63E1AC2F7830083A297 /* DTPlaceHolderTextView.m */,
 				1701B6851AB6D99000DAF6FC /* SZTViewController.h */,
 				1701B6861AB6D99000DAF6FC /* SZTViewController.m */,
-				17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */,
+				A1331A691B46D05400BA2D89 /* SZTViewController+Feedback.h */,
+				A1331A6A1B46D05400BA2D89 /* SZTViewController+Feedback.m */,
 				1719C5C81AE2B78F000D161B /* SZTInputViewController.h */,
 				1719C5C91AE2B78F000D161B /* SZTInputViewController.m */,
+				17C25C4F1ABACFFD007942A5 /* SZTResultItem.h */,
 				17C25C501ABACFFD007942A5 /* SZTResultItem.m */,
 			);
 			name = Base;
@@ -447,6 +458,8 @@
 			children = (
 				17945C721B272BB900643A97 /* BaiduAPIUtils.h */,
 				17945C731B272BB900643A97 /* BaiduAPIUtils.m */,
+				A1331A6C1B46D90D00BA2D89 /* SZTDeviceUtil.h */,
+				A1331A6D1B46D90D00BA2D89 /* SZTDeviceUtil.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -502,6 +515,7 @@
 		3957B37334DAFA851AFF0619 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1331A631B4638F300BA2D89 /* MessageUI.framework */,
 				17C25C651ABBBB49007942A5 /* libxml2.dylib */,
 				17C25C631ABBBB09007942A5 /* libxml2.2.dylib */,
 				0A3A3AF0D84C66D4C38586C7 /* libPods.a */,
@@ -718,9 +732,11 @@
 				170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */,
 				1719C5C41AE2861F000D161B /* Yaohao.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
+				A1331A6B1B46D05400BA2D89 /* SZTViewController+Feedback.m in Sources */,
 				170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */,
 				17945C771B27DC2A00643A97 /* SZTWidgetView.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
+				A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,
 				17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */,

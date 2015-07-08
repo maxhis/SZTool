@@ -32,7 +32,7 @@
 
 #define kUserDefaultKeyLastVersion          @"UserDefaultKeyLastVersion"
 #define kUserDefaultKeyRemainPromotingTime  @"UserDefaultRemainPromotingTime"
-#define kMaxPromotingTime                   3
+#define kMaxPromotingTime                   1
 
 
 // 用户行为统计的key

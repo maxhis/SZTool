@@ -69,8 +69,6 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     {
         [self showPromotingAlertIfNeed];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshWeatherNotification object:nil];
 }
 
 /**

@@ -34,8 +34,6 @@
 #define kUserDefaultKeyRemainPromotingTime  @"UserDefaultRemainPromotingTime"
 #define kMaxPromotingTime                   1
 
-#define kRefreshWeatherNotification         @"RefreshWeatherNotification"
-
 
 // 用户行为统计的key
 #define kRefreshVerifyCodeGongjijin         @"刷新公积金验证码"

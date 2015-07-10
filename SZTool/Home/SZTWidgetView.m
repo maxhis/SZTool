@@ -37,7 +37,7 @@
 
 - (void)didMoveToSuperview
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kRefreshWeatherNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)dealloc

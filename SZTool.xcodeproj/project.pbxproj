@@ -66,6 +66,7 @@
 		17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7941D1AD64B80006FEBA1 /* SZTWeizhangResultController.m */; };
 		17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FC55601AD224D500BAA1A7 /* SZTWeizhangService.m */; };
 		17FC55641AD2270100BAA1A7 /* SZTWeizhangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17FC55631AD2270100BAA1A7 /* SZTWeizhangViewController.m */; };
+		A12777221B4EAF04007E0AAC /* SZTGasPriceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A12777211B4EAF04007E0AAC /* SZTGasPriceViewController.m */; };
 		A1331A641B4638F300BA2D89 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1331A631B4638F300BA2D89 /* MessageUI.framework */; };
 		A1331A6B1B46D05400BA2D89 /* SZTViewController+Feedback.m in Sources */ = {isa = PBXBuildFile; fileRef = A1331A6A1B46D05400BA2D89 /* SZTViewController+Feedback.m */; };
 		A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1331A6D1B46D90D00BA2D89 /* SZTDeviceUtil.m */; };
@@ -196,6 +197,8 @@
 		17FC55621AD2270100BAA1A7 /* SZTWeizhangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTWeizhangViewController.h; path = Weizhang/SZTWeizhangViewController.h; sourceTree = "<group>"; };
 		17FC55631AD2270100BAA1A7 /* SZTWeizhangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTWeizhangViewController.m; path = Weizhang/SZTWeizhangViewController.m; sourceTree = "<group>"; };
 		17FC55651AD2275000BAA1A7 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+HexString.h"; path = "Category/UIColor+HexString.h"; sourceTree = "<group>"; };
+		A12777201B4EAF04007E0AAC /* SZTGasPriceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTGasPriceViewController.h; path = Gas/SZTGasPriceViewController.h; sourceTree = "<group>"; };
+		A12777211B4EAF04007E0AAC /* SZTGasPriceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTGasPriceViewController.m; path = Gas/SZTGasPriceViewController.m; sourceTree = "<group>"; };
 		A1331A631B4638F300BA2D89 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A1331A691B46D05400BA2D89 /* SZTViewController+Feedback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SZTViewController+Feedback.h"; path = "Base/SZTViewController+Feedback.h"; sourceTree = "<group>"; };
 		A1331A6A1B46D05400BA2D89 /* SZTViewController+Feedback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SZTViewController+Feedback.m"; path = "Base/SZTViewController+Feedback.m"; sourceTree = "<group>"; };
@@ -270,6 +273,7 @@
 				1701B6A41AB8598600DAF6FC /* Shebao */,
 				1701B68E1AB6E96400DAF6FC /* Yaohao */,
 				17FC555E1AD2247300BAA1A7 /* Weizhang */,
+				A127771F1B4EAEC5007E0AAC /* Gas */,
 				1710D6361AC2DCA00083A297 /* Settings */,
 				1710D6721AC432350083A297 /* Resources */,
 				1701B64E1AB684DA00DAF6FC /* Images.xcassets */,
@@ -523,6 +527,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A127771F1B4EAEC5007E0AAC /* Gas */ = {
+			isa = PBXGroup;
+			children = (
+				A12777201B4EAF04007E0AAC /* SZTGasPriceViewController.h */,
+				A12777211B4EAF04007E0AAC /* SZTGasPriceViewController.m */,
+			);
+			name = Gas;
+			sourceTree = "<group>";
+		};
 		CFEBFA895B75E93A27AB11A0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -707,6 +720,7 @@
 				179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */,
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
 				1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */,
+				A12777221B4EAF04007E0AAC /* SZTGasPriceViewController.m in Sources */,
 				1719C5C11AE2861F000D161B /* Shebao.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,

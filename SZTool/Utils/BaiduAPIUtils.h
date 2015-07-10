@@ -55,4 +55,28 @@ typedef void (^APIDoneBlock)(NSDictionary *result, NSError *error);
  */
 + (void)fetchWeatherDataV2:(APIDoneBlock)doneBlock;
 
+/**
+ *  查询今日油价
+ *
+ *  <pre>
+ {
+	"showapi_res_code": 0,
+	"showapi_res_error": "",
+	"showapi_res_body": {
+ "list": [
+ {
+ "p0": "6.05",
+ "p90": "5.95",
+ "p93": "6.41",
+ "p97": "6.8",
+ "prov": "浙江"
+ }
+ ],
+ "ret_code": 0
+	}
+ }
+ *  </pre>
+ */
++ (void)fetchGasPriceOfProvinc:(NSString *)province doneBlock:(APIDoneBlock)doneBlock;
+
 @end

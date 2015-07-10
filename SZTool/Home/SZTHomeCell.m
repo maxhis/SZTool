@@ -40,4 +40,10 @@
     self.titleLabel.textColor = [UIColor dt_colorWithHexString:@"f0f6fc"];
 }
 
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    [self setNeedsDisplay];
+}
+
 @end

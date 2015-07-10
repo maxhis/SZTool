@@ -11,6 +11,7 @@
 
 static NSString *const kWeatherUrl  = @"http://apis.baidu.com/apistore/weatherservice/weather";
 static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservice/aqi";
+static NSString *const kGasPriceUrl = @"http://apis.baidu.com/showapi_open_bus/oil_price/find";
 static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/101280601.shtml";
 
 @implementation BaiduAPIUtils
@@ -110,6 +111,33 @@ static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/1012806
              if ([data isKindOfClass:[NSDictionary class]]) {
                  doneBlock(data, nil);
              }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             doneBlock(nil, error);
+         }];
+}
+
++ (void)fetchGasPriceOfProvinc:(NSString *)province doneBlock:(APIDoneBlock)doneBlock;
+{
+    static AFHTTPRequestOperationManager *manager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [AFHTTPRequestOperationManager manager];
+        [manager.requestSerializer setValue:kBaiduAPIKey forHTTPHeaderField:@"apikey"];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    });
+    
+    NSDictionary *params = @{@"prov" : province};
+    [manager GET:kGasPriceUrl
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *result = (NSDictionary *)responseObject;
+             NSDictionary *resultBody = result[@"showapi_res_body"];
+             NSArray *data = resultBody[@"list"];
+             if(data.count > 0) {
+                 doneBlock(data[0], nil);
+             }
+//             NSLog(@"%@", responseObject);
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              doneBlock(nil, error);

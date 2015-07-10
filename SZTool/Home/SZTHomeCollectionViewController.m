@@ -16,6 +16,7 @@
 #import "SZTAboutViewController.h"
 #import "SZTHomeHeaderView.h"
 #import "SZTAccountManagerController.h"
+#import "SZTGasPriceViewController.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 static NSString *HeaderIdentifier = @"HeaderIdentifier";
@@ -58,6 +59,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     bgView.image = [UIImage imageNamed:@"home_bg"];
     [self.view addSubview:bgView];
     [self.view sendSubviewToBack:bgView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,12 +110,13 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
 {
     if (_dataSource == nil) {
         SZTHomeModel *gongjijin = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gongjijin"] title:@"公积金"];
-        SZTHomeModel *shebao = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"shebao"] title:@"社保"];
-        SZTHomeModel *yaohao = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"yaohao"] title:@"汽车摇号"];
-        SZTHomeModel *weizhang = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"weizhang"] title:@"粤牌违章"];
-        SZTHomeModel *settings = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"settings"] title:@"账户管理"];
-        SZTHomeModel *about = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"about"] title:@"关于"];
-        _dataSource = @[gongjijin, shebao, yaohao, weizhang, settings, about];
+        SZTHomeModel *shebao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"shebao"] title:@"社保"];
+        SZTHomeModel *yaohao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"yaohao"] title:@"汽车摇号"];
+        SZTHomeModel *weizhang  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"weizhang"] title:@"粤牌违章"];
+        SZTHomeModel *gasPrice  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gas"] title:@"今日油价"];
+        SZTHomeModel *settings  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"settings"] title:@"账户管理"];
+        SZTHomeModel *about     = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"about"] title:@"关于"];
+        _dataSource = @[gongjijin, shebao, yaohao, weizhang, gasPrice, settings, about];
     }
     
     return _dataSource;
@@ -181,6 +184,11 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
             break;
             
         case 4: {
+            destVC = [[SZTGasPriceViewController alloc] init];
+        }
+            break;
+            
+        case 5: {
             destVC = [[SZTAccountManagerController alloc] init];
         }
             break;

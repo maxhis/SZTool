@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *descView;
 @property (weak, nonatomic) IBOutlet UILabel *degreeView;
 
+@property (nonatomic, assign) WidgetType type;
+
 @end
 
 @implementation SZTWidgetView
@@ -27,14 +29,30 @@
         self = [[[NSBundle mainBundle] loadNibNamed:[NSString stringWithFormat:@"%@", [self class]] owner:self options:nil] firstObject];
         self.frame = frame;
         
-        if (type == WidgetTypeWeather) {
-            [self setupWeather];
-        }
-        else {
-            [self setupAir];
-        }
+        _type = type;
+        [self refreshData];
     }
     return self;
+}
+
+- (void)didMoveToSuperview
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:kRefreshWeatherNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)refreshData
+{
+    if (_type == WidgetTypeWeather) {
+        [self setupWeather];
+    }
+    else {
+        [self setupAir];
+    }
 }
 
 - (void)setupWeather

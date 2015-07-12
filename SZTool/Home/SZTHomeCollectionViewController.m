@@ -116,7 +116,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
         SZTHomeModel *gasPrice  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gas"] title:@"今日油价"];
         SZTHomeModel *settings  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"settings"] title:@"账户管理"];
         SZTHomeModel *about     = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"about"] title:@"关于"];
-        _dataSource = @[gongjijin, shebao, yaohao, weizhang, gasPrice, settings, about];
+        _dataSource = @[gongjijin, shebao, yaohao, gasPrice, weizhang, settings, about];
     }
     
     return _dataSource;
@@ -177,13 +177,13 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
             destVC.queryStatusCallback = callback;
         }
             break;
-        case 3: {
+        case 4: {
             destVC = [[SZTWeizhangViewController alloc] init];
             destVC.queryStatusCallback = callback;
         }
             break;
             
-        case 4: {
+        case 3: {
             destVC = [[SZTGasPriceViewController alloc] init];
         }
             break;
@@ -202,18 +202,18 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
 
 #pragma mark – UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(120, 120);
+    return CGSizeMake(90, 120);
 }
 
 // the spacing between the cells, headers, and footers.
 - (UIEdgeInsets)collectionView:
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    CGFloat xMargin = 35;
+    CGFloat xMargin = 10;
     if (IS_IPHONE_6) {
-        xMargin = 50;
+        xMargin = 20;
     }
     else if (IS_IPHONE_6P) {
-        xMargin = 65;
+        xMargin = 35;
     }
     return UIEdgeInsetsMake(10, xMargin, 10, xMargin);
 }

@@ -30,6 +30,15 @@
 #define kUserDefaultKeyWeizhangChejiaNumber @"WeizhangChejiaNumber"
 #define kUserDefaultKeyWeizhangEngineNumber @"WeizhangEngineNumber"
 
+// 在线参数的key
+#define kRemoteGongjijinValid               @"gongjijinValid"
+#define kRemoteGasPriceValid                @"gasPriceValid"
+#define kRemoteShebaoValid                  @"shebaoValid"
+#define kRemoteWeizhangValid                @"weizhangValid"
+#define kRemoteYaohaoValid                  @"yaohaoValid"
+#define kRemoteFeedbackEmail                @"feedbackEmail"
+#define kRemoteHomeNotice                   @"homeNotice"
+
 #define kUserDefaultKeyLastVersion          @"UserDefaultKeyLastVersion"
 #define kUserDefaultKeyRemainPromotingTime  @"UserDefaultRemainPromotingTime"
 #define kMaxPromotingTime                   1

@@ -27,4 +27,6 @@
 // urldecode
 - (NSString *)dt_urlDecode;
 
+-(BOOL)isValidEmail;
+
 @end

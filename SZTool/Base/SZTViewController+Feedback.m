@@ -9,6 +9,8 @@
 #import "SZTViewController+Feedback.h"
 #import "SZTDeviceUtil.h"
 
+static NSString *defaultEmail = @"me@15tar.com";
+
 @implementation SZTViewController (Feedback)
 
 - (void)feedback
@@ -29,7 +31,11 @@
     
     [mailer setSubject:@"用户反馈"];
     
-    NSArray *toRecipients = @[@"me@15tar.com"];
+    NSString *email = [AVAnalytics getConfigParams:kRemoteFeedbackEmail];
+    if (!email.isValidEmail) {
+        email = defaultEmail;
+    }
+    NSArray *toRecipients = @[email];
     [mailer setToRecipients:toRecipients];
     
     NSString *emailBody = [NSString stringWithFormat:@"请在此输入您的反馈意见。\n\n-----------\n%@", [self userInfo]];

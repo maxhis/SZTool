@@ -88,6 +88,11 @@
     
     [AVOSCloud setApplicationId:kAVOSAppId clientKey:kAVOSAppKey];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    // 获取在线参数
+    [AVAnalytics updateOnlineConfigWithBlock:^(NSDictionary *dict, NSError *error) {
+        
+    }];
 }
 
 /**

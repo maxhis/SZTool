@@ -39,6 +39,29 @@
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    if (_modelType == ModelTypeGongjijin && ![[AVAnalytics getConfigParams:kRemoteGongjijinValid] boolValue]) {
+        [self showAlertWithMessage:@"公积金查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+    }
+    else if (_modelType == ModelTypeShebao && ![[AVAnalytics getConfigParams:kRemoteShebaoValid] boolValue]) {
+        [self showAlertWithMessage:@"社保查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+    }
+    else if (_modelType == ModelTypeYaohao && ![[AVAnalytics getConfigParams:kRemoteYaohaoValid] boolValue]) {
+        [self showAlertWithMessage:@"摇号结果查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+    }
+    else if (_modelType == ModelTypeWeizhang && ![[AVAnalytics getConfigParams:kRemoteWeizhangValid] boolValue]) {
+        [self showAlertWithMessage:@"违章查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+    }
+}
+
+- (void)showAlertWithMessage:(NSString *)message
+{
+    [UIAlertView showWithTitle:nil message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [self.navigationController popViewControllerAnimated:NO];
+    }];
+}
+
 - (void)setTitle:(NSString *)title
 {
     [super setTitle:title];

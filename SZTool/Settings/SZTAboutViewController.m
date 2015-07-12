@@ -127,7 +127,7 @@
             
         case 1:
         {
-            NSString *text =  [NSString stringWithFormat:@"「%@」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、汽车摇号，还支持iCloud同步哦！", APP_NAME];
+            NSString *text =  [NSString stringWithFormat:@"「%@」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、今日油价、汽车摇号，还支持iCloud同步哦！", APP_NAME];
             [self shareText:text andImage:[UIImage imageNamed:@"ShareImage"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
             [AVAnalytics event:kShareApp];
         }

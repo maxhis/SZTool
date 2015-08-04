@@ -32,6 +32,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kVerifyCodeUrl]];
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    requestOperation.securityPolicy.allowInvalidCertificates = YES;
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         completionBlock(responseObject, nil);

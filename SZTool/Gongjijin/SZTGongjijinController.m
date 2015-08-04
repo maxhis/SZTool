@@ -111,6 +111,7 @@
 {
     _codeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_accountView.dt_left, _idView.dt_bottom + kTopEdge, kTextFieldWidthShort, kTextFieldHeight)];
     _codeView.borderStyle = UITextBorderStyleRoundedRect;
+    _codeView.keyboardType = UIKeyboardTypeNumberPad;
     _codeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     [_codeView setReturnKeyType:UIReturnKeyGo];
     _codeView.delegate = self;

@@ -49,6 +49,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
                      completion:(void (^)(SZTResultModel *model, NSError *error))completionBlock
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *params = @{@"bacode": accountNumber,
                              @"id":IDNumber,

@@ -31,10 +31,6 @@
 		1710D6761AC432C20083A297 /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 1710D6751AC432C20083A297 /* privacy.html */; };
 		1719C5B41AE2283E000D161B /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5B31AE2283E000D161B /* UIColor+HexString.m */; };
 		1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */; };
-		1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5BA1AE2861E000D161B /* Weizhang.m */; };
-		1719C5BE1AE2861F000D161B /* Gongjijin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5BD1AE2861F000D161B /* Gongjijin.m */; };
-		1719C5C11AE2861F000D161B /* Shebao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C01AE2861F000D161B /* Shebao.m */; };
-		1719C5C41AE2861F000D161B /* Yaohao.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C31AE2861F000D161B /* Yaohao.m */; };
 		1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5C91AE2B78F000D161B /* SZTInputViewController.m */; };
 		1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1719C5D01AE35205000D161B /* SZTAccountTableView.m */; };
 		172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DDD351AD7FF3E00013157 /* UIImageView+Indicator.m */; };
@@ -74,6 +70,13 @@
 		A14E79851B3D9A0900637A90 /* SZTHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79841B3D9A0900637A90 /* SZTHomeModel.m */; };
 		A14E79871B41264700637A90 /* SZTHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A14E79861B41264700637A90 /* SZTHomeCell.xib */; };
 		A14E79931B413E4E00637A90 /* SZTHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */; };
+		A1512EB41B74922A0076CFC3 /* Shebao.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512EB31B74922A0076CFC3 /* Shebao.m */; };
+		A1512EB71B74922B0076CFC3 /* Weizhang.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512EB61B74922B0076CFC3 /* Weizhang.m */; };
+		A1512EBD1B74922B0076CFC3 /* Gongjijin.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512EBC1B74922B0076CFC3 /* Gongjijin.m */; };
+		A1512EC31B74922B0076CFC3 /* Yaohao.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512EC21B74922B0076CFC3 /* Yaohao.m */; };
+		A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */; };
+		A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */; };
+		A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ED11B74F2360076CFC3 /* DTDateUtil.m */; };
 		A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */; };
 		A1FB1B521B42DF5C0031AB5E /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FB1B511B42DF5C0031AB5E /* ShareImage.png */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
@@ -140,14 +143,6 @@
 		1719C5B21AE1FD29000D161B /* SZTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SZTool.entitlements; sourceTree = "<group>"; };
 		1719C5B31AE2283E000D161B /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+HexString.m"; path = "Category/UIColor+HexString.m"; sourceTree = "<group>"; };
 		1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SZTool.xcdatamodel; sourceTree = "<group>"; };
-		1719C5B91AE2861E000D161B /* Weizhang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weizhang.h; path = Models/Weizhang.h; sourceTree = "<group>"; };
-		1719C5BA1AE2861E000D161B /* Weizhang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weizhang.m; path = Models/Weizhang.m; sourceTree = "<group>"; };
-		1719C5BC1AE2861F000D161B /* Gongjijin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gongjijin.h; path = Models/Gongjijin.h; sourceTree = "<group>"; };
-		1719C5BD1AE2861F000D161B /* Gongjijin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gongjijin.m; path = Models/Gongjijin.m; sourceTree = "<group>"; };
-		1719C5BF1AE2861F000D161B /* Shebao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shebao.h; path = Models/Shebao.h; sourceTree = "<group>"; };
-		1719C5C01AE2861F000D161B /* Shebao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shebao.m; path = Models/Shebao.m; sourceTree = "<group>"; };
-		1719C5C21AE2861F000D161B /* Yaohao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Yaohao.h; path = Models/Yaohao.h; sourceTree = "<group>"; };
-		1719C5C31AE2861F000D161B /* Yaohao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Yaohao.m; path = Models/Yaohao.m; sourceTree = "<group>"; };
 		1719C5C81AE2B78F000D161B /* SZTInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTInputViewController.h; path = Base/SZTInputViewController.h; sourceTree = "<group>"; };
 		1719C5C91AE2B78F000D161B /* SZTInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTInputViewController.m; path = Base/SZTInputViewController.m; sourceTree = "<group>"; };
 		1719C5CF1AE35205000D161B /* SZTAccountTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTAccountTableView.h; path = DropdownMenu/SZTAccountTableView.h; sourceTree = "<group>"; };
@@ -211,6 +206,20 @@
 		A14E79861B41264700637A90 /* SZTHomeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SZTHomeCell.xib; path = Home/SZTHomeCell.xib; sourceTree = "<group>"; };
 		A14E79911B413E4E00637A90 /* SZTHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeHeaderView.h; path = Home/SZTHomeHeaderView.h; sourceTree = "<group>"; };
 		A14E79921B413E4E00637A90 /* SZTHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeHeaderView.m; path = Home/SZTHomeHeaderView.m; sourceTree = "<group>"; };
+		A1512EB21B74922A0076CFC3 /* Shebao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shebao.h; path = Models/Shebao.h; sourceTree = "<group>"; };
+		A1512EB31B74922A0076CFC3 /* Shebao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Shebao.m; path = Models/Shebao.m; sourceTree = "<group>"; };
+		A1512EB51B74922B0076CFC3 /* Weizhang.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Weizhang.h; path = Models/Weizhang.h; sourceTree = "<group>"; };
+		A1512EB61B74922B0076CFC3 /* Weizhang.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Weizhang.m; path = Models/Weizhang.m; sourceTree = "<group>"; };
+		A1512EBB1B74922B0076CFC3 /* Gongjijin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gongjijin.h; path = Models/Gongjijin.h; sourceTree = "<group>"; };
+		A1512EBC1B74922B0076CFC3 /* Gongjijin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Gongjijin.m; path = Models/Gongjijin.m; sourceTree = "<group>"; };
+		A1512EC11B74922B0076CFC3 /* Yaohao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Yaohao.h; path = Models/Yaohao.h; sourceTree = "<group>"; };
+		A1512EC21B74922B0076CFC3 /* Yaohao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Yaohao.m; path = Models/Yaohao.m; sourceTree = "<group>"; };
+		A1512ECA1B74B61F0076CFC3 /* ShebaoResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShebaoResult.h; path = Models/ShebaoResult.h; sourceTree = "<group>"; };
+		A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShebaoResult.m; path = Models/ShebaoResult.m; sourceTree = "<group>"; };
+		A1512ECD1B74B6200076CFC3 /* GongjijinResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GongjijinResult.h; path = Models/GongjijinResult.h; sourceTree = "<group>"; };
+		A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GongjijinResult.m; path = Models/GongjijinResult.m; sourceTree = "<group>"; };
+		A1512ED01B74F2360076CFC3 /* DTDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDateUtil.h; sourceTree = "<group>"; };
+		A1512ED11B74F2360076CFC3 /* DTDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDateUtil.m; sourceTree = "<group>"; };
 		A1C97B721B3D4A750014A7EF /* SZTHomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeCollectionViewController.h; path = Home/SZTHomeCollectionViewController.h; sourceTree = "<group>"; };
 		A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeCollectionViewController.m; path = Home/SZTHomeCollectionViewController.m; sourceTree = "<group>"; };
 		A1FB1B511B42DF5C0031AB5E /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
@@ -435,15 +444,19 @@
 		1719C5B51AE2284A000D161B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A1512ECD1B74B6200076CFC3 /* GongjijinResult.h */,
+				A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */,
+				A1512ECA1B74B61F0076CFC3 /* ShebaoResult.h */,
+				A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */,
 				1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */,
-				1719C5C21AE2861F000D161B /* Yaohao.h */,
-				1719C5C31AE2861F000D161B /* Yaohao.m */,
-				1719C5BF1AE2861F000D161B /* Shebao.h */,
-				1719C5C01AE2861F000D161B /* Shebao.m */,
-				1719C5BC1AE2861F000D161B /* Gongjijin.h */,
-				1719C5BD1AE2861F000D161B /* Gongjijin.m */,
-				1719C5B91AE2861E000D161B /* Weizhang.h */,
-				1719C5BA1AE2861E000D161B /* Weizhang.m */,
+				A1512EC11B74922B0076CFC3 /* Yaohao.h */,
+				A1512EC21B74922B0076CFC3 /* Yaohao.m */,
+				A1512EBB1B74922B0076CFC3 /* Gongjijin.h */,
+				A1512EBC1B74922B0076CFC3 /* Gongjijin.m */,
+				A1512EB51B74922B0076CFC3 /* Weizhang.h */,
+				A1512EB61B74922B0076CFC3 /* Weizhang.m */,
+				A1512EB21B74922A0076CFC3 /* Shebao.h */,
+				A1512EB31B74922A0076CFC3 /* Shebao.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -460,6 +473,8 @@
 		17945C711B272B6F00643A97 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A1512ED01B74F2360076CFC3 /* DTDateUtil.h */,
+				A1512ED11B74F2360076CFC3 /* DTDateUtil.m */,
 				17945C721B272BB900643A97 /* BaiduAPIUtils.h */,
 				17945C731B272BB900643A97 /* BaiduAPIUtils.m */,
 				A1331A6C1B46D90D00BA2D89 /* SZTDeviceUtil.h */,
@@ -719,38 +734,42 @@
 				1719C5B41AE2283E000D161B /* UIColor+HexString.m in Sources */,
 				179B58F81AF74E0300952883 /* SZTAccountListController.m in Sources */,
 				1701B6971AB71CAB00DAF6FC /* UIView+HUD.m in Sources */,
-				1719C5BB1AE2861E000D161B /* Weizhang.m in Sources */,
 				A12777221B4EAF04007E0AAC /* SZTGasPriceViewController.m in Sources */,
-				1719C5C11AE2861F000D161B /* Shebao.m in Sources */,
 				1701B6AA1AB85BB500DAF6FC /* SZTShebaoService.m in Sources */,
 				1701B6801AB6CAAD00DAF6FC /* UIView+Frame.m in Sources */,
+				A1512EC31B74922B0076CFC3 /* Yaohao.m in Sources */,
 				17C25C601ABB0083007942A5 /* HTMLNode.m in Sources */,
 				A14E79851B3D9A0900637A90 /* SZTHomeModel.m in Sources */,
 				17C25C691ABBC78A007942A5 /* SZTResultListController.m in Sources */,
 				1710D63F1AC2F7830083A297 /* DTPlaceHolderTextView.m in Sources */,
 				1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */,
+				A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
 				1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */,
 				A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */,
 				17C25C621ABB0083007942A5 /* README.md in Sources */,
+				A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */,
+				A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */,
 				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
 				1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */,
 				17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
 				17945C741B272BB900643A97 /* BaiduAPIUtils.m in Sources */,
+				A1512EB41B74922A0076CFC3 /* Shebao.m in Sources */,
 				A14E79821B3D911A00637A90 /* SZTHomeCell.m in Sources */,
 				1701B6911AB6E9B100DAF6FC /* SZTYaohaoViewController.m in Sources */,
 				1701B69D1AB7DC7100DAF6FC /* NSString+DT.m in Sources */,
 				172DDD361AD7FF3E00013157 /* UIImageView+Indicator.m in Sources */,
 				1701B6471AB684DA00DAF6FC /* AppDelegate.m in Sources */,
 				170F7D841AD5749C00ABD24E /* SZTWeizhangModel.m in Sources */,
-				1719C5C41AE2861F000D161B /* Yaohao.m in Sources */,
 				1710D6391AC2DD4A0083A297 /* SZTAboutViewController.m in Sources */,
 				A1331A6B1B46D05400BA2D89 /* SZTViewController+Feedback.m in Sources */,
 				170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */,
 				17945C771B27DC2A00643A97 /* SZTWidgetView.m in Sources */,
+				A1512EBD1B74922B0076CFC3 /* Gongjijin.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
 				A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */,
+				A1512EB71B74922B0076CFC3 /* Weizhang.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,
 				17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */,
@@ -759,7 +778,6 @@
 				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
 				1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */,
-				1719C5BE1AE2861F000D161B /* Gongjijin.m in Sources */,
 				A14E79931B413E4E00637A90 /* SZTHomeHeaderView.m in Sources */,
 				179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */,
 				17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */,

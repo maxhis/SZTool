@@ -9,6 +9,11 @@
 #import "SZTViewController.h"
 #import "SZTResultItem.h"
 
+typedef NS_ENUM(NSUInteger, ResultType) {
+    ResultTypeGongjijin,
+    ResultTypeShebao,
+};
+
 @interface RZTResultCell : UITableViewCell
 
 @property (nonatomic, strong) UILabel *nameView;
@@ -21,5 +26,7 @@
 @interface SZTResultListController : SZTViewController
 
 @property (nonatomic, copy) NSArray *dataSource;
+
+- (instancetype)initWithResultType:(ResultType)type account:(NSString *)account;
 
 @end

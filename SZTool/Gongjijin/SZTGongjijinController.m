@@ -266,7 +266,7 @@
                                                               if (model.success)
                                                               {
                                                                   [self saveUserData];
-                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] init];
+                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] initWithResultType:ResultTypeGongjijin account:_accountView.text];
                                                                   resultVC.dataSource = model.message;
                                                                   [self.navigationController pushViewController:resultVC animated:YES];
                                                                   self.shouldShowSaveAlert = YES;

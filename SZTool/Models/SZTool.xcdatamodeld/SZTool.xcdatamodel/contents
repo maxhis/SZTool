@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Gongjijin" representedClassName="Gongjijin" syncable="YES">
         <attribute name="accountNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identityNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="GongjijinResult" representedClassName="GongjijinResult" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="balance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="transferBalance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
     <entity name="Shebao" representedClassName="Shebao" syncable="YES">
         <attribute name="accountNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="identityNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ShebaoResult" representedClassName="ShebaoResult" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="yanglaoBalance" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yiliaoBalance" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Weizhang" representedClassName="Weizhang" syncable="YES">
         <attribute name="chejiaNumber" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +37,9 @@
     <elements>
         <element name="Gongjijin" positionX="-4457" positionY="-1962" width="128" height="88"/>
         <element name="Shebao" positionX="-4293" positionY="-1962" width="128" height="88"/>
-        <element name="Yaohao" positionX="-4455" positionY="-1845" width="128" height="88"/>
         <element name="Weizhang" positionX="-4295" positionY="-1845" width="128" height="118"/>
+        <element name="Yaohao" positionX="-4455" positionY="-1845" width="128" height="88"/>
+        <element name="GongjijinResult" positionX="-4347" positionY="-1836" width="128" height="105"/>
+        <element name="ShebaoResult" positionX="-4338" positionY="-1827" width="128" height="105"/>
     </elements>
 </model>

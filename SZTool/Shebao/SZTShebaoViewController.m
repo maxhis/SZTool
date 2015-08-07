@@ -73,7 +73,7 @@
     // 电脑号
     _accountView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
-//    _accountView.keyboardType = UIKeyboardTypeNumberPad;
+    _accountView.keyboardType = UIKeyboardTypeNumberPad;
     _accountView.placeholder = @"电脑号，9位数字";
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
@@ -264,7 +264,7 @@
                                                               {
                                                                   [self.view dt_cleanUp:YES];
                                                                   [self saveUserData];
-                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] init];
+                                                                  SZTResultListController *resultVC = [[SZTResultListController alloc] initWithResultType:ResultTypeShebao account:_accountView.text];
                                                                   resultVC.dataSource = model.message;
                                                                   resultVC.title = @"参保情况";
                                                                   [self.navigationController pushViewController:resultVC animated:YES];

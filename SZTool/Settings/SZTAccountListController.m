@@ -15,6 +15,8 @@
 #import "SZTShebaoViewController.h"
 #import "SZTYaohaoViewController.h"
 #import "SZTWeizhangViewController.h"
+#import "Buscard.h"
+#import "SZTBuscardViewController.h"
 
 @interface SZTAccountListController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
 
@@ -48,6 +50,10 @@
                 
             case ModelTypeShebao:
                 _fetchedResultsController = [Shebao MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
+                break;
+                
+            case ModelTypeBuscard:
+                _fetchedResultsController = [Buscard MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self];
                 break;
                 
             case ModelTypeYaohao:
@@ -127,6 +133,10 @@
             addVC = [[SZTShebaoViewController alloc] init];
             break;
             
+        case ModelTypeBuscard:
+            addVC = [[SZTBuscardViewController alloc] init];
+            break;
+            
         case ModelTypeYaohao:
             addVC = [[SZTYaohaoViewController alloc] init];
             break;
@@ -156,6 +166,10 @@
             
         case ModelTypeShebao:
             queryVC = [[SZTShebaoViewController alloc] init];
+            break;
+            
+        case ModelTypeBuscard:
+            queryVC = [[SZTBuscardViewController alloc] init];
             break;
             
         case ModelTypeYaohao:

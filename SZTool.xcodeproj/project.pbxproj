@@ -77,6 +77,10 @@
 		A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */; };
 		A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */; };
 		A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ED11B74F2360076CFC3 /* DTDateUtil.m */; };
+		A160A2421B848B0F004F4509 /* BuscardResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2411B848B0F004F4509 /* BuscardResult.m */; };
+		A160A2461B848BD9004F4509 /* SZTBuscardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2451B848BD9004F4509 /* SZTBuscardViewController.m */; };
+		A160A2491B85696D004F4509 /* SZTBuscardService.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2481B85696D004F4509 /* SZTBuscardService.m */; };
+		A160A24C1B859488004F4509 /* Buscard.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A24B1B859488004F4509 /* Buscard.m */; };
 		A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */; };
 		A1FB1B521B42DF5C0031AB5E /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FB1B511B42DF5C0031AB5E /* ShareImage.png */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };
@@ -220,6 +224,15 @@
 		A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GongjijinResult.m; path = Models/GongjijinResult.m; sourceTree = "<group>"; };
 		A1512ED01B74F2360076CFC3 /* DTDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDateUtil.h; sourceTree = "<group>"; };
 		A1512ED11B74F2360076CFC3 /* DTDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDateUtil.m; sourceTree = "<group>"; };
+		A160A2401B848B0F004F4509 /* BuscardResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuscardResult.h; path = Models/BuscardResult.h; sourceTree = "<group>"; };
+		A160A2411B848B0F004F4509 /* BuscardResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuscardResult.m; path = Models/BuscardResult.m; sourceTree = "<group>"; };
+		A160A2441B848BD9004F4509 /* SZTBuscardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTBuscardViewController.h; path = Buscard/SZTBuscardViewController.h; sourceTree = "<group>"; };
+		A160A2451B848BD9004F4509 /* SZTBuscardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTBuscardViewController.m; path = Buscard/SZTBuscardViewController.m; sourceTree = "<group>"; };
+		A160A2471B85696D004F4509 /* SZTBuscardService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTBuscardService.h; path = Buscard/SZTBuscardService.h; sourceTree = "<group>"; };
+		A160A2481B85696D004F4509 /* SZTBuscardService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTBuscardService.m; path = Buscard/SZTBuscardService.m; sourceTree = "<group>"; };
+		A160A24A1B859488004F4509 /* Buscard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Buscard.h; path = Models/Buscard.h; sourceTree = "<group>"; };
+		A160A24B1B859488004F4509 /* Buscard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Buscard.m; path = Models/Buscard.m; sourceTree = "<group>"; };
+		A160A24D1B85BCD6004F4509 /* version 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "version 2.xcdatamodel"; sourceTree = "<group>"; };
 		A1C97B721B3D4A750014A7EF /* SZTHomeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTHomeCollectionViewController.h; path = Home/SZTHomeCollectionViewController.h; sourceTree = "<group>"; };
 		A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTHomeCollectionViewController.m; path = Home/SZTHomeCollectionViewController.m; sourceTree = "<group>"; };
 		A1FB1B511B42DF5C0031AB5E /* ShareImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ShareImage.png; path = Resources/ShareImage.png; sourceTree = "<group>"; };
@@ -280,6 +293,7 @@
 				1701B66A1AB68B9900DAF6FC /* Home */,
 				1701B66E1AB6A8D600DAF6FC /* Gongjijin */,
 				1701B6A41AB8598600DAF6FC /* Shebao */,
+				A160A2431B848B94004F4509 /* Buscard */,
 				1701B68E1AB6E96400DAF6FC /* Yaohao */,
 				17FC555E1AD2247300BAA1A7 /* Weizhang */,
 				A127771F1B4EAEC5007E0AAC /* Gas */,
@@ -449,6 +463,10 @@
 				A1512ECA1B74B61F0076CFC3 /* ShebaoResult.h */,
 				A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */,
 				1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */,
+				A160A24A1B859488004F4509 /* Buscard.h */,
+				A160A24B1B859488004F4509 /* Buscard.m */,
+				A160A2401B848B0F004F4509 /* BuscardResult.h */,
+				A160A2411B848B0F004F4509 /* BuscardResult.m */,
 				A1512EC11B74922B0076CFC3 /* Yaohao.h */,
 				A1512EC21B74922B0076CFC3 /* Yaohao.m */,
 				A1512EBB1B74922B0076CFC3 /* Gongjijin.h */,
@@ -549,6 +567,17 @@
 				A12777211B4EAF04007E0AAC /* SZTGasPriceViewController.m */,
 			);
 			name = Gas;
+			sourceTree = "<group>";
+		};
+		A160A2431B848B94004F4509 /* Buscard */ = {
+			isa = PBXGroup;
+			children = (
+				A160A2441B848BD9004F4509 /* SZTBuscardViewController.h */,
+				A160A2451B848BD9004F4509 /* SZTBuscardViewController.m */,
+				A160A2471B85696D004F4509 /* SZTBuscardService.h */,
+				A160A2481B85696D004F4509 /* SZTBuscardService.m */,
+			);
+			name = Buscard;
 			sourceTree = "<group>";
 		};
 		CFEBFA895B75E93A27AB11A0 /* Pods */ = {
@@ -744,6 +773,7 @@
 				1710D63F1AC2F7830083A297 /* DTPlaceHolderTextView.m in Sources */,
 				1710D66F1AC3DC700083A297 /* SZTPrivacyViewController.m in Sources */,
 				A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */,
+				A160A24C1B859488004F4509 /* Buscard.m in Sources */,
 				1701B6871AB6D99000DAF6FC /* SZTViewController.m in Sources */,
 				1719C5D31AE35205000D161B /* SZTAccountTableView.m in Sources */,
 				A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */,
@@ -751,6 +781,7 @@
 				A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */,
 				A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */,
 				1701B6A31AB833D400DAF6FC /* SZTYaohaoService.m in Sources */,
+				A160A2491B85696D004F4509 /* SZTBuscardService.m in Sources */,
 				1719C5B81AE228D2000D161B /* SZTool.xcdatamodeld in Sources */,
 				17FC55611AD224D500BAA1A7 /* SZTWeizhangService.m in Sources */,
 				1701B68A1AB6DD3900DAF6FC /* SZTGongjijinService.m in Sources */,
@@ -767,6 +798,7 @@
 				170F7D811AD29C0B00ABD24E /* SZTCarTypeManager.m in Sources */,
 				17945C771B27DC2A00643A97 /* SZTWidgetView.m in Sources */,
 				A1512EBD1B74922B0076CFC3 /* Gongjijin.m in Sources */,
+				A160A2421B848B0F004F4509 /* BuscardResult.m in Sources */,
 				17C5A46C1AC19412001F8C9B /* UIAlertView+Blocks.m in Sources */,
 				A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */,
 				A1512EB71B74922B0076CFC3 /* Weizhang.m in Sources */,
@@ -778,6 +810,7 @@
 				17C25C511ABACFFD007942A5 /* SZTResultItem.m in Sources */,
 				17C25C611ABB0083007942A5 /* HTMLParser.m in Sources */,
 				1719C5CA1AE2B78F000D161B /* SZTInputViewController.m in Sources */,
+				A160A2461B848BD9004F4509 /* SZTBuscardViewController.m in Sources */,
 				A14E79931B413E4E00637A90 /* SZTHomeHeaderView.m in Sources */,
 				179B58F51AF740A200952883 /* SZTAccountManagerController.m in Sources */,
 				17EA4FC51AC63D2300F4B064 /* SZTHomeController.m in Sources */,
@@ -1004,9 +1037,10 @@
 		1719C5B61AE228D2000D161B /* SZTool.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				A160A24D1B85BCD6004F4509 /* version 2.xcdatamodel */,
 				1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */,
 			);
-			currentVersion = 1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */;
+			currentVersion = A160A24D1B85BCD6004F4509 /* version 2.xcdatamodel */;
 			name = SZTool.xcdatamodeld;
 			path = Models/SZTool.xcdatamodeld;
 			sourceTree = "<group>";

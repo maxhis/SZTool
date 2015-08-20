@@ -9,7 +9,7 @@
 #import "SZTAccountManagerController.h"
 #import "SZTAccountListController.h"
 
-#define kAccountTypes @[@"公积金账户",@"社保账户", @"查违章车辆", @"摇号申请码"]
+#define kAccountTypes @[@"公积金账户",@"社保账户", @"深圳通卡", @"查违章车辆", @"摇号申请码"]
 
 @interface SZTAccountManagerController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -84,11 +84,16 @@
             break;
             
         case 2:
+            modelType = ModelTypeBuscard;
+            title = @"深圳通卡账户";
+            break;
+            
+        case 3:
             modelType = ModelTypeWeizhang;
             title = @"违章账户";
             break;
             
-        case 3:
+        case 4:
             modelType = ModelTypeYaohao;
             title = @"摇号账户";
             break;

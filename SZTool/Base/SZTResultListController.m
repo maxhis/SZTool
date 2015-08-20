@@ -10,6 +10,7 @@
 #import "GongjijinResult.h"
 #import "DTDateUtil.h"
 #import "ShebaoResult.h"
+#import "BuscardResult.h"
 
 @interface SZTResultListController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -70,54 +71,58 @@
 {
     if (_type == ResultTypeGongjijin) {
         [self setupGongjijinHistory];
-        
-    } else if (_type == ResultTypeShebao) {
+    }
+    else if (_type == ResultTypeShebao) {
         [self setupShebaoHistory];
+    }
+    else if (_type == ResultTypeBuscard) {
+        [self setupBuscard];
     }
 }
 
 - (void)setupGongjijinHistory
 {
     GongjijinResult *gongjijin = [GongjijinResult MR_findFirstByAttribute:@"account" withValue:_account];
-        if (gongjijin) { // 先显示当前值
-            SZTResultItem *tmp = [[SZTResultItem alloc] init];
-            
-            // 余额
-            tmp = [[SZTResultItem alloc] init];
-            tmp.name = ((SZTResultItem *)_dataSource[2]).name;
-            tmp.value = gongjijin.balance;
-            [_historyData addObject:tmp];
-            
-            // 社保转移余额
-            tmp = [[SZTResultItem alloc] init];
-            tmp.name = ((SZTResultItem *)_dataSource[3]).name;
-            tmp.value = gongjijin.transferBalance;
-            [_historyData addObject:tmp];
-            
-            // 更新时间
-            tmp = [[SZTResultItem alloc] init];
-            tmp.name = @"查询时间:";
-            tmp.value = [DTDateUtil simpleDateStringWithDate:gongjijin.updatedAt];
-            [_historyData addObject:tmp];
-            
-        } else {
-            gongjijin = [GongjijinResult MR_createEntity];
-            gongjijin.account = _account;
-        }
+    if (gongjijin) { // 先显示当前值
+        SZTResultItem *tmp;
         
-        // 再更新
-        gongjijin.updatedAt = [NSDate date];
-        gongjijin.balance = ((SZTResultItem *)_dataSource[2]).value;
-        gongjijin.transferBalance = ((SZTResultItem *)_dataSource[3]).value;
-        NSManagedObjectContext *context = gongjijin.managedObjectContext;
-        [context MR_saveToPersistentStoreWithCompletion:nil];
+        // 余额
+        tmp = [[SZTResultItem alloc] init];
+        tmp.name = ((SZTResultItem *)_dataSource[2]).name;
+        tmp.value = gongjijin.balance;
+        [_historyData addObject:tmp];
+        
+        // 社保转移余额
+        tmp = [[SZTResultItem alloc] init];
+        tmp.name = ((SZTResultItem *)_dataSource[3]).name;
+        tmp.value = gongjijin.transferBalance;
+        [_historyData addObject:tmp];
+        
+        // 更新时间
+        tmp = [[SZTResultItem alloc] init];
+        tmp.name = @"查询时间:";
+        tmp.value = [DTDateUtil simpleDateStringWithDate:gongjijin.updatedAt];
+        [_historyData addObject:tmp];
+        
+    }
+    else {
+        gongjijin = [GongjijinResult MR_createEntity];
+        gongjijin.account = _account;
+    }
+    
+    // 再更新
+    gongjijin.updatedAt = [NSDate date];
+    gongjijin.balance = ((SZTResultItem *)_dataSource[2]).value;
+    gongjijin.transferBalance = ((SZTResultItem *)_dataSource[3]).value;
+    NSManagedObjectContext *context = gongjijin.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:nil];
 }
 
 - (void)setupShebaoHistory
 {
     ShebaoResult *shebao = [ShebaoResult MR_findFirstByAttribute:@"account" withValue:_account];
     if (shebao) { // 先显示当前值
-        SZTResultItem *tmp = [[SZTResultItem alloc] init];
+        SZTResultItem *tmp;
         
         // 养老余额
         tmp = [[SZTResultItem alloc] init];
@@ -137,7 +142,8 @@
         tmp.value = [DTDateUtil simpleDateStringWithDate:shebao.updatedAt];
         [_historyData addObject:tmp];
         
-    } else {
+    }
+    else {
         shebao = [ShebaoResult MR_createEntity];
         shebao.account = _account;
     }
@@ -147,6 +153,37 @@
     shebao.yanglaoBalance = ((SZTResultItem *)_dataSource[4]).value;
     shebao.yiliaoBalance = ((SZTResultItem *)_dataSource[5]).value;
     NSManagedObjectContext *context = shebao.managedObjectContext;
+    [context MR_saveToPersistentStoreWithCompletion:nil];
+}
+
+- (void)setupBuscard
+{
+    BuscardResult *card = [BuscardResult MR_findFirstByAttribute:@"account" withValue:_account];
+    // 先显示
+    if (card) {
+        SZTResultItem *tmp;
+        
+        // 余额
+        tmp = [[SZTResultItem alloc] init];
+        tmp.name = ((SZTResultItem *)_dataSource[1]).name;
+        tmp.value = card.balance;
+        [_historyData addObject:tmp];
+        
+        // 更新时间
+        tmp = [[SZTResultItem alloc] init];
+        tmp.name = @"查询时间：";
+        tmp.value = [DTDateUtil simpleDateStringWithDate:card.updatedAt];
+        [_historyData addObject:tmp];
+    }
+    else {
+        card = [BuscardResult MR_createEntity];
+        card.account = _account;
+    }
+    
+    // 再更新
+    card.updatedAt = [NSDate date];
+    card.balance = ((SZTResultItem *)_dataSource[1]).value;
+    NSManagedObjectContext *context = card.managedObjectContext;
     [context MR_saveToPersistentStoreWithCompletion:nil];
 }
 
@@ -216,7 +253,7 @@
         _nameView.textColor = [UIColor grayColor];
         [self.contentView addSubview:_nameView];
         
-        _valueView = [[UILabel alloc] initWithFrame:CGRectMake(_nameView.dt_right + 10, 0, self.contentView.dt_width/2, self.contentView.dt_height)];
+        _valueView = [[UILabel alloc] initWithFrame:CGRectMake(_nameView.dt_right + 10, 0, self.contentView.dt_width, self.contentView.dt_height)];
         _valueView.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:_valueView];
     }

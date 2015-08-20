@@ -29,6 +29,7 @@
 #define kUserDefaultKeyWeizhangChepaiType   @"WeizhangChepaiType"
 #define kUserDefaultKeyWeizhangChejiaNumber @"WeizhangChejiaNumber"
 #define kUserDefaultKeyWeizhangEngineNumber @"WeizhangEngineNumber"
+#define kUserDefaultKeyBuscardNumber        @"BuscardNumber"
 
 // 在线参数的key
 #define kRemoteGongjijinValid               @"gongjijinValid"
@@ -36,6 +37,7 @@
 #define kRemoteShebaoValid                  @"shebaoValid"
 #define kRemoteWeizhangValid                @"weizhangValid"
 #define kRemoteYaohaoValid                  @"yaohaoValid"
+#define kRemoteBuscardValid                 @"buscardValid"
 #define kRemoteFeedbackEmail                @"feedbackEmail"
 #define kRemoteHomeNotice                   @"homeNotice"
 

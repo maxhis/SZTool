@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, ModelType) {
     ModelTypeGongjijin,
     ModelTypeShebao,
     ModelTypeYaohao,
-    ModelTypeWeizhang
+    ModelTypeWeizhang,
+    ModelTypeBuscard
 };
 
 @protocol SZTDropdownMenuDelegate <NSObject>

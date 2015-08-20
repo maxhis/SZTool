@@ -17,6 +17,7 @@
 #import "SZTHomeHeaderView.h"
 #import "SZTAccountManagerController.h"
 #import "SZTGasPriceViewController.h"
+#import "SZTBuscardViewController.h"
 
 static NSString *CellIdentifier = @"CellIdentifier";
 static NSString *HeaderIdentifier = @"HeaderIdentifier";
@@ -111,12 +112,13 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     if (_dataSource == nil) {
         SZTHomeModel *gongjijin = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gongjijin"] title:@"公积金"];
         SZTHomeModel *shebao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"shebao"] title:@"社保"];
+        SZTHomeModel *bus       = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"train"] title:@"深圳通卡"];
         SZTHomeModel *yaohao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"yaohao"] title:@"汽车摇号"];
         SZTHomeModel *weizhang  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"weizhang"] title:@"粤牌违章"];
         SZTHomeModel *gasPrice  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gas"] title:@"今日油价"];
         SZTHomeModel *settings  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"settings"] title:@"账户管理"];
         SZTHomeModel *about     = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"about"] title:@"关于"];
-        _dataSource = @[gongjijin, shebao, yaohao, gasPrice, weizhang, settings, about];
+        _dataSource = @[gongjijin, shebao, bus, yaohao, gasPrice, weizhang, settings, about];
     }
     
     return _dataSource;
@@ -173,22 +175,27 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
         }
             break;
         case 2: {
+            destVC = [[SZTBuscardViewController alloc] init];
+            destVC.queryStatusCallback = callback;
+        }
+            break;
+        case 3: {
             destVC = [[SZTYaohaoViewController alloc] init];
             destVC.queryStatusCallback = callback;
         }
             break;
         case 4: {
-            destVC = [[SZTWeizhangViewController alloc] init];
-            destVC.queryStatusCallback = callback;
-        }
-            break;
-            
-        case 3: {
             destVC = [[SZTGasPriceViewController alloc] init];
         }
             break;
             
         case 5: {
+            destVC = [[SZTWeizhangViewController alloc] init];
+            destVC.queryStatusCallback = callback;
+        }
+            break;
+            
+        case 6: {
             destVC = [[SZTAccountManagerController alloc] init];
         }
             break;

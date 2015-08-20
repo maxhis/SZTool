@@ -12,6 +12,7 @@
 typedef NS_ENUM(NSUInteger, ResultType) {
     ResultTypeGongjijin,
     ResultTypeShebao,
+    ResultTypeBuscard,
 };
 
 @interface RZTResultCell : UITableViewCell

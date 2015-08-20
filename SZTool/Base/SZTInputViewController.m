@@ -12,6 +12,7 @@
 #import "Shebao.h"
 #import "Yaohao.h"
 #import "Weizhang.h"
+#import "Buscard.h"
 
 #define kTitleButtonArrowTag 9999
 
@@ -52,6 +53,9 @@
     }
     else if (_modelType == ModelTypeWeizhang && ![[AVAnalytics getConfigParams:kRemoteWeizhangValid] boolValue]) {
         [self showAlertWithMessage:@"违章查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+    }
+    else if (_modelType == ModelTypeBuscard && ![[AVAnalytics getConfigParams:kRemoteBuscardValid] boolValue]) {
+        [self showAlertWithMessage:@"深圳通余额查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
     }
 }
 
@@ -179,6 +183,10 @@
                 
             case ModelTypeWeizhang:
                 _fetchedResultsController = [Weizhang MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
+                break;
+                
+            case ModelTypeBuscard:
+                _fetchedResultsController = [Buscard MR_fetchAllSortedBy:@"title" ascending:YES withPredicate:nil groupBy:nil delegate:self.accountTableView];
                 break;
                 
             default:
@@ -336,6 +344,18 @@
             for (Weizhang *weizhang in self.fetchedResultsController.fetchedObjects)
             {
                 if ([weizhang.chepaiNumber isEqualToString:identity])
+                {
+                    return NO;
+                }
+            }
+        }
+            break;
+            
+        case ModelTypeBuscard:
+        {
+            for (Buscard *card in self.fetchedResultsController.fetchedObjects)
+            {
+                if ([card.account isEqualToString:identity])
                 {
                     return NO;
                 }

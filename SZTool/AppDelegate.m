@@ -45,10 +45,11 @@
     [self setupHUD];
     
     // 存储相关，同时启用iCloud
-    [MagicalRecord setupCoreDataStackWithiCloudContainer:kPersistentiCloudContainer
-                                          contentNameKey:kPersistentiCloudContentNameKey
-                                         localStoreNamed:kPersistentLocalDatabaseName
-                                 cloudStorePathComponent:nil];
+    [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:kPersistentLocalDatabaseName];
+//    [MagicalRecord setupCoreDataStackWithiCloudContainer:kPersistentiCloudContainer
+//                                          contentNameKey:kPersistentiCloudContentNameKey
+//                                         localStoreNamed:kPersistentLocalDatabaseName
+//                                 cloudStorePathComponent:nil];
     
     return YES;
 }

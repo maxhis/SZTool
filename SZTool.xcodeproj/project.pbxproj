@@ -1040,7 +1040,7 @@
 				A160A24D1B85BCD6004F4509 /* version 2.xcdatamodel */,
 				1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */,
 			);
-			currentVersion = A160A24D1B85BCD6004F4509 /* version 2.xcdatamodel */;
+			currentVersion = 1719C5B71AE228D2000D161B /* SZTool.xcdatamodel */;
 			name = SZTool.xcdatamodeld;
 			path = Models/SZTool.xcdatamodeld;
 			sourceTree = "<group>";

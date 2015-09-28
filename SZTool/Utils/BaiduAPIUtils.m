@@ -9,10 +9,11 @@
 #import "BaiduAPIUtils.h"
 #import "HTMLParser.h"
 
-static NSString *const kWeatherUrl  = @"http://apis.baidu.com/apistore/weatherservice/weather";
-static NSString *const kAirUrl      = @"http://apis.baidu.com/apistore/aqiservice/aqi";
-static NSString *const kGasPriceUrl = @"http://apis.baidu.com/showapi_open_bus/oil_price/find";
-static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/101280601.shtml";
+static NSString *const kWeatherUrl   = @"http://apis.baidu.com/apistore/weatherservice/weather";
+static NSString *const kAirUrl       = @"http://apis.baidu.com/apistore/aqiservice/aqi";
+static NSString *const kGasPriceUrl  = @"http://apis.baidu.com/showapi_open_bus/oil_price/find";
+static NSString *const kWeatherV2Url = @"http://m.weather.com.cn/mweather/101280601.shtml";
+static NSString *const kYaohaoUrl    = @"https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv/pae/common/api/yaohao?city=%E6%B7%B1%E5%9C%B3&format=json&resource_id=4003";
 
 @implementation BaiduAPIUtils
 
@@ -117,6 +118,9 @@ static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/1012806
          }];
 }
 
+/**
+ * 获取今日油价
+ */
 + (void)fetchGasPriceOfProvinc:(NSString *)province doneBlock:(APIDoneBlock)doneBlock;
 {
     static AFHTTPRequestOperationManager *manager;
@@ -141,7 +145,29 @@ static NSString *const kWeatherV2Url= @"http://m.weather.com.cn/mweather/1012806
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
              doneBlock(nil, error);
-         }];
+         }
+     ];
+}
+
++ (void)getYaohaoResultWithName:(NSString *)name doneBlock:(APIDoneBlock)doneBlock
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.securityPolicy.allowInvalidCertificates = YES;
+    
+    NSDictionary *params = @{@"name" : name};
+    [manager GET:kYaohaoUrl
+      parameters:params
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSDictionary *result = (NSDictionary *)responseObject;
+             NSArray *datas = result[@"data"];
+             if (datas.count) {
+                 doneBlock([datas firstObject], nil);
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             doneBlock(nil, error);
+         }
+    ];
 }
 
 @end

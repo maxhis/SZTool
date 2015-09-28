@@ -77,6 +77,7 @@
 		A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */; };
 		A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */; };
 		A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ED11B74F2360076CFC3 /* DTDateUtil.m */; };
+		A152B9721BB8EF300080B80F /* SZTYaohaoResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = A152B9711BB8EF300080B80F /* SZTYaohaoResultController.m */; settings = {ASSET_TAGS = (); }; };
 		A160A2421B848B0F004F4509 /* BuscardResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2411B848B0F004F4509 /* BuscardResult.m */; };
 		A160A2461B848BD9004F4509 /* SZTBuscardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2451B848BD9004F4509 /* SZTBuscardViewController.m */; };
 		A160A2491B85696D004F4509 /* SZTBuscardService.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2481B85696D004F4509 /* SZTBuscardService.m */; };
@@ -224,6 +225,8 @@
 		A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GongjijinResult.m; path = Models/GongjijinResult.m; sourceTree = "<group>"; };
 		A1512ED01B74F2360076CFC3 /* DTDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTDateUtil.h; sourceTree = "<group>"; };
 		A1512ED11B74F2360076CFC3 /* DTDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTDateUtil.m; sourceTree = "<group>"; };
+		A152B9701BB8EF300080B80F /* SZTYaohaoResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTYaohaoResultController.h; path = Yaohao/SZTYaohaoResultController.h; sourceTree = "<group>"; };
+		A152B9711BB8EF300080B80F /* SZTYaohaoResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SZTYaohaoResultController.m; path = Yaohao/SZTYaohaoResultController.m; sourceTree = "<group>"; };
 		A160A2401B848B0F004F4509 /* BuscardResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BuscardResult.h; path = Models/BuscardResult.h; sourceTree = "<group>"; };
 		A160A2411B848B0F004F4509 /* BuscardResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BuscardResult.m; path = Models/BuscardResult.m; sourceTree = "<group>"; };
 		A160A2441B848BD9004F4509 /* SZTBuscardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SZTBuscardViewController.h; path = Buscard/SZTBuscardViewController.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 				1701B6901AB6E9B100DAF6FC /* SZTYaohaoViewController.m */,
 				1701B6A11AB833D400DAF6FC /* SZTYaohaoService.h */,
 				1701B6A21AB833D400DAF6FC /* SZTYaohaoService.m */,
+				A152B9701BB8EF300080B80F /* SZTYaohaoResultController.h */,
+				A152B9711BB8EF300080B80F /* SZTYaohaoResultController.m */,
 			);
 			name = Yaohao;
 			sourceTree = "<group>";
@@ -803,6 +808,7 @@
 				A1331A6E1B46D90D00BA2D89 /* SZTDeviceUtil.m in Sources */,
 				A1512EB71B74922B0076CFC3 /* Weizhang.m in Sources */,
 				1701B6A71AB85A3D00DAF6FC /* SZTShebaoViewController.m in Sources */,
+				A152B9721BB8EF300080B80F /* SZTYaohaoResultController.m in Sources */,
 				1701B68D1AB6DDA900DAF6FC /* SZTGongjijinController.m in Sources */,
 				17F7941E1AD64B80006FEBA1 /* SZTWeizhangResultController.m in Sources */,
 				1701B6A01AB812FC00DAF6FC /* SZTResultModel.m in Sources */,
@@ -922,6 +928,7 @@
 				CODE_SIGN_ENTITLEMENTS = SZTool/SZTool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -949,6 +956,7 @@
 				CODE_SIGN_ENTITLEMENTS = SZTool/SZTool.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/SZTool-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers/Public\"",

@@ -29,4 +29,6 @@
 
 -(BOOL)isValidEmail;
 
+- (BOOL)isDigits;
+
 @end

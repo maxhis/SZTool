@@ -79,4 +79,15 @@
     return [emailTest evaluateWithObject:self];
 }
 
+- (BOOL)isDigits
+{
+    NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    if ([self rangeOfCharacterFromSet:notDigits].location == NSNotFound)
+    {
+        // consists only of the digits 0 through 9
+        return YES;
+    }
+    return NO;
+}
+
 @end

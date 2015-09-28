@@ -70,7 +70,7 @@ static NSString *const kDefaultProvince = @"广东";
 - (void)viewWillAppear:(BOOL)animated
 {
     if (![[AVAnalytics getConfigParams:kRemoteGasPriceValid] boolValue]) {
-        [UIAlertView showWithTitle:nil message:@"公积金查询功能暂时不可用，我们正在紧急修复，敬请谅解！" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        [UIAlertView showWithTitle:nil message:@"今日油价功能暂时不可用，我们正在紧急修复，敬请谅解！" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
             [self.navigationController popViewControllerAnimated:NO];
         }];
     }

@@ -11,18 +11,14 @@
 #import "SZTYaohaoService.h"
 #import "Yaohao.h"
 #import "JVFloatLabeledTextField.h"
+#import "BaiduAPIUtils.h"
+#import "SZTYaohaoResultController.h"
+
+static NSString *const kNoticeInfo = @"温馨提示：摇号申请编码有效期为3个月，请及时登录官网延长有效期";
 
 @interface SZTYaohaoViewController () <UITextFieldDelegate, SZTDropdownMenuDelegate>
 
 @property (nonatomic, strong) JVFloatLabeledTextField *applyCodeView;
-
-@property (nonatomic, strong) JVFloatLabeledTextField *issueNumberView;
-
-@property (nonatomic, strong) UISegmentedControl *typeView;
-
-@property (nonatomic, strong) NSArray *selections;
-
-@property (nonatomic, assign) NSInteger selectedIndex;
 
 @end
 
@@ -37,7 +33,7 @@
 - (void)loadUIComponent
 {
     self.modelType = ModelTypeYaohao;
-    self.title = @"汽车摇号中签";
+    self.title = @"汽车摇号";
     
     NSString *rightBarTitle;
     if (self.saveOnly)
@@ -51,19 +47,12 @@
     UIBarButtonItem *queryButton = [[UIBarButtonItem alloc] initWithTitle:rightBarTitle style:UIBarButtonItemStyleDone target:self action:@selector(rightAction)];
     self.navigationItem.rightBarButtonItem = queryButton;
     
-    // 个人或单位
-    _typeView = [[UISegmentedControl alloc] initWithItems:@[@"个人" , @"单位" ]];
-    _typeView.frame = CGRectMake(kDividerWidth, DTScreenHeight/16, DTScreenWidth - kDividerWidth * 2, 35);
-    [self.view addSubview:_typeView];
-    
     kTextFieldWidthNormal = SCREEN_WIDTH - 2*kDividerWidth;
-    kTextFieldWidthShort = kTextFieldWidthNormal / 2;
     
     // 申请编码
-    _applyCodeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, _typeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
+    _applyCodeView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, SCREEN_WIDTH/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _applyCodeView.borderStyle = UITextBorderStyleRoundedRect;
-    _applyCodeView.keyboardType = UIKeyboardTypeNumberPad;
-    _applyCodeView.placeholder = @"申请编码,13位数字";
+    _applyCodeView.placeholder = @"请输入姓名或摇号申请编码";
     _applyCodeView.clearButtonMode = UITextFieldViewModeWhileEditing;
     _applyCodeView.dt_right = DTScreenWidth - kDividerWidth;
     _applyCodeView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
@@ -72,26 +61,18 @@
     _applyCodeView.font = kDigitalFont;
     [self.view addSubview:_applyCodeView];
     
-    // 期号
-    _issueNumberView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(_applyCodeView.dt_left, _applyCodeView.dt_bottom + kTopEdge, kTextFieldWidthNormal, kTextFieldHeight)];
-    _issueNumberView.borderStyle = UITextBorderStyleRoundedRect;
-    _issueNumberView.enabled = NO;
-    _issueNumberView.text = self.selections[0];
-    _issueNumberView.placeholder = @"期号";
-    _issueNumberView.font = kDigitalFont;
-    [self.view addSubview:_issueNumberView];
-    
-    UIButton *maskBtn = [[UIButton alloc] initWithFrame:_issueNumberView.frame];
-    [maskBtn addTarget:self action:@selector(showIssuePicker) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:maskBtn];
+    UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(_applyCodeView.dt_left, _applyCodeView.dt_bottom, kTextFieldWidthNormal, 50)];
+    infoLabel.backgroundColor = [UIColor clearColor];
+    infoLabel.numberOfLines = 0;
+    infoLabel.text = kNoticeInfo;
+    infoLabel.textColor = [UIColor grayColor];
+    infoLabel.textAlignment = NSTextAlignmentLeft;
+    infoLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:infoLabel];
     
     if (!self.saveOnly)
     {
         [self loadDefaultData];
-    }
-    else
-    {
-        _typeView.selectedSegmentIndex = 0;
     }
     
     self.dropdownDelegate = self;
@@ -103,13 +84,11 @@
     {
         Yaohao *yaohao = (Yaohao *)self.model;
         _applyCodeView.text = yaohao.applyNumber;
-        _typeView.selectedSegmentIndex = [yaohao.type integerValue];
     }
     else
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         _applyCodeView.text = [defaults stringForKey:kUserDefaultKeyYaohaoApplyNumber];
-        _typeView.selectedSegmentIndex = [defaults integerForKey:kUserDefaultKeyYaohaoApplyType];
     }
 }
 
@@ -117,60 +96,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:_applyCodeView.text forKey:kUserDefaultKeyYaohaoApplyNumber];
-    [defaults setInteger:_typeView.selectedSegmentIndex forKey:kUserDefaultKeyYaohaoApplyType];
-}
-
-- (void)showIssuePicker
-{
-    [self hideKeyboard];
-    
-    [ActionSheetStringPicker showPickerWithTitle:@"摇号期数"
-                                            rows:self.selections
-                                initialSelection:[self.selections indexOfObject:_issueNumberView.text]
-                                       doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                           _issueNumberView.text = selectedValue;
-                                           _selectedIndex = selectedIndex;
-                                       }
-                                     cancelBlock:^(ActionSheetStringPicker *picker) {
-        
-                                       }
-                                          origin:self.view];
-}
-
-- (NSArray *)selections
-{
-    if (!_selections)
-    {
-        static NSDateFormatter *formatter = nil;
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            formatter = [[NSDateFormatter alloc] init];
-            formatter.dateFormat = @"yyyyMM";
-        });
-        
-        NSString *thisMonth = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
-        _selections = [self generateIssueNumberFromYearMonth:thisMonth];
-        
-    }
-    return _selections;
-}
-
-- (NSArray *)generateIssueNumberFromYearMonth:(NSString *)yearMonth
-{
-    NSMutableArray *issues = [[NSMutableArray alloc] initWithCapacity:5];
-    int topMonth = [yearMonth intValue];
-    while (topMonth > 201502)
-    {
-        int tail = topMonth % 100;
-        if (tail == 1) {
-            topMonth = (topMonth / 100 - 1) * 100 + 13;
-        }
-        
-        [issues addObject:[NSString stringWithFormat:@"%d", --topMonth]];
-    }
-    
-    [issues insertObject:@"最近六期" atIndex:0];
-    return issues;
 }
 
 - (void)hideKeyboard
@@ -227,9 +152,9 @@
     [self hideKeyboard];
     
     NSString *applyNumber = _applyCodeView.text;
-    if (!applyNumber || applyNumber.length != 13)
+    if (applyNumber.length < 2)
     {
-        [self.view dt_postError:@"请输入13位有效的申请编码"];
+        [self.view dt_postError:@"请输入姓名或摇号申请编码"];
         return NO;
     }
     return YES;
@@ -240,64 +165,39 @@
     if (![self validateInputs]) return;
     
     WEAK_SELF;
-    [[SZTYaohaoService sharedService] queryStatusWithApplycode:_applyCodeView.text
-                                                    issueNmber:[self issueNumber]
-                                                          type:[self applyType]
-                                                    completion:^(BOOL hit, NSError *error) {
-                                                        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
-                                                        if (error) {
-                                                            [self.view dt_postError:error.localizedDescription];
-                                                            return;
-                                                        }
-                                                        
-                                                        [self saveUserData];
-                                                        UIAlertViewCompletionBlock tapBlock = ^ void ((UIAlertView *alertView, NSInteger buttonIndex)){
-                                                            // 保存输入的信息
-                                                            [self showSaveAlertIfNeededWithIdentity:self.applyCodeView.text
-                                                                                          saveBlock:^(NSString *title) {
-                                                                                              [self saveModelWithTitle:title];
-                                                                                          }];
-                                                        };
-                                                        if (hit)
-                                                        {
-                                                            NSString *message = @"您可登录系统自行打印指标证明文件、或者到服务窗口领取指标证明文件。";
-                                                            [UIAlertView showWithTitle:@"恭喜中签" message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:tapBlock];
-                                                            
-                                                            // 通知首页查询成功
-                                                            if (self.queryStatusCallback)
-                                                            {
-                                                                self.queryStatusCallback(YES);
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            [UIAlertView showWithTitle:nil message:@"中签指标中无此数据!" cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:tapBlock];
-                                                        }
-                                                    }];
-}
-
-- (NSString *)issueNumber
-{
-    NSString *issueNumber;
-    if (_selectedIndex == 0)
-    {
-        issueNumber = @"000000";
-    }
-    else
-    {
-        issueNumber = _selections[_selectedIndex];
-    }
-    return issueNumber;
-}
-
-- (ApplyType)applyType
-{
-    ApplyType type = ApplyTypePerson;
-    if (_typeView.selectedSegmentIndex == 1)
-    {
-        type = ApplyTypeUnit;
-    }
-    return type;
+    [self.view dt_postLoading:@""];
+    NSString *input = _applyCodeView.text;
+    [BaiduAPIUtils getYaohaoResultWithName:input doneBlock:^(NSDictionary *result, NSError *error) {
+        STRONG_SELF_AND_RETURN_IF_SELF_NULL;
+        if (error) {
+            [self.view dt_postError:error.localizedDescription];
+        }
+        else {
+            NSInteger dispNum = [result[@"dispNum"] integerValue];
+            if (dispNum == 0) {
+                if ([input isDigits]) { // 输入的是申请码
+                    [UIAlertView showWithTitle:@"抱歉，该编号本次未中签！" message:nil cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+                }
+                else { // 输入的是姓名
+                    [UIAlertView showWithTitle:@"抱歉，该申请人本次未中签！" message:nil cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+                }
+            }
+            else if (dispNum == 1) {
+                NSArray *dispDatas = result[@"disp_data"];
+                NSDictionary *data = dispDatas[0];
+                NSString *issueNo  = data[@"eid"];
+                NSString *year     = [issueNo substringToIndex:4];
+                NSString *month    = [issueNo substringFromIndex:4];
+                [UIAlertView showWithTitle:[NSString stringWithFormat:@"恭喜，您已于%@年%@月中签！", year, month] message:nil cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:nil];
+            }
+            else {
+                SZTYaohaoResultController *resultVC = [[SZTYaohaoResultController alloc] init];
+                resultVC.displayData = result[@"disp_data"];
+                [self.navigationController pushViewController:resultVC animated:YES];
+            }
+        }
+        [self.view dt_cleanUp:YES];
+    }];
 }
 
 - (void)saveModelWithTitle:(NSString *)title
@@ -305,7 +205,6 @@
     WEAK_SELF;
     Yaohao *yaohao = [Yaohao MR_createEntity];
     yaohao.applyNumber = _applyCodeView.text;
-    yaohao.type = @([self applyType]);
     yaohao.title = title;
     NSManagedObjectContext *context = yaohao.managedObjectContext;
     [context MR_saveToPersistentStoreWithCompletion:^(BOOL success, NSError *error) {
@@ -329,7 +228,6 @@
 - (void)configWithModel:(Yaohao *)model
 {
     _applyCodeView.text = model.applyNumber;
-    _typeView.selectedSegmentIndex = [model.type integerValue];
 }
 
 @end

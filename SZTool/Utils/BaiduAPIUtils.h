@@ -79,4 +79,12 @@ typedef void (^APIDoneBlock)(NSDictionary *result, NSError *error);
  */
 + (void)fetchGasPriceOfProvinc:(NSString *)province doneBlock:(APIDoneBlock)doneBlock;
 
+/**
+ *  根据姓名或申请号查询摇号结果
+ *
+ *  @param name      姓名或申请编号
+ *  @param doneBlock doneBlock description
+ */
++ (void)getYaohaoResultWithName:(NSString *)name doneBlock:(APIDoneBlock)doneBlock;
+
 @end

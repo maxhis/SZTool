@@ -32,6 +32,11 @@
     [self reloadData];
 }
 
+- (void)dealloc
+{
+    _fetchedResultsController.delegate = nil;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

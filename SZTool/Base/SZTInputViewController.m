@@ -81,6 +81,8 @@
     }
 }
 
+- (void)clearSavedData {}
+
 - (void)showAlertWithMessage:(NSString *)message
 {
     [UIAlertView showWithTitle:nil message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {

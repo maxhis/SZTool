@@ -17,6 +17,10 @@
 #import "AVOSCloudCrashReporting.h"
 #import "AFNetworkActivityIndicatorManager.h"
 #import "SZTHomeCollectionViewController.h"
+#import "SZTGongjijinController.h"
+#import "SZTShebaoViewController.h"
+#import "SZTBuscardViewController.h"
+#import "SZTYaohaoViewController.h"
 
 @interface AppDelegate ()
 
@@ -131,6 +135,39 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [MagicalRecord cleanUp];
+}
+
+#pragma mark shortcuts
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL))completionHandler
+{
+    BOOL handled = [self handleShortCutItem:shortcutItem];
+    completionHandler(handled);
+}
+                      
+- (BOOL)handleShortCutItem:(UIApplicationShortcutItem *)shortcutItem
+{
+    BOOL handled = YES;
+    
+    UINavigationController *navigationVC = (UINavigationController *)self.window.rootViewController;
+    [navigationVC popToRootViewControllerAnimated:NO];
+    
+    if ([shortcutItem.type isEqualToString:@"Gongjijin"]) {
+        [navigationVC pushViewController:[[SZTGongjijinController alloc] init] animated:YES];
+    }
+    else if ([shortcutItem.type isEqualToString:@"Shebao"]) {
+        [navigationVC pushViewController:[[SZTShebaoViewController alloc] init] animated:YES];
+    }
+    else if ([shortcutItem.type isEqualToString:@"Card"]) {
+        [navigationVC pushViewController:[[SZTBuscardViewController alloc] init] animated:YES];
+    }
+    else if ([shortcutItem.type isEqualToString:@"Yaohao"]) {
+        [navigationVC pushViewController:[[SZTYaohaoViewController alloc] init] animated:YES];
+    }
+    else {
+        handled = NO;
+    }
+    
+    return handled;
 }
 
 @end

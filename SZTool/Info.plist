@@ -32,10 +32,37 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>查询公积金余额</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Gongjijin</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>查询社保余额</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Shebao</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>查询公交卡余额</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Card</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>查询汽车摇号结果</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>Yaohao</string>
+		</dict>
+	</array>
 </dict>
 </plist>

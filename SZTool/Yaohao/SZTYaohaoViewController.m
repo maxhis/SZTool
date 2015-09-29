@@ -98,6 +98,14 @@ static NSString *const kNoticeInfo = @"温馨提示：摇号申请编码有效�
     [defaults setObject:_applyCodeView.text forKey:kUserDefaultKeyYaohaoApplyNumber];
 }
 
+- (void)clearSavedData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:kUserDefaultKeyYaohaoApplyNumber];
+    
+    _applyCodeView.text = nil;
+}
+
 - (void)hideKeyboard
 {
     [self.view endEditing:YES];

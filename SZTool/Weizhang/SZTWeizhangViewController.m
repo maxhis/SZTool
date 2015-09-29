@@ -220,6 +220,20 @@
     [defaults setObject:_engineNumberView.text forKey:kUserDefaultKeyWeizhangEngineNumber];
 }
 
+- (void)clearSavedData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:kUserDefaultKeyWeizhangChepaiNumber];
+    [defaults setObject:@"" forKey:kUserDefaultKeyWeizhangChepaiType];
+    [defaults setObject:@"" forKey:kUserDefaultKeyWeizhangChejiaNumber];
+    [defaults setObject:@"" forKey:kUserDefaultKeyWeizhangEngineNumber];
+    
+    _chejiaNumberView.text = nil;
+    _chepaiNumberView.text = nil;
+    _chepaiTypeView.text = nil;
+    _engineNumberView.text = nil;
+}
+
 - (void)showCarTypePicker:(id)sender
 {
     [self.view endEditing:YES];

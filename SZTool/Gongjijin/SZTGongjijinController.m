@@ -151,6 +151,16 @@
     [defaults setObject:_idView.text forKey:kUserDefaultKeyGongjijinID];
 }
 
+- (void)clearSavedData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey:kUserDefaultKeyGongjijinAccount];
+    [defaults setObject:@"" forKey:kUserDefaultKeyGongjijinID];
+    
+    _accountView.text = nil;
+    _idView.text = nil;
+}
+
 - (void)loadVerifyCode:(id) sender
 {
     if (sender) {

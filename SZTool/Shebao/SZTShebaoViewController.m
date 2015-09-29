@@ -150,6 +150,16 @@
     [defaults setObject:_idView.text forKey: kUserDefaultKeyShebaoID];
 }
 
+- (void)clearSavedData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey: kUserDefaultKeyShebaoAccount];
+    [defaults setObject:@"" forKey: kUserDefaultKeyShebaoID];
+    
+    _accountView.text = nil;
+    _idView.text = nil;
+}
+
 - (void)loadVerifyCode:(id) sender
 {
     if (sender) {

@@ -55,4 +55,9 @@ typedef NS_ENUM(NSInteger, ModelType) {
  */
 - (void)showSaveAlertIfNeededWithIdentity:(NSString *)identity saveBlock:(void (^)(NSString *title))saveBlock;
 
+/**
+ *  摇一摇清除缓存的数据，在这里写具体的清除逻辑
+ */
+- (void)clearSavedData;
+
 @end

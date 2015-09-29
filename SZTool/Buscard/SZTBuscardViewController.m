@@ -184,6 +184,14 @@ static NSString *const kNoticeInfo = @"温馨提示：\n1.本服务查询结果�
     [defaults setObject:_accountView.text forKey: kUserDefaultKeyBuscardNumber];
 }
 
+- (void)clearSavedData
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"" forKey: kUserDefaultKeyBuscardNumber];
+    
+    _accountView.text = nil;
+}
+
 - (BOOL)validateInputs
 {
     NSString *account = _accountView.text;

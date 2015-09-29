@@ -59,6 +59,28 @@
     }
 }
 
+# pragma mark Shake
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self becomeFirstResponder];
+}
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+-(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (event.subtype == UIEventSubtypeMotionShake) {
+        [UIAlertView showWithTitle:@"是否清空已缓存的输入信息?" message:@"清空后下次进入将不再自动填充输入框，但仍可从顶部下拉菜单中选择已保存的账户信息。" cancelButtonTitle:@"确定" otherButtonTitles:@[@"取消"] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            if (buttonIndex == alertView.cancelButtonIndex) {
+                [self clearSavedData];
+            }
+        }];
+    }
+}
+
 - (void)showAlertWithMessage:(NSString *)message
 {
     [UIAlertView showWithTitle:nil message:message cancelButtonTitle:@"好的" otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {

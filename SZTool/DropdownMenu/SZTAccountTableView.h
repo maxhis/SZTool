@@ -10,7 +10,7 @@
 
 @interface SZTAccountTableView : UITableView <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, assign) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, weak) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, assign) NSInteger selectedIndex;
 

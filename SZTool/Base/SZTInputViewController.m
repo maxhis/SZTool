@@ -190,7 +190,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (!_fetchedResultsController)
+    if (!_fetchedResultsController && !_saveOnly)
     {
         switch (_modelType) {
             case ModelTypeGongjijin:

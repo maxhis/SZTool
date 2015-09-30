@@ -38,6 +38,12 @@
     
     kTextFieldWidthNormal = SCREEN_WIDTH - 2 * kDividerWidth;
     kTextFieldWidthShort = kTextFieldWidthNormal / 2;
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (self.fetchedResultsController.fetchedObjects.count) {
+            [self showDropdownView];
+        }
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,6 +63,12 @@
     else if (_modelType == ModelTypeBuscard && ![[AVAnalytics getConfigParams:kRemoteBuscardValid] boolValue]) {
         [self showAlertWithMessage:@"深圳通余额查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
     }
+}
+
+- (void)dealloc
+{
+    _fetchedResultsController.delegate = nil;
+    _fetchedResultsController = nil;
 }
 
 # pragma mark Shake
@@ -190,7 +202,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (!_fetchedResultsController && !_saveOnly)
+    if (!_fetchedResultsController && _saveOnly == NO)
     {
         switch (_modelType) {
             case ModelTypeGongjijin:
@@ -248,7 +260,7 @@
 
 - (void)titlePressed:(id)sender
 {
-    self.accountTableView.dt_height = MIN(self.view.dt_height / 2, self.accountTableView.fetchedResultsController.fetchedObjects.count*44);
+    self.accountTableView.dt_height = MIN(self.view.dt_height / 2, self.fetchedResultsController.fetchedObjects.count*44);
     
     // Show/hide dropdown view
     if ([self.dropdownView isOpen])
@@ -285,7 +297,7 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.dropdownView.animationDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         SZTAccountTableView *accountTable = (SZTAccountTableView *)tableView;
         accountTable.selectedIndex = indexPath.row;
-        [self.dropdownDelegate configWithModel:accountTable.fetchedResultsController.fetchedObjects[indexPath.row]];
+        [self.dropdownDelegate configWithModel:self.fetchedResultsController.fetchedObjects[indexPath.row]];
     });
 }
 

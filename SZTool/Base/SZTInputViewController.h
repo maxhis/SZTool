@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, ModelType) {
 
 @interface SZTInputViewController : SZTViewController
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @property (nonatomic, weak) id<SZTDropdownMenuDelegate> dropdownDelegate;
 

@@ -49,18 +49,8 @@
         cell.backgroundColor = kDropdownMenuColor;
         cell.textLabel.font = [UIFont systemFontOfSize:20];
     }
-    [self configureCell:cell atIndexPath:indexPath];
-    
-    return cell;
-}
-
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
-{
-    NSManagedObject *model = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
-    if ([model respondsToSelector:@selector(title)])
-    {
-        cell.textLabel.text = [model performSelector:@selector(title) withObject:nil];
-    }
+    NSManagedObject *model = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self configureCell:cell withObject:model];
     
     if(indexPath.row == self.selectedIndex)
     {
@@ -69,6 +59,16 @@
     else
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    return cell;
+}
+
+- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)model
+{
+    if ([model respondsToSelector:@selector(title)])
+    {
+        cell.textLabel.text = [model performSelector:@selector(title) withObject:nil];
     }
 }
 
@@ -92,7 +92,7 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
-            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withObject:anObject];
             break;
             
         case NSFetchedResultsChangeMove:

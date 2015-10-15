@@ -82,7 +82,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     if (remainTimes > 0)
     {
         [UIAlertView showWithTitle:@"期待您的声音"
-                           message:@"对深圳通还满意吗？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
+                           message:@"对深圳兔还满意吗？觉得不错可以去评个分支持一下，有任何建议或意见都可以反馈给我们哦！"
                  cancelButtonTitle:@"下次吧"
                  otherButtonTitles:@[@"五星好评", @"反馈意见"]
                           tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
@@ -112,7 +112,7 @@ static NSString *HeaderIdentifier = @"HeaderIdentifier";
     if (_dataSource == nil) {
         SZTHomeModel *gongjijin = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gongjijin"] title:@"公积金"];
         SZTHomeModel *shebao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"shebao"] title:@"社保"];
-        SZTHomeModel *bus       = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"train"] title:@"深圳通卡"];
+        SZTHomeModel *bus       = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"train"] title:@"公交卡"];
         SZTHomeModel *yaohao    = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"yaohao"] title:@"汽车摇号"];
         SZTHomeModel *weizhang  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"weizhang"] title:@"粤牌违章"];
         SZTHomeModel *gasPrice  = [[SZTHomeModel alloc] initWithIcon:[UIImage imageNamed:@"gas"] title:@"今日油价"];

@@ -50,7 +50,7 @@ static NSString *const kNoticeInfo = @"温馨提示：\n1.本服务查询结果�
 {
     self.modelType = ModelTypeBuscard;
     
-    self.title = @"深圳通卡";
+    self.title = @"公交卡";
     
     NSString *rightBarTitle;
     if (self.saveOnly)
@@ -146,7 +146,7 @@ static NSString *const kNoticeInfo = @"温馨提示：\n1.本服务查询结果�
                 [self saveUserData];
                 SZTResultListController *resultVC = [[SZTResultListController alloc] initWithResultType:ResultTypeBuscard account:_accountView.text];
                 resultVC.dataSource = model.message;
-                resultVC.title = @"深圳通卡余额";
+                resultVC.title = @"公交卡余额";
                 [self.navigationController pushViewController:resultVC animated:YES];
                 self.shouldShowSaveAlert = YES;
                 

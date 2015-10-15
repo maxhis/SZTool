@@ -61,7 +61,7 @@
         [self showAlertWithMessage:@"违章查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
     }
     else if (_modelType == ModelTypeBuscard && ![[AVAnalytics getConfigParams:kRemoteBuscardValid] boolValue]) {
-        [self showAlertWithMessage:@"深圳通余额查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
+        [self showAlertWithMessage:@"公交卡余额查询功能暂时不可用，我们正在抓紧修复，敬请谅解！"];
     }
 }
 

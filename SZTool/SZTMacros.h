@@ -57,7 +57,7 @@
 #define kPersistentiCloudContentNameKey     @"SZTool"
 #define kPersistentLocalDatabaseName        @"sztool.sqlite"
 
-#define kNavigationBarColor  [UIColor dt_colorWithHexString:@"007cd8"]
+#define kNavigationBarColor  [UIColor dt_colorWithHexString:@"0288d1"]
 #define kDropdownMenuColor [UIColor dt_colorWithHexString:@"a6b1ac"]
 
 #define kDigitalFont     [UIFont fontWithName:@"Menlo-Regular" size:20]

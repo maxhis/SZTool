@@ -72,7 +72,7 @@
     footer.font = [UIFont systemFontOfSize:14];
     footer.lineBreakMode = NSLineBreakByWordWrapping;
     footer.numberOfLines = 0;
-    footer.text = @"©弼码翁工作室 版权所有";
+    footer.text = @"©iStar 版权所有";
     
     return footer;
 }

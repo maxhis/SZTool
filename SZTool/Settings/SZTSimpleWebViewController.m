@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 Code Addict Studio. All rights reserved.
 //
 
-#import "SZTPrivacyViewController.h"
+#import "SZTSimpleWebViewController.h"
 
-@interface SZTPrivacyViewController ()
+@interface SZTSimpleWebViewController ()
 
 @end
 
-@implementation SZTPrivacyViewController
+@implementation SZTSimpleWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,13 +21,11 @@
 
 - (void)loadUIComponents
 {
-    self.title = @"隐私声明";
-    
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"]];
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:self.path ofType:@"html"]];
     
     [webView loadRequest:[NSURLRequest requestWithURL:url]];
-    
+    webView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:webView];
 }
 

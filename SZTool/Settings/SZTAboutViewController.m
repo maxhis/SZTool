@@ -7,7 +7,7 @@
 //
 
 #import "SZTAboutViewController.h"
-#import "SZTPrivacyViewController.h"
+#import "SZTSimpleWebViewController.h"
 #import "SZTAccountManagerController.h"
 
 @interface SZTAboutViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -54,6 +54,7 @@
     NSString *version = [NSString stringWithFormat:@"%@ v%@", APP_NAME, APP_VERSION];
     UILabel *versionLable = [[UILabel alloc] init];
     versionLable.text = version;
+    versionLable.textColor = [UIColor darkGrayColor];
     [versionLable sizeToFit];
     versionLable.dt_centerX = headerView.dt_centerX;
     versionLable.dt_top = iconView.dt_bottom + 17;
@@ -81,7 +82,12 @@
 {
     if (_items == nil)
     {
-        _items = @[@"给个好评", [NSString stringWithFormat:@"推荐「%@」给好友", APP_NAME], @"意见反馈", @"隐私声明"];
+        if ([[AVAnalytics getConfigParams:kRemoteDonate] boolValue]) {
+            _items = @[@"给个好评", [NSString stringWithFormat:@"推荐「%@」给好友", APP_NAME], @"意见反馈", @"隐私声明", @"开发者说"];
+        }
+        else {
+            _items = @[@"给个好评", [NSString stringWithFormat:@"推荐「%@」给好友", APP_NAME], @"意见反馈", @"隐私声明"];
+        }
     }
     return _items;
 }
@@ -127,7 +133,7 @@
             
         case 1:
         {
-            NSString *text =  [NSString stringWithFormat:@"「%@」神器来了！一站式查询粤牌汽车违章、深圳公积金、社保、今日油价、汽车摇号，还支持iCloud同步哦！", APP_NAME];
+            NSString *text =  [NSString stringWithFormat:@"发现一个很不错的APP「%@」，查询公积金、社保、深圳通余额、汽车摇号，一个就够了。", APP_NAME];
             [self shareText:text andImage:[UIImage imageNamed:@"ShareImage"] andUrl:[NSURL URLWithString:kAppStoreUrl]];
             [AVAnalytics event:kShareApp];
         }
@@ -141,7 +147,18 @@
             
         case 3:
         {
-            SZTPrivacyViewController *privacyVC = [[SZTPrivacyViewController alloc] init];
+            SZTSimpleWebViewController *privacyVC = [[SZTSimpleWebViewController alloc] init];
+            privacyVC.title = _items[indexPath.row];
+            privacyVC.path = @"privacy";
+            [self.navigationController pushViewController:privacyVC animated:YES];
+        }
+            break;
+            
+        case 4:
+        {
+            SZTSimpleWebViewController *privacyVC = [[SZTSimpleWebViewController alloc] init];
+            privacyVC.title = _items[indexPath.row];
+            privacyVC.path = @"about_developer";
             [self.navigationController pushViewController:privacyVC animated:YES];
         }
             break;

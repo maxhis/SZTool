@@ -8,6 +8,8 @@
 
 #import "SZTViewController.h"
 
-@interface SZTPrivacyViewController : SZTViewController
+@interface SZTSimpleWebViewController : SZTViewController
+
+@property (nonatomic, copy) NSString *path;
 
 @end

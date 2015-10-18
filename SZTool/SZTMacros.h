@@ -40,6 +40,7 @@
 #define kRemoteBuscardValid                 @"buscardValid"
 #define kRemoteFeedbackEmail                @"feedbackEmail"
 #define kRemoteHomeNotice                   @"homeNotice"
+#define kRemoteDonate                       @"donate"
 
 #define kUserDefaultKeyLastVersion          @"UserDefaultKeyLastVersion"
 #define kUserDefaultKeyRemainPromotingTime  @"UserDefaultRemainPromotingTime"

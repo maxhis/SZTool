@@ -74,7 +74,7 @@
     _accountView = [[JVFloatLabeledTextField alloc] initWithFrame:CGRectMake(kDividerWidth, DTScreenHeight/8, kTextFieldWidthNormal, kTextFieldHeight)];
     _accountView.borderStyle = UITextBorderStyleRoundedRect;
     _accountView.keyboardType = UIKeyboardTypeNumberPad;
-    _accountView.placeholder = @"电脑号，9位数字";
+    _accountView.placeholder = @"电脑号，7位或9位数字";
     _accountView.dt_right = DTScreenWidth - kDividerWidth;
     _accountView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     _accountView.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -223,7 +223,7 @@
     [self.view endEditing:YES];
     
     NSString *account = _accountView.text;
-    if (!account || account.length != 9)
+    if (!account || (account.length != 9 && account.length != 7))
     {
         [self.view dt_postError:@"请输入正确的电脑号"];
         return NO;

@@ -77,14 +77,14 @@
 		A1512ECC1B74B61F0076CFC3 /* ShebaoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECB1B74B61F0076CFC3 /* ShebaoResult.m */; };
 		A1512ECF1B74B6200076CFC3 /* GongjijinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ECE1B74B6200076CFC3 /* GongjijinResult.m */; };
 		A1512ED21B74F2360076CFC3 /* DTDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A1512ED11B74F2360076CFC3 /* DTDateUtil.m */; };
-		A152B9721BB8EF300080B80F /* SZTYaohaoResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = A152B9711BB8EF300080B80F /* SZTYaohaoResultController.m */; settings = {ASSET_TAGS = (); }; };
+		A152B9721BB8EF300080B80F /* SZTYaohaoResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = A152B9711BB8EF300080B80F /* SZTYaohaoResultController.m */; };
 		A160A2421B848B0F004F4509 /* BuscardResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2411B848B0F004F4509 /* BuscardResult.m */; };
 		A160A2461B848BD9004F4509 /* SZTBuscardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2451B848BD9004F4509 /* SZTBuscardViewController.m */; };
 		A160A2491B85696D004F4509 /* SZTBuscardService.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A2481B85696D004F4509 /* SZTBuscardService.m */; };
 		A160A24C1B859488004F4509 /* Buscard.m in Sources */ = {isa = PBXBuildFile; fileRef = A160A24B1B859488004F4509 /* Buscard.m */; };
-		A1AD63951BD3C9C1009C097A /* about_developer.html in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63941BD3C9C0009C097A /* about_developer.html */; settings = {ASSET_TAGS = (); }; };
-		A1AD63981BD3CAC4009C097A /* alipay_sztool.png in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63961BD3CAC4009C097A /* alipay_sztool.png */; settings = {ASSET_TAGS = (); }; };
-		A1AD63991BD3CAC4009C097A /* wechat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63971BD3CAC4009C097A /* wechat.jpg */; settings = {ASSET_TAGS = (); }; };
+		A1AD63951BD3C9C1009C097A /* about_developer.html in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63941BD3C9C0009C097A /* about_developer.html */; };
+		A1AD63981BD3CAC4009C097A /* alipay_sztool.png in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63961BD3CAC4009C097A /* alipay_sztool.png */; };
+		A1AD63991BD3CAC4009C097A /* wechat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1AD63971BD3CAC4009C097A /* wechat.jpg */; };
 		A1C97B741B3D4A750014A7EF /* SZTHomeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C97B731B3D4A750014A7EF /* SZTHomeCollectionViewController.m */; };
 		A1FB1B521B42DF5C0031AB5E /* ShareImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A1FB1B511B42DF5C0031AB5E /* ShareImage.png */; };
 		E5376B9A5F2C28A79875B03D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3A3AF0D84C66D4C38586C7 /* libPods.a */; };

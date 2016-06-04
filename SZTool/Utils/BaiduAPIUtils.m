@@ -128,7 +128,7 @@ static NSString *const kYaohaoUrl    = @"https://sp0.baidu.com/9_Q4sjW91Qh3otqbp
     dispatch_once(&onceToken, ^{
         manager = [AFHTTPRequestOperationManager manager];
         [manager.requestSerializer setValue:kBaiduAPIKey forHTTPHeaderField:@"apikey"];
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     });
     
     NSDictionary *params = @{@"prov" : province};

@@ -616,6 +616,7 @@
 				1701B63C1AB684DA00DAF6FC /* Resources */,
 				A57169588525DD0D203426DD /* Copy Pods Resources */,
 				179B58FB1AFE02AB00952883 /* Upload Symbol */,
+				23345288B768AB3E959FFAA5 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -739,6 +740,21 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "leancloud upload_symbol \\\n-f \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\" \\\n-i \"qhvjl1rn8hr86rhsi9c0fa2akox7pvvib9ijicxdajzdx41p\" \\\n-k \"3jftm0l9bpgpsf9pewyp9arfs8t2vvcbn9601uyixtde91ki\"";
+		};
+		23345288B768AB3E959FFAA5 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A57169588525DD0D203426DD /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

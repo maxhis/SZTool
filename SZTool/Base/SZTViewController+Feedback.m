@@ -19,7 +19,7 @@ static NSString *defaultEmail = @"me@15tar.com";
         [self emailFeedback];
     }
     else {
-        AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
+        LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
         [agent showConversations:self title:@"用户反馈" contact:nil];
     }
 }

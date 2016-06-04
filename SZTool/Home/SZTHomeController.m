@@ -263,7 +263,7 @@ static CGFloat const kWidgetHeight  = 200;
                               }
                               else if(buttonIndex == alertView.firstOtherButtonIndex + 1)
                               {
-                                  AVUserFeedbackAgent *agent = [AVUserFeedbackAgent sharedInstance];
+                                  LCUserFeedbackAgent *agent = [LCUserFeedbackAgent sharedInstance];
                                   [agent showConversations:self title:@"用户反馈" contact:nil];
                                   [defaults setObject:@(0) forKey:kUserDefaultKeyRemainPromotingTime];
                                   [AVAnalytics event:@"用户选择去反馈"];

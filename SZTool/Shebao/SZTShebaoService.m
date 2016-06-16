@@ -33,6 +33,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:kVerifyCodeUrl]];
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     requestOperation.securityPolicy.allowInvalidCertificates = YES;
+    requestOperation.securityPolicy.validatesDomainName = NO;
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         completionBlock(responseObject, nil);
@@ -50,6 +51,7 @@ static NSString *const kQueryUrl = @"https://wssb6.szsi.gov.cn/NetApplyWeb/perso
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.securityPolicy.allowInvalidCertificates = YES;
+    manager.securityPolicy.validatesDomainName = NO;
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     NSDictionary *params = @{@"bacode": accountNumber,
                              @"id":IDNumber,
